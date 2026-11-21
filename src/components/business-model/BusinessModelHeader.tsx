@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { BUSINESS_MODEL_DATA } from "@/data/businessModel";
 
@@ -10,22 +9,7 @@ export default function BusinessModelHeader() {
 
   return (
     <div className="relative w-full">
-      {/* Top-Right Farmland Ambient Illustration */}
-      {/* Sits elegantly in the far top-right corner to the right of the paragraph, matching Reference Image 2 exactly */}
-      <div
-        className="hidden lg:block absolute -top-12 -right-4 md:-right-6 lg:-right-8 xl:-right-10 pointer-events-none w-[320px] lg:w-[380px] xl:w-[440px] h-[220px] lg:h-[260px] xl:h-[300px] select-none z-0"
-        aria-hidden="true"
-      >
-        <Image
-          src={header.farmlandImage}
-          alt=""
-          fill
-          priority={false}
-          className="object-contain object-right-top"
-        />
-      </div>
-
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-14 items-center">
         {/* LEFT COLUMN: Eyebrow, Main Heading & Decorative Gold Line */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
@@ -66,7 +50,7 @@ export default function BusinessModelHeader() {
           transition={{ duration: 0.65, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
           className="lg:col-span-5 relative z-10 flex items-center lg:border-l-2 lg:border-[#C89B35] lg:pl-8 xl:pl-10"
         >
-          <p className="relative z-10 text-[#013D26] text-[15px] sm:text-[16px] lg:text-[16.5px] leading-[1.72] font-normal text-pretty max-w-[420px]">
+          <p className="text-[#013D26] text-[15px] sm:text-[16px] lg:text-[16.5px] leading-[1.72] font-normal text-pretty">
             {header.intro}
           </p>
         </motion.div>
