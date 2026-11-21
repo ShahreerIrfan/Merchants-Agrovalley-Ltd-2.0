@@ -1,0 +1,129 @@
+Implement the “Our Integrated Business Model” section for the BritAsia website using the generated asset pack folder. This asset pack is generated from the approved design, not extracted from the PDF.
+
+IMPORTANT:
+- Build a real responsive website section, not a static poster image.
+- Use the supplied crop images and icons as assets.
+- Keep the section visually consistent with the existing Hero, Company Profile & Governance, and Agro Portfolio sections.
+- The design must be fully mobile responsive.
+
+ASSET LOCATION
+Assume the extracted folder is available in the project base directory as:
+`britasia-integrated-business-model-generated-assets-v2`
+
+Move or copy the assets into the Next.js `public/assets/integrated-business-model/` directory with this structure:
+- `images/jpg/`
+- `images/png/`
+- `icons/svg/`
+- `icons/png/`
+
+DESIGN SYSTEM
+- Main heading and body text on white backgrounds: #013D26
+- Supporting dark green: #075B38
+- Gold accent: #C89B35
+- Light gold accent: #E8C979
+- Background: white
+- Use the same typography as earlier sections:
+  - Display headings: Playfair Display (or the existing serif display font already used)
+  - Body/UI text: Inter (or the existing sans-serif font already used)
+
+SECTION STRUCTURE
+1. Editorial header:
+   - Eyebrow: OUR INTEGRATED BUSINESS MODEL
+   - Large heading: A Connected Farm-to-Market Agro-Industrial Ecosystem
+   - Short right-side paragraph:
+     “BritAsia Limited is developing a vertically integrated operating model connecting animal nutrition, responsible farming, hygienic processing, subzero cold-chain logistics and international trade.”
+   - Add a slim gold divider between the left and right content areas.
+
+2. Main ecosystem diagram:
+   - Build a large central circular ecosystem block with five outer stages and one central core.
+   - Central core title:
+     INTEGRATED
+     FARM-TO-MARKET
+     BUSINESS MODEL
+   - Use the center leaf icon.
+   - Use the supplied generated stage crops:
+     - feed-milling-nutrition
+     - biosecure-farming
+     - hygienic-processing
+     - cryogenic-cold-chain
+     - international-trade
+   - Label the five stages exactly:
+     01 Feed Milling & Nutrition
+     02 Biosecure Farming
+     03 Hygienic Processing
+     04 Cryogenic Cold Chain
+     05 International Trade
+   - Use elegant gold segment borders and subtle deep-green overlays to ensure the white text remains readable.
+
+3. Left capability cards:
+   - Feed Security
+     “In-house feed production for poultry, cattle, fish and small ruminants.”
+     icon: feed-security
+   - Extrusion & Pelleting
+     “Steam conditioning and high-temperature processing for safe, consistent feed.”
+     icon: extrusion-pelleting
+   - Precision Nutrition
+     “Computerized micro-ingredient batching matched to life-stage performance and health.”
+     icon: precision-nutrition
+
+4. Right capability cards:
+   - Biosecure Husbandry
+     “Veterinary care, sanitary controls and responsible multi-species farming.”
+     icon: biosecure-husbandry
+   - Hygienic Food Safety
+     “Biosecurity barriers, automated CIP cleaning and quality assurance.”
+     icon: hygienic-food-safety
+   - Integrated Logistics
+     “Coordinated storage, refrigerated transport and export fulfillment.”
+     icon: integrated-logistics
+
+5. Bottom dark-green value band:
+   - Build a full-width curved/flowing footer band using deep green with subtle landscape image strips from the generated assets.
+   - Add four feature blocks separated by thin gold dividers:
+     - 4 Regional Development Phases
+       icon: strategic-development
+     - 1 Connected Supply Chain
+       icon: connected-supply-chain
+     - Circular Resource Recovery – Biogas & Organic Bio-Fertilizer
+       icon: circular-resource-recovery
+     - Solar Energy & Global Export Ambition
+       icon: solar-energy-global-export
+
+RESPONSIVE REQUIREMENTS
+- Desktop: 3-column composition with left cards, center diagram, right cards, and full-width bottom band.
+- Tablet: reduce spacing, cards can wrap into two columns, center diagram scales down.
+- Mobile: stack content vertically. Replace the desktop circle layout with a compact vertical or simplified responsive version so nothing overflows.
+- No horizontal scrolling.
+- Test at 320px, 375px, 414px, 768px, 1024px, and 1440px.
+
+ANIMATION
+- Add subtle fade-up scroll reveals for the header, cards, and diagram.
+- Add gentle hover elevation for capability cards.
+- Add subtle hover zoom for images.
+- Respect prefers-reduced-motion.
+
+TECHNICAL
+- Next.js + TypeScript + Tailwind CSS
+- Use next/image for photography
+- Use SVG icons directly where possible
+- Use semantic HTML and accessible alt text
+- Keep performance optimized
+- Do not use the full reference image as the actual webpage section
+
+ALSO MAINTAIN RESPONSIVE CONSISTENCY
+Make sure the existing:
+- Header/Nav
+- Hero section
+- Our Company Profile & Governance
+- BritAsia Agro Portfolio
+
+remain mobile responsive and visually consistent after adding this new section.
+
+FINAL CHECK
+Before finishing:
+- Run npm run lint
+- Run npm run build
+- Check desktop and mobile layouts in browser
+- Verify all images load correctly
+- Verify all card and diagram text is readable
+- Compare with the supplied section reference and refine spacing, typography, card styling, and diagram proportions.

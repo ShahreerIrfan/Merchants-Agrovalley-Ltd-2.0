@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import CompanyProfileSection from "@/components/sections/CompanyProfileSection";
 import AgroPortfolioSection from "@/components/portfolio/AgroPortfolioSection";
+import BusinessModelSection from "@/components/business-model/BusinessModelSection";
 
 export default function HomePage() {
   return (
@@ -17,6 +18,9 @@ export default function HomePage() {
 
       {/* BritAsia Agro Portfolio Section */}
       <AgroPortfolioSection />
+
+      {/* Our Integrated Business Model Section */}
+      <BusinessModelSection />
     </main>
   );
 }
