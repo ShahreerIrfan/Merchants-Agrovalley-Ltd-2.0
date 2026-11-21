@@ -9,15 +9,17 @@ export default function CapabilityHighlights() {
 
   return (
     <div className="w-full py-2 my-2 sm:my-3">
-      <div className="grid grid-cols-3 gap-2 sm:gap-4 items-center">
+      {/* Single-row Flexbox layout guaranteeing perfect horizontal alignment */}
+      <div className="flex flex-row items-start justify-between w-full">
         {capabilities.map((item, index) => {
           const isLast = index === capabilities.length - 1;
 
           return (
             <React.Fragment key={item.id}>
-              <div className="flex flex-col items-center text-center px-1">
-                {/* SVG Icon - Sleek & Compact */}
-                <div className="w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] mb-2 flex items-center justify-center">
+              {/* Capability Item */}
+              <div className="flex-1 flex flex-col items-center text-center px-1 sm:px-2">
+                {/* SVG Icon */}
+                <div className="w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] mb-2 flex items-center justify-center shrink-0">
                   <Image
                     src={item.iconPath}
                     alt={item.title.replace("\n", " ")}
@@ -33,10 +35,10 @@ export default function CapabilityHighlights() {
                 </span>
               </div>
 
-              {/* Thin Vertical Divider */}
+              {/* Thin Vertical Divider between items */}
               {!isLast && (
                 <div
-                  className="hidden sm:block w-[1px] h-10 bg-[#E2EED7] shrink-0 self-center justify-self-center"
+                  className="w-[1px] h-11 bg-[#E2EED7] shrink-0 self-center mx-1 sm:mx-2"
                   aria-hidden="true"
                 />
               )}
