@@ -11,7 +11,7 @@ export default function ValueBand() {
   return (
     <div className="relative w-full overflow-hidden mt-14 sm:mt-18 lg:mt-20">
       {/* Flowing Curved Top Border Line with Gold Tone */}
-      <div className="w-full h-4 relative">
+      <div className="w-full h-4 sm:h-5 relative -mb-[1px]">
         <svg
           viewBox="0 0 1440 24"
           fill="none"
@@ -33,28 +33,24 @@ export default function ValueBand() {
       </div>
 
       {/* Main Dark Green Value Band */}
-      <div className="relative bg-[#013D26] text-white py-10 sm:py-12 lg:py-14 px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20 overflow-hidden">
-        {/* Subtle Ambient Landscape Strips in Background */}
+      <div className="relative bg-[#013D26] text-white py-12 sm:py-14 lg:py-16 px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20 overflow-hidden">
+        {/* Clean Photographic Agricultural Landscape Background (Zero embedded text / infographic artifacts) */}
         <div
-          className="absolute inset-0 pointer-events-none opacity-20 mix-blend-overlay flex justify-between select-none"
+          className="absolute inset-0 pointer-events-none select-none overflow-hidden"
           aria-hidden="true"
         >
-          <div className="relative w-1/3 h-full">
-            <Image
-              src={bottomBand.landscapeLeft}
-              alt=""
-              fill
-              className="object-cover object-left"
-            />
-          </div>
-          <div className="relative w-1/3 h-full">
-            <Image
-              src={bottomBand.landscapeRight}
-              alt=""
-              fill
-              className="object-cover object-right"
-            />
-          </div>
+          <Image
+            src={bottomBand.backgroundImage}
+            alt=""
+            fill
+            sizes="100vw"
+            priority={false}
+            className="object-cover object-[center_55%]"
+          />
+          {/* Deep Green Overlay: ~88-90% #013D26 */}
+          <div className="absolute inset-0 bg-[#013D26]/90" />
+          {/* Supporting subtle gradient to ensure maximum label readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#013D26] via-[#013D26]/85 to-[#013D26]/90" />
         </div>
 
         {/* Four Feature Blocks Separated by Thin Gold Dividers */}
@@ -73,15 +69,15 @@ export default function ValueBand() {
                     delay: index * 0.1,
                     ease: "easeOut",
                   }}
-                  className="flex items-center gap-4 sm:gap-4.5 group"
+                  className="flex items-center gap-4 sm:gap-4.5 group relative"
                 >
                   {/* Gold SVG Icon */}
-                  <div className="w-[46px] h-[46px] sm:w-[50px] sm:h-[50px] rounded-xl bg-white/10 border border-[#C89B35]/40 flex items-center justify-center p-2.5 shrink-0 group-hover:scale-108 group-hover:border-[#C89B35] transition-all duration-300">
+                  <div className="w-[48px] h-[48px] sm:w-[52px] sm:h-[52px] rounded-xl bg-white/10 border border-[#C89B35]/40 flex items-center justify-center p-2.5 shrink-0 group-hover:scale-108 group-hover:border-[#C89B35] transition-all duration-300 shadow-sm">
                     <Image
                       src={item.iconPath}
                       alt=""
-                      width={36}
-                      height={36}
+                      width={38}
+                      height={38}
                       className="w-full h-full object-contain"
                     />
                   </div>

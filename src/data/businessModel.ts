@@ -23,11 +23,11 @@ export const BUSINESS_MODEL_DATA = {
   header: {
     eyebrow: "OUR INTEGRATED BUSINESS MODEL",
     headingLine1: "A Connected Farm-to-Market",
-    headingLine2: "Agro Ecosystem",
+    headingLine2: "Agro-Industrial Ecosystem",
     intro:
       "BritAsia Limited is developing a vertically integrated operating model connecting animal nutrition, responsible farming, hygienic processing, subzero cold-chain logistics and international trade.",
     farmlandImage:
-      "/assets/integrated-business-model/images/jpg/top-right-farmland.jpg",
+      "/assets/integrated-business-model/images/top-right-farmland-decoration.webp",
   },
 
   leftCapabilities: [
@@ -51,7 +51,7 @@ export const BUSINESS_MODEL_DATA = {
       id: "precision-nutrition",
       title: "Precision Nutrition",
       description:
-        "Computerized micro-ingredient batching matched to life-stage nutrition.",
+        "Computerized micro-ingredient batching matched to life-stage performance and health.",
       iconPath:
         "/assets/integrated-business-model/icons/svg/precision-nutrition.svg",
     },
@@ -159,9 +159,7 @@ export const BUSINESS_MODEL_DATA = {
           "/assets/integrated-business-model/icons/svg/solar-energy-global-export.svg",
       },
     ] as BottomBandItem[],
-    landscapeLeft:
-      "/assets/integrated-business-model/images/jpg/footer-landscape-left.jpg",
-    landscapeRight:
-      "/assets/integrated-business-model/images/jpg/footer-landscape-right.jpg",
+    backgroundImage:
+      "/assets/integrated-business-model/images/footer-agricultural-landscape.webp",
   },
 };
