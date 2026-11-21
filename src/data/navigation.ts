@@ -1,123 +1,51 @@
 export interface NavItem {
   name: string;
   href: string;
-  hasDropdown?: boolean;
+  iconName: string;
   isActive?: boolean;
-  dropdownItems?: {
-    name: string;
-    href: string;
-    description?: string;
-  }[];
 }
 
 export const NAV_ITEMS: NavItem[] = [
   {
     name: "Home",
     href: "#",
+    iconName: "Home",
     isActive: true,
   },
   {
-    name: "About Us",
+    name: "Who We Are",
     href: "#about",
-    hasDropdown: true,
-    dropdownItems: [
-      {
-        name: "Corporate Profile",
-        href: "#corporate-profile",
-        description: "Leading agro-industrial conglomerate in Bangladesh",
-      },
-      {
-        name: "Vision, Mission & Values",
-        href: "#vision-mission",
-        description: "Sustainable nourishment and global market excellence",
-      },
-      {
-        name: "Board of Directors",
-        href: "#leadership",
-        description: "Visionary industry pioneers and executives",
-      },
-      {
-        name: "Milestones & Heritage",
-        href: "#history",
-        description: "Decades of agricultural development and innovation",
-      },
-    ],
+    iconName: "Users",
   },
   {
-    name: "Our Businesses",
-    href: "#businesses",
-    hasDropdown: true,
-    dropdownItems: [
-      {
-        name: "Poultry & Eggs",
-        href: "#poultry-eggs",
-        description: "Integrated breeding, hatcheries and commercial poultry",
-      },
-      {
-        name: "Cattle & Dairy",
-        href: "#cattle-dairy",
-        description: "Modern dairy farming, genetics and milk processing",
-      },
-      {
-        name: "Goat & Duck",
-        href: "#goat-duck",
-        description: "Commercial pastoral farming and high-yield genetics",
-      },
-      {
-        name: "Fish & Aquaculture",
-        href: "#fish-aquaculture",
-        description: "Freshwater aquaculture and advanced hatchery systems",
-      },
-      {
-        name: "Food Processing",
-        href: "#food-processing",
-        description: "Value-added agro-food production and packaging",
-      },
-      {
-        name: "Renewable Energy",
-        href: "#renewable-energy",
-        description: "Biogas, solar agro-voltaics and circular energy",
-      },
-      {
-        name: "Cold Chain & Export",
-        href: "#cold-chain-export",
-        description: "Temperature-controlled logistics and global trade",
-      },
-    ],
+    name: "Management",
+    href: "#leadership",
+    iconName: "Briefcase",
   },
   {
-    name: "Sustainability",
-    href: "#sustainability",
+    name: "Product & Service",
+    href: "#portfolio",
+    iconName: "Package",
   },
   {
-    name: "Quality & Compliance",
-    href: "#quality-compliance",
+    name: "Environment",
+    href: "#business-model",
+    iconName: "Leaf",
   },
   {
-    name: "Export & Trade",
-    href: "#export-trade",
+    name: "Human Right",
+    href: "#human-rights",
+    iconName: "HeartHandshake",
   },
   {
-    name: "Media",
-    href: "#media",
-    hasDropdown: true,
-    dropdownItems: [
-      {
-        name: "Press Releases",
-        href: "#press-releases",
-        description: "Latest announcements and corporate news",
-      },
-      {
-        name: "Photo & Video Gallery",
-        href: "#gallery",
-        description: "High-tech facility tours and agricultural harvest",
-      },
-      {
-        name: "Publications & Reports",
-        href: "#reports",
-        description: "Annual reports and agro-economic research",
-      },
-    ],
+    name: "Health & Safety",
+    href: "#health-safety",
+    iconName: "ShieldCheck",
+  },
+  {
+    name: "We Love Local",
+    href: "#we-love-local",
+    iconName: "Heart",
   },
 ];
 

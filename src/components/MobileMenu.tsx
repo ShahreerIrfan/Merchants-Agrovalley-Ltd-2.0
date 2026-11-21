@@ -3,8 +3,30 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { X, ChevronDown, Mail } from "lucide-react";
+import {
+  X,
+  Mail,
+  Home,
+  Users,
+  Briefcase,
+  Package,
+  Leaf,
+  HeartHandshake,
+  ShieldCheck,
+  Heart,
+} from "lucide-react";
 import { NAV_ITEMS } from "@/data/navigation";
+
+const NAV_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  Home: Home,
+  Users: Users,
+  Briefcase: Briefcase,
+  Package: Package,
+  Leaf: Leaf,
+  HeartHandshake: HeartHandshake,
+  ShieldCheck: ShieldCheck,
+  Heart: Heart,
+};
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -12,8 +34,6 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
-  const [openDropdown, setOpenDropdown] = React.useState<string | null>(null);
-
   // Close on escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -33,15 +53,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     };
   }, [isOpen, onClose]);
 
-  const toggleDropdown = (name: string) => {
-    setOpenDropdown(openDropdown === name ? null : name);
-  };
-
   if (!isOpen) return null;
 
   return (
     <div
-      className="fixed inset-0 z-50 lg:hidden flex"
+      className="fixed inset-0 z-50 xl:hidden flex"
       role="dialog"
       aria-modal="true"
       aria-label="Mobile Navigation"
@@ -61,9 +77,9 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <Image
               src="/logo/merchants-agro-valley-logo.svg"
               alt="Merchants Agro Valley"
-              width={200}
-              height={58}
-              className="w-[180px] h-auto object-contain"
+              width={180}
+              height={52}
+              className="w-[160px] h-auto object-contain"
               priority
             />
           </Link>
@@ -76,62 +92,38 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </button>
         </div>
 
-        {/* Navigation Items */}
-        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-2">
-          {NAV_ITEMS.map((item) => (
-            <div key={item.name} className="border-b border-gray-50 pb-2">
-              {item.hasDropdown ? (
-                <div>
-                  <button
-                    onClick={() => toggleDropdown(item.name)}
-                    className="flex items-center justify-between w-full py-2.5 text-[16px] font-medium text-[#142C23] hover:text-[#08713D] transition-colors"
-                    aria-expanded={openDropdown === item.name}
-                  >
-                    <span>{item.name}</span>
-                    <ChevronDown
-                      className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
-                        openDropdown === item.name ? "rotate-180 text-[#08713D]" : ""
-                      }`}
-                    />
-                  </button>
-                  {openDropdown === item.name && item.dropdownItems && (
-                    <div className="pl-4 mt-1 space-y-2 border-l-2 border-[#A6E51B] py-1 bg-gray-50/50 rounded-r-lg">
-                      {item.dropdownItems.map((subItem) => (
-                        <Link
-                          key={subItem.name}
-                          href={subItem.href}
-                          onClick={onClose}
-                          className="block py-1.5 px-3 text-sm text-gray-700 hover:text-[#063F2B] hover:bg-gray-100/70 rounded transition-colors"
-                        >
-                          <div className="font-medium">{subItem.name}</div>
-                          {subItem.description && (
-                            <div className="text-xs text-gray-400 line-clamp-1 mt-0.5">
-                              {subItem.description}
-                            </div>
-                          )}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Link
-                  href={item.href}
-                  onClick={onClose}
-                  className={`flex items-center justify-between py-2.5 text-[16px] font-medium transition-colors ${
+        {/* Navigation Items with Icons */}
+        <div className="flex-1 overflow-y-auto px-5 py-6 space-y-1.5">
+          {NAV_ITEMS.map((item) => {
+            const IconComponent = NAV_ICONS[item.iconName] || Home;
+
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={onClose}
+                className={`flex items-center gap-3 py-3 px-3.5 rounded-xl text-[15px] font-medium transition-all ${
+                  item.isActive
+                    ? "text-[#063F2B] font-semibold bg-emerald-50/80"
+                    : "text-[#142C23] hover:text-[#08713D] hover:bg-gray-50"
+                }`}
+              >
+                <div
+                  className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
                     item.isActive
-                      ? "text-[#063F2B] font-semibold"
-                      : "text-[#142C23] hover:text-[#08713D]"
+                      ? "bg-[#08713D] text-white"
+                      : "bg-gray-100 text-gray-600 group-hover:bg-emerald-100"
                   }`}
                 >
-                  <span>{item.name}</span>
-                  {item.isActive && (
-                    <span className="w-2 h-2 rounded-full bg-[#08713D]" />
-                  )}
-                </Link>
-              )}
-            </div>
-          ))}
+                  <IconComponent className="w-4 h-4" />
+                </div>
+                <span className="flex-1">{item.name}</span>
+                {item.isActive && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#08713D]" />
+                )}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Drawer Footer CTA */}
@@ -139,12 +131,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <Link
             href="#contact"
             onClick={onClose}
-            className="w-full flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-full bg-[#063F2B] hover:bg-[#08713D] text-white font-medium text-[15px] transition-all duration-200 shadow-md"
+            className="w-full flex items-center justify-center gap-2.5 py-3 px-6 rounded-full bg-[#063F2B] hover:bg-[#08713D] text-white font-medium text-[14.5px] transition-all duration-200 shadow-md"
           >
             <Mail className="w-4 h-4" />
             <span>Get in Touch</span>
           </Link>
-          <p className="text-center text-xs text-gray-400 mt-3">
+          <p className="text-center text-xs text-gray-400 mt-2.5">
             Integrated Agro-Industrial Enterprise
           </p>
         </div>
