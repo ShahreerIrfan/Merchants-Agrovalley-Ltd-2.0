@@ -25,8 +25,8 @@ export default function CapabilityCard({ card, index }: CapabilityCardProps) {
       data-cursor="card"
       className="group bg-white border border-[#E4EDE2] hover:border-[#C89B35] rounded-[18px] sm:rounded-[20px] p-5 sm:p-6 shadow-[0_4px_20px_rgba(1,61,38,0.04)] hover:shadow-[0_12px_32px_rgba(200,155,53,0.15)] transition-all duration-300 flex items-start gap-4 sm:gap-4.5 cursor-default"
     >
-      {/* Dark Green Circle Icon Tile */}
-      <div className="w-[52px] h-[52px] sm:w-[58px] sm:h-[58px] shrink-0 rounded-full flex items-center justify-center p-0.5 group-hover:scale-108 transition-transform duration-300 shadow-2xs">
+      {/* Dark Green Squircle Icon Tile matching Reference Image 3 */}
+      <div className="w-[52px] h-[52px] sm:w-[58px] sm:h-[58px] shrink-0 rounded-2xl flex items-center justify-center p-0.5 group-hover:scale-108 transition-transform duration-300 shadow-2xs">
         <Image
           src={card.iconPath}
           alt={`${card.title} icon`}
