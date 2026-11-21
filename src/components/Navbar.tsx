@@ -42,7 +42,7 @@ export default function Navbar() {
           : "border-b border-gray-100"
       }`}
     >
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 h-[92px] sm:h-[100px] flex items-center justify-between">
+      <div className="max-w-[1600px] mx-auto px-3.5 sm:px-6 lg:px-10 xl:px-12 h-[84px] sm:h-[96px] lg:h-[100px] flex items-center justify-between">
         {/* LEFT — BRAND LOGO & DIVIDER */}
         <div className="flex items-center">
           <Link href="/" className="relative block group" aria-label="Merchants Agro Valley Home">
@@ -52,7 +52,7 @@ export default function Navbar() {
               width={275}
               height={78}
               priority
-              className="w-[210px] sm:w-[245px] lg:w-[270px] h-auto object-contain transition-transform duration-200 group-hover:opacity-95"
+              className="w-[170px] xs:w-[195px] sm:w-[240px] lg:w-[270px] h-auto object-contain transition-transform duration-200 group-hover:opacity-95"
             />
           </Link>
           {/* Subtle vertical divider after brand area */}
@@ -62,7 +62,7 @@ export default function Navbar() {
           />
         </div>
 
-        {/* CENTER — NAVIGATION MENU */}
+        {/* CENTER — NAVIGATION MENU (Desktop) */}
         <nav
           className="hidden lg:flex items-center space-x-5 xl:space-x-7"
           aria-label="Main Navigation"
@@ -146,19 +146,19 @@ export default function Navbar() {
         </nav>
 
         {/* RIGHT — CONTACT BUTTON & MOBILE HAMBURGER */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-2 sm:space-x-3">
           <Link
             href="#contact"
-            className="hidden sm:inline-flex items-center gap-2.5 bg-[#063F2B] hover:bg-[#08713D] text-white font-semibold text-[14px] xl:text-[15px] px-6 py-3 rounded-full transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-hidden focus:ring-2 focus:ring-[#A6E51B] focus:ring-offset-2"
+            className="hidden sm:inline-flex items-center gap-2 bg-[#063F2B] hover:bg-[#08713D] text-white font-semibold text-[13.5px] xl:text-[15px] px-5 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:outline-hidden focus:ring-2 focus:ring-[#A6E51B]"
           >
             <Mail className="w-4 h-4 text-white" />
             <span>Get in Touch</span>
           </Link>
 
-          {/* Mobile Hamburger Toggle */}
+          {/* Mobile Hamburger Toggle (Accessible 44px min tap target) */}
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="lg:hidden p-2.5 text-[#063F2B] hover:bg-gray-100 rounded-lg transition-colors focus:outline-hidden focus:ring-2 focus:ring-[#08713D]"
+            className="lg:hidden p-2.5 text-[#063F2B] hover:bg-gray-100 rounded-lg transition-colors focus:outline-hidden focus:ring-2 focus:ring-[#08713D] min-w-[44px] min-h-[44px] flex items-center justify-center cursor-pointer"
             aria-label="Open mobile navigation menu"
             aria-expanded={mobileMenuOpen}
           >

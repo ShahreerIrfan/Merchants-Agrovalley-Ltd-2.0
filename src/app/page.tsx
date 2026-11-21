@@ -1,10 +1,11 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import CompanyProfileSection from "@/components/sections/CompanyProfileSection";
+import AgroPortfolioSection from "@/components/portfolio/AgroPortfolioSection";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen flex flex-col bg-white">
+    <main className="min-h-screen flex flex-col bg-white overflow-x-hidden">
       {/* Sticky Premium Navbar */}
       <Navbar />
 
@@ -13,6 +14,9 @@ export default function HomePage() {
 
       {/* Company Profile & Governance Section */}
       <CompanyProfileSection />
+
+      {/* BritAsia Agro Portfolio Section */}
+      <AgroPortfolioSection />
     </main>
   );
 }

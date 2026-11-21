@@ -1,0 +1,54 @@
+Implement the BritAsia Agro Portfolio section using the assets in `britasia-agro-portfolio-assets/`.
+
+IMPORTANT: This is a responsive implementation task, not a request to place the full mockup image as a background. Rebuild the section with clean, semantic components and CSS. Use `images/section-design-reference.webp` only as a visual reference, and use `images/agro-farm-portfolio.webp` as the actual farm image. Use the supplied SVG icons and `styles/brand-tokens.css`.
+
+DESIGN DIRECTION
+- Match the typography and visual identity of the existing Hero section and “Our Company Profile & Governance” section.
+- Use Playfair Display for large editorial headings and Inter for body text.
+- On white backgrounds, all primary text must use forest green `#013D26`.
+- Use `#68A617` only for accent words, icon strokes, fine rules, check marks and selected highlights.
+- Keep the background predominantly white with subtle pale-green botanical details and restrained green wave decoration near the bottom.
+- Use generous spacing, refined rounded image corners, subtle borders/shadows and a premium corporate-agriculture feel. Avoid clutter and oversized decorative effects.
+
+SECTION CONTENT & STRUCTURE
+1. Top editorial header:
+   - Small eyebrow: “OUR AGRO PORTFOLIO”
+   - Main heading: “Commercial Rearing, Hygienic Processing & Global Trade”
+   - Intro paragraph: “An integrated farm-to-market model combining commercial livestock, poultry and aquaculture operations with hygienic processing centres. Our export objective is the UK, Europe and Middle East, supported by professional farm management, sanitary processing, subzero cold-chain logistics and cross-border trade finance.”
+2. Main feature row:
+   - Left: farm image from `images/agro-farm-portfolio.webp`, with a clean rounded crop and responsive aspect ratio.
+   - Right: heading “One Integrated Farm-to-Market Portfolio”, highlighting “Farm-to-Market” in `#68A617`.
+   - Supporting copy: “Combining responsible farming, modern processing and export-ready logistics to deliver safe, high-quality protein from Bangladesh to international markets.”
+   - Three compact portfolio labels with supplied icons: Livestock, Poultry, Aquaculture.
+3. Core value system:
+   - Heading “Our Core Value System”
+   - Subheading “Uncompromising Quality, Ethical Husbandry & Unbroken Cold-Chain Logistics”
+   - Three equal cards:
+     a. Cold Chain Integrity — “Cryogenic blast freezing, unbroken reefer transit and real-time digital temperature telemetry.”
+     b. Ethical Husbandry — “Natural and biosecure stress-free ventilated rearing, natural forage and verified biosecurity buffers.”
+     c. Institutional Quality — “Veterinary health certification, microbial profiling and destination-market food safety directives.”
+4. Bottom vision and mission panels:
+   - Vision: “To establish a recognised international agro-business from Bangladesh, connecting responsible agricultural production with quality-driven food processing and global trade.”
+   - Mission bullets: “Commercially viable livestock, poultry and fish farms”; “Hygiene and food-safety controls”; “Dependable, traceable supply chain”; “Export capabilities aligned with UK and European markets”; “Long-term buyer partnerships”; “Rural employment and responsible resource stewardship.”
+
+RESPONSIVE REQUIREMENTS — MUST IMPLEMENT
+- Make this new Agro Portfolio section fully responsive across desktop, tablet and mobile (including 320px-wide screens).
+- On desktop, use the editorial split header, image/text feature row, three value cards and two bottom panels.
+- On tablet, reduce spacing and typography, and allow cards/panels to wrap without horizontal overflow.
+- On mobile, stack the heading and intro, stack the feature image above its text, wrap the three portfolio labels neatly, stack the value cards vertically, and stack Vision and Mission panels.
+- Ensure buttons/links, text, images and icons never overflow. Use fluid typography (`clamp()`), responsive grid/flex layouts, `min-width: 0`, and appropriate image `object-fit: cover`.
+- Keep comfortable mobile padding and readable line-height. Do not shrink desktop content into a narrow column.
+
+ALSO FIX EXISTING SITE RESPONSIVENESS
+In the same implementation, audit and make the following existing areas fully mobile responsive:
+1. Header and navigation: add a working mobile menu (hamburger/open-close), prevent nav overflow, maintain logo alignment, accessible tap targets and sensible sticky-header behavior.
+2. Hero section: reflow headline, supporting copy, CTA buttons and hero media for mobile; avoid clipped text, overlapping elements or oversized images.
+3. “Our Company Profile & Governance” section: stack its heading/intro, governance cards, large image/text feature and CTA buttons appropriately; ensure all cards and text fit mobile screens.
+
+GLOBAL QA
+- Preserve the current desktop design and existing content while improving responsive behavior.
+- Check at widths 320px, 375px, 414px, 768px, 1024px and 1440px.
+- No horizontal page scrolling at any breakpoint.
+- Use semantic HTML, accessible labels/alt text, keyboard-operable navigation and visible focus states.
+- Reuse the project's existing framework, components and conventions. Do not introduce unnecessary dependencies.
+- Verify the final result in the browser at desktop and mobile sizes before finishing.
