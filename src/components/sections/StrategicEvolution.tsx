@@ -7,19 +7,21 @@ import { ArrowRight, Play } from "lucide-react";
 import { motion } from "framer-motion";
 import { COMPANY_PROFILE_DATA } from "@/data/companyProfile";
 import CapabilityHighlights from "./CapabilityHighlights";
+import MagneticButton from "../animations/MagneticButton";
 
 export default function StrategicEvolution() {
   const { strategicEvolution, buttons } = COMPANY_PROFILE_DATA;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 xl:gap-12 items-stretch pt-2">
-      {/* LEFT COLUMN: HD Facility Photograph (Matches exact height of right column on desktop) */}
+      {/* LEFT COLUMN: HD Facility Photograph with Reveal & Subtle Hover Zoom */}
       <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        initial={{ opacity: 0, scale: 0.96, y: 25 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="relative flex flex-col h-full min-h-[260px] xs:min-h-[300px] sm:min-h-[390px] lg:min-h-0"
+        data-cursor="image"
       >
         {/* Rounded Image Container */}
         <div className="relative w-full h-full min-h-[260px] xs:min-h-[300px] sm:min-h-[390px] lg:min-h-0 rounded-[22px] sm:rounded-[26px] overflow-hidden shadow-[0_12px_36px_rgba(1,61,38,0.08)] border border-[#E2EED7]/70 z-10 group">
@@ -29,11 +31,11 @@ export default function StrategicEvolution() {
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             priority={false}
-            className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
+            className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           />
         </div>
 
-        {/* Lime-green corner accent hugging bottom-left curve (Reference exact match) */}
+        {/* Lime-green corner accent hugging bottom-left curve */}
         <div
           className="absolute -bottom-2 -left-2 w-24 sm:w-36 h-12 sm:h-18 border-b-[5px] border-l-[5px] border-[#68A617] rounded-bl-[28px] sm:rounded-bl-[32px] pointer-events-none z-0"
           aria-hidden="true"
@@ -42,10 +44,10 @@ export default function StrategicEvolution() {
 
       {/* RIGHT COLUMN: Content (Balanced vertical alignment with left image) */}
       <motion.div
-        initial={{ opacity: 0, x: 20 }}
+        initial={{ opacity: 0, x: 25 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         className="flex flex-col justify-between h-full pt-1 sm:pt-0"
       >
         {/* Top: Headline & Decorative Divider Line */}
@@ -60,8 +62,12 @@ export default function StrategicEvolution() {
           </h3>
 
           {/* Thin Green Divider Line under Heading */}
-          <div
-            className="w-full h-[1.5px] bg-[#68A617]/40 mt-3 mb-4"
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="w-full h-[1.5px] bg-[#68A617]/40 mt-3 mb-4 origin-left"
             aria-hidden="true"
           />
 
@@ -71,30 +77,34 @@ export default function StrategicEvolution() {
           </p>
         </div>
 
-        {/* Middle: Capability Highlights (Clean & Transparent) */}
+        {/* Middle: Capability Highlights */}
         <CapabilityHighlights />
 
-        {/* Bottom: Call-to-Action Buttons (Responsive wrap/stack) */}
+        {/* Bottom: Call-to-Action Buttons with Magnetic effect */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1 w-full sm:w-auto">
           {/* Primary CTA */}
-          <Link
-            href={buttons.primary.href}
-            className="inline-flex items-center justify-center gap-2 bg-[#23934B] hover:bg-[#08713D] text-white font-medium text-[14px] sm:text-[14.5px] px-6 sm:px-7 py-3 rounded-full transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 group cursor-pointer text-center"
-          >
-            <span>{buttons.primary.text}</span>
-            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
+          <MagneticButton className="w-full sm:w-auto">
+            <Link
+              href={buttons.primary.href}
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-[#23934B] hover:bg-[#08713D] text-white font-medium text-[14px] sm:text-[14.5px] px-6 sm:px-7 py-3 rounded-full transition-all duration-300 shadow-sm hover:shadow-[0_8px_20px_rgba(35,147,75,0.3)] hover:-translate-y-0.5 group cursor-pointer text-center"
+            >
+              <span>{buttons.primary.text}</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+            </Link>
+          </MagneticButton>
 
           {/* Secondary CTA */}
-          <Link
-            href={buttons.secondary.href}
-            className="inline-flex items-center justify-center gap-2 bg-white hover:bg-[#F4FAEE] text-[#013D26] font-medium text-[14px] sm:text-[14.5px] px-5 sm:px-6 py-3 rounded-full border border-[#013D26] transition-all duration-300 hover:-translate-y-0.5 group cursor-pointer text-center"
-          >
-            <div className="w-4 h-4 rounded-full bg-[#013D26]/10 flex items-center justify-center group-hover:bg-[#013D26]/20 transition-colors">
-              <Play className="w-2.5 h-2.5 text-[#013D26] fill-[#013D26] ml-0.5" />
-            </div>
-            <span>{buttons.secondary.text}</span>
-          </Link>
+          <MagneticButton className="w-full sm:w-auto">
+            <Link
+              href={buttons.secondary.href}
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-white hover:bg-[#F4FAEE] text-[#013D26] font-medium text-[14px] sm:text-[14.5px] px-5 sm:px-6 py-3 rounded-full border border-[#013D26] hover:border-[#68A617] transition-all duration-300 hover:-translate-y-0.5 group cursor-pointer text-center"
+            >
+              <div className="w-4 h-4 rounded-full bg-[#013D26]/10 flex items-center justify-center group-hover:bg-[#013D26]/20 transition-colors">
+                <Play className="w-2.5 h-2.5 text-[#013D26] fill-[#013D26] ml-0.5" />
+              </div>
+              <span>{buttons.secondary.text}</span>
+            </Link>
+          </MagneticButton>
         </div>
       </motion.div>
     </div>

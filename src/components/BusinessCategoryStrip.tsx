@@ -18,32 +18,34 @@ export default function BusinessCategoryStrip() {
             return (
               <React.Fragment key={cat.id}>
                 <motion.div
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    duration: 0.5,
-                    delay: 0.4 + index * 0.08,
+                    duration: 0.55,
+                    delay: 0.5 + index * 0.07,
                     ease: "easeOut",
                   }}
-                  className="flex-1 min-w-[140px] sm:min-w-[160px] lg:min-w-0"
+                  whileHover={{ y: -4 }}
+                  className="flex-1 min-w-[130px] sm:min-w-[150px] lg:min-w-0"
+                  data-cursor="hover"
                 >
                   <Link
                     href={cat.href}
                     className="group flex flex-col items-center justify-center text-center px-2 py-1 transition-all duration-300"
                   >
-                    {/* SVG Icon with white filter */}
-                    <div className="relative w-[44px] h-[44px] sm:w-[46px] sm:h-[46px] mb-2.5 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1.5">
+                    {/* SVG Icon with white filter & glow lift on hover */}
+                    <div className="relative w-[44px] h-[44px] sm:w-[46px] sm:h-[46px] mb-2.5 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
                       <Image
                         src={cat.iconPath}
                         alt={`${cat.name} icon`}
                         width={46}
                         height={46}
-                        className="w-full h-full object-contain brightness-0 invert group-hover:drop-shadow-[0_4px_12px_rgba(166,229,27,0.45)] transition-all duration-300"
+                        className="w-full h-full object-contain brightness-0 invert group-hover:drop-shadow-[0_4px_14px_rgba(166,229,27,0.55)] transition-all duration-300"
                       />
                     </div>
 
                     {/* Category Label */}
-                    <span className="text-white text-[14px] sm:text-[15px] lg:text-[16px] font-medium leading-tight tracking-normal group-hover:text-[#A6E51B] transition-colors duration-200">
+                    <span className="text-white text-[14px] sm:text-[15px] lg:text-[16px] font-medium leading-tight tracking-normal group-hover:text-[#A6E51B] transition-colors duration-300">
                       {cat.name}
                     </span>
                   </Link>

@@ -1,21 +1,35 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import HeroContent from "./HeroContent";
 import BusinessCategoryStrip from "./BusinessCategoryStrip";
 
 export default function HeroSection() {
   return (
     <section
-      className="relative w-full overflow-hidden flex flex-col justify-between min-h-[720px] lg:h-[calc(100vh-100px)] lg:min-h-[750px] lg:max-h-[860px] bg-[#022b1e]"
-      style={{
-        backgroundImage: `url('/images/hero-background.jpg')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center center",
-        backgroundRepeat: "no-repeat",
-      }}
+      className="relative w-full overflow-hidden flex flex-col justify-between min-h-[640px] sm:min-h-[720px] lg:h-[calc(100vh-100px)] lg:min-h-[750px] lg:max-h-[860px] bg-[#022b1e]"
       aria-label="Merchants Agro Valley Hero"
     >
+      {/* Subtle slow ambient zoom on background image */}
+      <motion.div
+        animate={{ scale: [1, 1.04] }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "easeInOut",
+        }}
+        className="absolute inset-0 w-full h-full"
+        style={{
+          backgroundImage: `url('/images/hero-background.jpg')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+        }}
+        aria-hidden="true"
+      />
+
       {/* Primary Left-to-Right Dark Green Gradient Overlay */}
       <div
         className="absolute inset-0 z-10 pointer-events-none hero-gradient-overlay"

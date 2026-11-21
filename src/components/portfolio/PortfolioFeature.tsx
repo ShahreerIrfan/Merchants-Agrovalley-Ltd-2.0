@@ -10,13 +10,14 @@ export default function PortfolioFeature() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 xl:gap-12 items-center">
-      {/* LEFT COLUMN: Farm Image with Rounded Crop & Lime-green corner accent */}
+      {/* LEFT COLUMN: Farm Image with Rounded Crop & Image Reveal on Scroll */}
       <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        initial={{ opacity: 0, scale: 0.96, y: 25 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="relative flex flex-col h-full min-h-[300px] sm:min-h-[360px] lg:min-h-[380px]"
+        data-cursor="image"
       >
         {/* Main Image Container */}
         <div className="relative w-full h-full min-h-[300px] sm:min-h-[360px] lg:min-h-0 rounded-[22px] sm:rounded-[26px] overflow-hidden shadow-[0_12px_36px_rgba(1,61,38,0.08)] border border-[#E4EDE2] z-10 group">
@@ -26,11 +27,11 @@ export default function PortfolioFeature() {
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             priority={false}
-            className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
+            className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           />
         </div>
 
-        {/* Lime-green corner accent hugging bottom-left curve (Reference Match) */}
+        {/* Lime-green corner accent hugging bottom-left curve */}
         <div
           className="absolute -bottom-2 -left-2 w-28 sm:w-36 h-14 sm:h-18 border-b-[5px] border-l-[5px] border-[#68A617] rounded-bl-[28px] sm:rounded-bl-[32px] pointer-events-none z-0"
           aria-hidden="true"
@@ -39,10 +40,10 @@ export default function PortfolioFeature() {
 
       {/* RIGHT COLUMN: Editorial Copy & 3 Clean Categories with Vertical Dividers */}
       <motion.div
-        initial={{ opacity: 0, x: 20 }}
+        initial={{ opacity: 0, x: 25 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         className="flex flex-col justify-center h-full"
       >
         {/* Heading */}
@@ -53,8 +54,12 @@ export default function PortfolioFeature() {
         </h3>
 
         {/* Thin Divider Line under Heading */}
-        <div
-          className="w-full h-[1.5px] bg-[#68A617]/35 mt-3 mb-4"
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.25 }}
+          className="w-full h-[1.5px] bg-[#68A617]/35 mt-3 mb-4 origin-left"
           aria-hidden="true"
         />
 
@@ -63,7 +68,7 @@ export default function PortfolioFeature() {
           {feature.description}
         </p>
 
-        {/* Three Portfolio Categories (Horizontal row with vertical dividers - Exact Reference Match) */}
+        {/* Three Portfolio Categories */}
         <div className="flex flex-row items-center justify-between w-full py-2">
           {feature.categories.map((cat, index) => {
             const isLast = index === feature.categories.length - 1;
@@ -71,9 +76,14 @@ export default function PortfolioFeature() {
             return (
               <React.Fragment key={cat.id}>
                 {/* Category Column */}
-                <div className="flex-1 flex flex-col items-center text-center px-2 group cursor-default">
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  className="flex-1 flex flex-col items-center text-center px-2 group cursor-default"
+                  data-cursor="hover"
+                >
                   {/* Category SVG Icon */}
-                  <div className="w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] mb-2 flex items-center justify-center group-hover:-translate-y-1 transition-transform duration-300">
+                  <div className="w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] mb-2 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
                     <Image
                       src={cat.iconPath}
                       alt={cat.title}
@@ -84,10 +94,10 @@ export default function PortfolioFeature() {
                   </div>
 
                   {/* Title */}
-                  <span className="font-bold text-[15px] sm:text-[16px] text-[#013D26] group-hover:text-[#68A617] transition-colors">
+                  <span className="font-bold text-[15px] sm:text-[16px] text-[#013D26] group-hover:text-[#68A617] transition-colors duration-200">
                     {cat.title}
                   </span>
-                </div>
+                </motion.div>
 
                 {/* Thin Vertical Divider between categories */}
                 {!isLast && (

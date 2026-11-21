@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import MotionProvider from "@/components/animations/MotionProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -33,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
       <body className="font-sans antialiased text-[#142C23] bg-white selection:bg-[#A6E51B] selection:text-[#063F2B] overflow-x-hidden">
-        {children}
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );

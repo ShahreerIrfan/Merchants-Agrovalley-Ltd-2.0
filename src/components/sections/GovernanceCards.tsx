@@ -13,32 +13,34 @@ export default function GovernanceCards() {
       {governanceCards.map((card, index) => (
         <motion.div
           key={card.id}
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-30px" }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{
-            duration: 0.55,
+            duration: 0.7,
             delay: index * 0.12,
-            ease: "easeOut",
+            ease: [0.22, 1, 0.36, 1],
           }}
-          className="group relative bg-white border border-[#D9ECC9] hover:border-[#68A617]/70 rounded-[20px] p-5 sm:p-7 lg:p-8 shadow-[0_6px_24px_rgba(1,61,38,0.05)] hover:shadow-[0_16px_36px_rgba(1,61,38,0.11)] transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
+          whileHover={{ y: -6 }}
+          data-cursor="card"
+          className="group relative bg-white border border-[#D9ECC9] hover:border-[#68A617] rounded-[20px] p-5 sm:p-7 lg:p-8 shadow-[0_6px_24px_rgba(1,61,38,0.05)] hover:shadow-[0_16px_36px_rgba(104,166,23,0.14)] transition-all duration-300 flex flex-col justify-between cursor-default"
         >
-          {/* Card Content Row: Icon & Text (Responsive flex on small screens) */}
+          {/* Card Content Row: Icon & Text */}
           <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-5">
-            {/* 76px x 76px Icon Container */}
-            <div className="w-[62px] h-[62px] sm:w-[76px] sm:h-[76px] shrink-0 rounded-2xl bg-[#013D26] border-2 border-[#68A617] flex items-center justify-center p-3.5 sm:p-4 shadow-sm group-hover:shadow-md transition-shadow">
+            {/* 76px x 76px Icon Container with scale on card hover */}
+            <div className="w-[62px] h-[62px] sm:w-[76px] sm:h-[76px] shrink-0 rounded-2xl bg-[#013D26] border-2 border-[#68A617] flex items-center justify-center p-3.5 sm:p-4 shadow-sm group-hover:shadow-[0_0_16px_rgba(104,166,23,0.35)] group-hover:scale-105 transition-all duration-300">
               <Image
                 src={card.iconPath}
                 alt={`${card.title} icon`}
                 width={40}
                 height={40}
-                className="w-full h-full object-contain brightness-0 invert"
+                className="w-full h-full object-contain brightness-0 invert transition-transform duration-300 group-hover:scale-110"
               />
             </div>
 
             {/* Heading & Description */}
             <div className="flex-1">
-              <h3 className="font-sans font-bold text-[#013D26] text-[18px] sm:text-[21px] lg:text-[22px] leading-snug mb-2 group-hover:text-[#08713D] transition-colors">
+              <h3 className="font-sans font-bold text-[#013D26] text-[18px] sm:text-[21px] lg:text-[22px] leading-snug mb-2 group-hover:text-[#08713D] transition-colors duration-200">
                 {card.title}
               </h3>
               <p className="text-[#013D26]/85 text-[14px] sm:text-[15px] lg:text-[15.5px] leading-relaxed">
