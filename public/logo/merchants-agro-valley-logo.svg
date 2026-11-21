@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="260" viewBox="0 0 900 260" role="img" aria-labelledby="title desc">
+<title id="title">Merchants Agro Valley</title><desc id="desc">Sunrise over green agricultural fields with a growing leaf and the Merchants Agro Valley wordmark.</desc>
+<defs>
+ <linearGradient id="sun" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFC247"/><stop offset="1" stop-color="#F28A16"/></linearGradient>
+ <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0B6B3A"/><stop offset="1" stop-color="#063F2B"/></linearGradient>
+</defs>
+<g transform="translate(18 16)">
+ <path d="M42 105a69 69 0 0 1 138 0" fill="url(#sun)"/>
+ <path d="M45 107c13-26 31-41 54-45-1 18-12 34-34 45 28-17 53-18 77-3-18 23-45 31-80 20z" fill="#2D9A4B"/>
+ <path d="M18 132c38-28 83-34 137-18-27 8-48 21-65 40-26-3-50-10-72-22z" fill="url(#green)"/>
+ <path d="M6 151c45-15 91-12 138 8-43-4-78 4-105 24-13-9-24-19-33-32z" fill="#23934B"/>
+ <path d="M35 173c42-9 78-4 109 14-39-1-69 6-91 22-7-11-13-23-18-36z" fill="#0A5A35"/>
+ <path d="M84 114c18-26 39-39 64-40-8 22-25 36-52 43" fill="none" stroke="#D9F2D5" stroke-width="5" stroke-linecap="round"/>
+</g>
+<g font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#073F2B">
+ <text x="220" y="115" font-size="78" letter-spacing="-2">Merchants</text>
+ <text x="220" y="196" font-size="78" letter-spacing="-2">Agro Valley</text>
+</g>
+<path d="M222 218h630" stroke="#6BAA45" stroke-width="5" stroke-linecap="round"/>
+</svg>
