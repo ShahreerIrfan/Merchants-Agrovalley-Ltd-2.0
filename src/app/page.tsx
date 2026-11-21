@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import CompanyProfileSection from "@/components/sections/CompanyProfileSection";
 
 export default function HomePage() {
   return (
@@ -9,6 +10,9 @@ export default function HomePage() {
 
       {/* Full-width Hero Section with Background, Overlay, Content and Category Strip */}
       <HeroSection />
+
+      {/* Company Profile & Governance Section */}
+      <CompanyProfileSection />
     </main>
   );
 }

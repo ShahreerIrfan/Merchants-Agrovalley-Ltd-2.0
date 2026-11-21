@@ -1,0 +1,64 @@
+MERCHANTS AGRO VALLEY — HOMEPAGE HERO CONTENT
+Website: https://merchantsagrovalley.com/
+
+BRAND
+Name: Merchants Agro Valley
+Descriptor: Integrated Agro-Industrial Enterprise
+Suggested tagline: Nourishing People & Markets from Bangladesh
+
+NAVIGATION
+Home
+About Us
+Our Businesses
+Sustainability
+Quality & Compliance
+Export & Trade
+Media
+Get in Touch
+
+HERO SECTION
+Eyebrow: INTEGRATED AGRO-INDUSTRIAL ENTERPRISE
+Headline:
+Nourishing
+People & Markets
+from Bangladesh
+
+Description:
+A value integrated agro ecosystem — from feed and farming to processing, renewable energy and global export.
+
+Primary CTA: Explore Our Operations
+Secondary CTA: Company Overview
+
+BUSINESS CATEGORY STRIP
+Poultry & Eggs
+Cattle & Dairy
+Goat & Duck
+Fish & Aquaculture
+Food Processing
+Renewable Energy
+Cold Chain & Export
+
+ASSET FILES
+public/images/hero-background.jpg
+public/logo/merchants-agro-valley-logo.svg
+public/logo/logo.png
+public/icons/poultry-eggs.svg
+public/icons/cattle-dairy.svg
+public/icons/goat-duck.svg
+public/icons/fish-aquaculture.svg
+public/icons/food-processing.svg
+public/icons/renewable-energy.svg
+public/icons/cold-chain-export.svg
+
+BRAND COLOURS (suggested)
+Deep forest: #063F2B
+Primary green: #08713D
+Fresh green: #23934B
+Lime accent: #A6E51B
+Sunrise orange: #F28A16
+White: #FFFFFF
+Body text: #1D332B
+
+IMAGE NOTES
+The hero background is a clean, high-resolution 16:9 photographic-style image with no embedded typography or UI.
+The logo PNG has a transparent background. SVG logo and icons are individually editable vector files.

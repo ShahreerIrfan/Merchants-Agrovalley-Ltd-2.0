@@ -1,0 +1,58 @@
+MERCHANTS AGRO VALLEY — COMPANY PROFILE & GOVERNANCE
+
+SECTION EYEBROW
+COMPANY PROFILE & GOVERNANCE
+
+MAIN HEADING
+Our Company Profile
+& Governance
+
+INTRODUCTION
+Merchants Agro Valley is a Bangladesh-based integrated agro-industrial enterprise, combining trading excellence with large-scale agricultural production, livestock, food processing and international trade. Built on strong corporate governance and industry experience, we are developing a modern, vertically integrated agro ecosystem to serve domestic and global markets.
+
+GOVERNANCE CARDS
+1. Operational Integrity
+Reliable operations, zero default record and transparent commercial accountability.
+
+2. Banking & Trade Finance
+Strong institutional banking relationships and structured L/C facilities.
+
+3. Statutory Governance
+A duly registered company with a comprehensive commercial charter, tax identification and bonded trade permissions.
+
+STRATEGIC EVOLUTION HEADING
+Strategic Evolution into a
+Modern Agro-Industry
+
+STRATEGIC EVOLUTION COPY
+Leveraging our established trading networks, we are deploying substantial capital into vertically integrated agro-farming, automated processing and export cold chains to serve discerning buyers in the UK, Europe, GCC and international markets.
+
+CAPABILITY HIGHLIGHTS
+- Vertically Integrated Production & Processing
+- International-Standard Food Safety & Quality
+- Export-Ready Cold Chain & Logistics
+
+BUTTONS
+Primary: Our Corporate Profile
+Secondary: Company Overview
+
+BRAND COLORS
+Deep forest text on white: #013D26
+Accent green: #68A617
+Secondary green: #23934B
+White: #FFFFFF
+Soft green surface: #F4FAEE
+
+ASSET PATHS
+/images/agro-industrial-facility.webp
+/icons/operational-integrity.svg
+/icons/banking-trade-finance.svg
+/icons/statutory-governance.svg
+/icons/integrated-production.svg
+/icons/food-safety-quality.svg
+/icons/export-logistics.svg
+/decor/bottom-organic-wave.svg
+/decor/top-right-leaf-accent.svg
+
+CONTENT VERIFICATION
+Verify all corporate claims (including zero-default status, banking relationships, licenses and bonded permissions) before publishing.
