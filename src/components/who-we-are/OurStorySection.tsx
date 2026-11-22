@@ -79,11 +79,11 @@ export default function OurStorySection() {
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-6 flex flex-col gap-3.5 sm:gap-4 order-2 lg:order-1"
           >
-            {/* Primary Featured Card: Bangladeshi Farmer in Lush Field */}
+            {/* Primary Featured Card: Bangladeshi Farmer in Lush Field (HD) */}
             <div className="relative w-full aspect-[16/8.5] rounded-2xl overflow-hidden shadow-[0_12px_32px_rgba(1,61,38,0.12)] border border-[#D5E1CE] bg-white group">
               <Image
-                src="/assets/who-we-are/story/farmer.webp"
-                alt="Bangladeshi farmer examining healthy crop leaves in green field"
+                src="/assets/who-we-are/story/farmer-hd.webp"
+                alt="Bangladeshi farmer examining healthy crop leaves in vibrant green agricultural field"
                 fill
                 priority
                 unoptimized
@@ -103,12 +103,12 @@ export default function OurStorySection() {
               </div>
             </div>
 
-            {/* Bottom Row: Companion Facility Photos */}
+            {/* Bottom Row: Companion Facility Photos (HD) */}
             <div className="grid grid-cols-2 gap-3.5">
-              {/* Bottling Plant Photo */}
+              {/* Bottling Plant Photo (HD) */}
               <div className="relative aspect-[16/9.5] rounded-xl overflow-hidden shadow-[0_4px_16px_rgba(1,61,38,0.06)] border border-[#D5E1CE] bg-white group">
                 <Image
-                  src="/assets/who-we-are/story/bottling.webp"
+                  src="/assets/who-we-are/story/bottling-hd.webp"
                   alt="Modern hygienic food processing and bottling facility"
                   fill
                   unoptimized
@@ -119,11 +119,11 @@ export default function OurStorySection() {
                 </div>
               </div>
 
-              {/* Story Facility Panoramic Snapshot */}
+              {/* Newly Generated Agro Complex Photo (HD) */}
               <div className="relative aspect-[16/9.5] rounded-xl overflow-hidden shadow-[0_4px_16px_rgba(1,61,38,0.06)] border border-[#D5E1CE] bg-white group">
                 <Image
-                  src="/assets/who-we-are/story/facility-story.webp"
-                  alt="Modern agro facility with grain silos and renewable energy"
+                  src="/assets/who-we-are/story/complex-hd.webp"
+                  alt="Modern futuristic agro-industrial facility with biodomes, silos and solar rooftops"
                   fill
                   unoptimized
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
