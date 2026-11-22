@@ -23,11 +23,17 @@ export default function LeadershipSection() {
     <section
       id="leadership-team"
       aria-label="Our Leadership Team"
-      className="relative w-full bg-[#F8F6EF] border-t-2 border-[#C9A13B]/60 py-16 sm:py-20 lg:py-24 overflow-hidden selection:bg-[#C9A13B]/20 selection:text-[#013D26] shadow-[0_-6px_24px_rgba(201,161,59,0.12)]"
+      className="relative w-full bg-[#F8F6EF] border-t-2 border-b-2 border-[#C9A13B]/60 py-16 sm:py-20 lg:py-24 overflow-hidden selection:bg-[#C9A13B]/20 selection:text-[#013D26] shadow-[0_0_30px_rgba(201,161,59,0.12)]"
     >
       {/* TOP GOLD GRADIENT ACCENT LINE */}
       <div
         className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#C9A13B]/40 via-[#C9A13B] to-[#C9A13B]/40 z-20"
+        aria-hidden="true"
+      />
+
+      {/* BOTTOM GOLD GRADIENT ACCENT LINE */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#C9A13B]/40 via-[#C9A13B] to-[#C9A13B]/40 z-20"
         aria-hidden="true"
       />
 
@@ -101,6 +107,12 @@ export default function LeadershipSection() {
           >
             Experienced leadership guiding responsible growth, operational excellence and international business development.
           </motion.p>
+        </div>
+
+        {/* BORDER AT BOTTOM OF HEADER (DIVIDING HEADER & CHAIRMAN CARD) */}
+        <div className="w-full my-8 sm:my-10 lg:my-12 relative flex items-center justify-center" aria-hidden="true">
+          <div className="w-full h-[2px] bg-gradient-to-r from-[#C9A13B]/30 via-[#C9A13B] to-[#C9A13B]/30 shadow-[0_1px_6px_rgba(201,161,59,0.3)]" />
+          <div className="absolute w-12 sm:w-16 h-[3.5px] bg-[#C9A13B] rounded-full shadow-[0_0_10px_rgba(201,161,59,0.6)]" />
         </div>
 
         {/* ROW 1: CHAIRMAN PROMINENT HORIZONTAL FEATURE CARD */}

@@ -228,11 +228,12 @@ export default function ManagementHero() {
           >
             <div className="relative w-full max-w-[560px] lg:max-w-[620px] xl:max-w-[680px] drop-shadow-[0_16px_36px_rgba(35,80,45,0.1)] transition-transform duration-500 hover:scale-[1.01]">
               <Image
-                src="/assets/management/facility-card.webp"
+                src="/assets/management/facility-hero-hd.webp"
                 alt="Merchants Agro Valley modern facility with silos, solar panel array, and pastoral farmland at sunset"
                 width={1200}
                 height={560}
                 priority
+                unoptimized
                 className="w-full h-auto object-contain"
               />
             </div>
