@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import WhoWeAreHero from "@/components/who-we-are/WhoWeAreHero";
+import OurStorySection from "@/components/who-we-are/OurStorySection";
 
 export const metadata: Metadata = {
   title: "Who We Are — A Leading Agro-Industrial Enterprise | Merchants Agro Valley",
@@ -17,6 +18,9 @@ export default function WhoWeArePage() {
 
       {/* Who We Are Hero / First Section */}
       <WhoWeAreHero />
+
+      {/* Section 02: Our Story & Purpose */}
+      <OurStorySection />
     </main>
   );
 }
