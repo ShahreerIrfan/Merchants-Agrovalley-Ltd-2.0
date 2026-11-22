@@ -59,23 +59,23 @@ export default function Navbar() {
         <div className="flex items-center shrink-0">
           <Link href="/" className="relative block group" aria-label="Merchants Agro Valley Home">
             <Image
-              src="/logo/merchants-agro-valley-logo.svg"
-              alt="Merchants Agro Valley Logo"
-              width={260}
-              height={74}
+              src="/logo/merchants-agro-valley-emblem.png"
+              alt="Merchants Agro Valley Emblem Logo"
+              width={168}
+              height={94}
               priority
-              className="w-[155px] xs:w-[175px] sm:w-[200px] lg:w-[205px] xl:w-[230px] h-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+              className="h-[54px] xs:h-[60px] sm:h-[66px] lg:h-[70px] xl:h-[74px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
             />
           </Link>
           <div
-            className="hidden 2xl:block h-7 w-[1px] bg-gray-200/90 ml-5 mr-1"
+            className="hidden 2xl:block h-8 w-[1px] bg-gray-200/90 ml-5 mr-1"
             aria-hidden="true"
           />
         </div>
 
         {/* CENTER — NAVIGATION MENU WITH ICONS (Desktop) */}
         <nav
-          className="hidden xl:flex items-center space-x-1 2xl:space-x-2.5"
+          className="hidden lg:flex items-center space-x-1 xl:space-x-1.5 2xl:space-x-3"
           aria-label="Main Navigation"
         >
           {NAV_ITEMS.map((item) => {
@@ -85,14 +85,14 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`group relative flex items-center gap-1.5 py-1.5 px-2 2xl:px-2.5 rounded-lg text-[13px] 2xl:text-[14px] whitespace-nowrap transition-all duration-200 ${
+                className={`group relative flex items-center gap-1.5 py-1.5 px-2 xl:px-2.5 rounded-lg text-[12px] xl:text-[13px] 2xl:text-[14px] whitespace-nowrap transition-all duration-200 ${
                   item.isActive
                     ? "text-[#063F2B] font-semibold bg-[#08713D]/8"
                     : "text-[#142C23]/80 hover:text-[#063F2B] hover:bg-emerald-50/60 font-medium"
                 }`}
               >
                 <IconComponent
-                  className={`w-3.5 h-3.5 2xl:w-4 2xl:h-4 shrink-0 transition-colors duration-200 ${
+                  className={`w-3.5 h-3.5 xl:w-4 xl:h-4 shrink-0 transition-colors duration-200 ${
                     item.isActive
                       ? "text-[#08713D]"
                       : "text-gray-400 group-hover:text-[#08713D]"
@@ -128,7 +128,7 @@ export default function Navbar() {
           {/* Mobile Hamburger Toggle */}
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="xl:hidden p-2 text-[#063F2B] hover:bg-gray-100 rounded-lg transition-colors focus:outline-hidden focus:ring-2 focus:ring-[#08713D] min-w-[40px] min-h-[40px] flex items-center justify-center cursor-pointer"
+            className="lg:hidden p-2 text-[#063F2B] hover:bg-gray-100 rounded-lg transition-colors focus:outline-hidden focus:ring-2 focus:ring-[#08713D] min-w-[40px] min-h-[40px] flex items-center justify-center cursor-pointer"
             aria-label="Open mobile navigation menu"
             aria-expanded={mobileMenuOpen}
           >

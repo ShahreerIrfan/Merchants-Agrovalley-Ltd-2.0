@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description:
     "A value integrated agro ecosystem — from feed and farming to processing, renewable energy and global export.",
   icons: {
-    icon: "/logo/logo.png",
+    icon: "/logo/merchants-agro-valley-emblem.png",
   },
 };
 

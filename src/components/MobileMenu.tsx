@@ -57,7 +57,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 xl:hidden flex"
+      className="fixed inset-0 z-50 lg:hidden flex"
       role="dialog"
       aria-modal="true"
       aria-label="Mobile Navigation"
@@ -72,14 +72,14 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       {/* Slide-out Drawer */}
       <div className="relative ml-auto w-full max-w-sm bg-white h-full shadow-2xl flex flex-col z-10 animate-in slide-in-from-right duration-300">
         {/* Drawer Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
           <Link href="/" onClick={onClose} className="block">
             <Image
-              src="/logo/merchants-agro-valley-logo.svg"
-              alt="Merchants Agro Valley"
-              width={180}
-              height={52}
-              className="w-[160px] h-auto object-contain"
+              src="/logo/merchants-agro-valley-emblem.png"
+              alt="Merchants Agro Valley Emblem Logo"
+              width={144}
+              height={80}
+              className="h-[54px] w-auto object-contain"
               priority
             />
           </Link>
