@@ -159,7 +159,7 @@ function SproutIcon({ className }: { className?: string }) {
 export default function Footer() {
   const quickLinks = [
     { label: "Home", href: "/" },
-    { label: "About Us", href: "/#about" },
+    { label: "Who We Are", href: "/who-we-are" },
     { label: "Our Business", href: "/#portfolio" },
     { label: "Management", href: "/management" },
     { label: "Media & News", href: "/#news" },

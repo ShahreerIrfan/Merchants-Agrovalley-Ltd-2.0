@@ -14,7 +14,7 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     name: "Who We Are",
-    href: "/#about",
+    href: "/who-we-are",
     iconName: "Users",
   },
   {
