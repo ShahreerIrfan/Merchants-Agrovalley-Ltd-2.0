@@ -8,17 +8,18 @@ export interface NavItem {
 export const NAV_ITEMS: NavItem[] = [
   {
     name: "Home",
-    href: "/",
+    href: "#",
     iconName: "Home",
+    isActive: true,
   },
   {
     name: "Who We Are",
-    href: "/#about",
+    href: "#about",
     iconName: "Users",
   },
   {
     name: "Management",
-    href: "/management",
+    href: "#leadership",
     iconName: "Briefcase",
   },
   {
