@@ -23,8 +23,14 @@ export default function LeadershipSection() {
     <section
       id="leadership-team"
       aria-label="Our Leadership Team"
-      className="relative w-full bg-[#F8F6EF] py-16 sm:py-20 lg:py-24 overflow-hidden selection:bg-[#C9A13B]/20 selection:text-[#013D26]"
+      className="relative w-full bg-[#F8F6EF] border-t-2 border-[#C9A13B]/60 py-16 sm:py-20 lg:py-24 overflow-hidden selection:bg-[#C9A13B]/20 selection:text-[#013D26] shadow-[0_-6px_24px_rgba(201,161,59,0.12)]"
     >
+      {/* TOP GOLD GRADIENT ACCENT LINE */}
+      <div
+        className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#C9A13B]/40 via-[#C9A13B] to-[#C9A13B]/40 z-20"
+        aria-hidden="true"
+      />
+
       {/* SUBTLE CREAM / IVORY GRADIENT BACKGROUND */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -50,24 +56,28 @@ export default function LeadershipSection() {
       <div className="relative z-10 max-w-[1600px] mx-auto px-4 xs:px-6 sm:px-8 md:px-12 lg:px-14 xl:px-18">
         {/* SECTION HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          {/* Eyebrow Pill */}
+          {/* Eyebrow Pill with decorative gold lines */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#FAF6E9] via-[#F3EDD7] to-[#FAF6E9] border border-[#C9A13B]/60 shadow-xs mb-4"
+            className="flex items-center justify-center gap-3 sm:gap-4 mb-4"
           >
-            <div className="w-4 h-4 text-[#5EA81E] shrink-0" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full fill-[#5EA81E]/20">
-                <path d="M4 17C12 4 23 3 29 3c0 11-5 22-18 23" />
-                <path d="M5 28c6-8 12-13 21-20" />
-                <path d="M14 18c-1-5-4-8-8-9" />
-              </svg>
+            <div className="w-10 sm:w-16 h-[1.5px] bg-gradient-to-r from-transparent via-[#C9A13B]/50 to-[#C9A13B]" aria-hidden="true" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#FAF6E9] via-[#F3EDD7] to-[#FAF6E9] border border-[#C9A13B]/60 shadow-xs">
+              <div className="w-4 h-4 text-[#5EA81E] shrink-0" aria-hidden="true">
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full fill-[#5EA81E]/20">
+                  <path d="M4 17C12 4 23 3 29 3c0 11-5 22-18 23" />
+                  <path d="M5 28c6-8 12-13 21-20" />
+                  <path d="M14 18c-1-5-4-8-8-9" />
+                </svg>
+              </div>
+              <span className="text-[12px] sm:text-[13px] font-bold text-[#013D26] uppercase tracking-[0.16em] font-sans">
+                OUR MANAGEMENT
+              </span>
             </div>
-            <span className="text-[12px] sm:text-[13px] font-bold text-[#013D26] uppercase tracking-[0.16em] font-sans">
-              OUR MANAGEMENT
-            </span>
+            <div className="w-10 sm:w-16 h-[1.5px] bg-gradient-to-l from-transparent via-[#C9A13B]/50 to-[#C9A13B]" aria-hidden="true" />
           </motion.div>
 
           {/* Main Title */}

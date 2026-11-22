@@ -230,8 +230,8 @@ export default function ManagementHero() {
               <Image
                 src="/assets/management/facility-card.webp"
                 alt="Merchants Agro Valley modern facility with silos, solar panel array, and pastoral farmland at sunset"
-                width={1100}
-                height={520}
+                width={1200}
+                height={560}
                 priority
                 className="w-full h-auto object-contain"
               />
