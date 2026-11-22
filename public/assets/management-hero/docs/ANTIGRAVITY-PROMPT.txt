@@ -1,0 +1,88 @@
+ANTIGRAVITY PROMPT — IMPLEMENT MANAGEMENT HERO SECTION
+
+You are working inside my existing Next.js + TypeScript + Tailwind CSS website for Merchants Agro Valley.
+
+TASK
+Implement the Management page hero section to closely match the attached reference screenshot. Use the supplied asset package after extracting it. Do not redesign the navbar or other existing website sections.
+
+ASSET LOCATION
+Extract `management-hero-assets.zip` and copy its contents into:
+`public/assets/management-hero/`
+
+Use these exact assets:
+- `images/management-right-image.webp` — main facility landscape on the right.
+- `images/leaf-bottom-left.png` — bottom-left transparent foliage.
+- `images/leaf-top-right.png` — top-right transparent foliage.
+- `icons/management-leaf.svg`
+- `icons/sustainable-growth.svg`
+- `icons/responsible-governance.svg`
+- `icons/integrated-value-chain.svg`
+- `icons/global-competitiveness.svg`
+- `shapes/gold-curve-divider.svg` — optional gold curved separator.
+- `shapes/green-angular-overlay.svg` — optional angular green overlay.
+- `shapes/gold-underline.svg`
+- `shapes/background-gradients.css`
+
+DESIGN
+Create a premium, cinematic, wide hero section:
+- Left side: deep forest green content panel.
+- Right side: large standalone agro-industrial landscape image, full-height and cropped with object-fit: cover.
+- Separate the two areas with a sweeping curved gold edge. Use the supplied SVG as an overlay or create a responsive CSS clip-path/mask. Keep the curve smooth and intentional.
+- Add a subtle diagonal/angular green layer behind the left text.
+- Add subtle gold/green glow accents with CSS radial gradients; do not use large blurred image layers behind text.
+- Place the top-right and bottom-left transparent leaf PNGs as decorative overlays. Keep them subtle and do not cover text.
+- Do not use emojis. Use the supplied SVG icons.
+
+CONTENT
+Eyebrow: OUR MANAGEMENT
+Headline:
+Leadership that
+Drives an Integrated
+Agro Ecosystem
+
+Highlight “Agro Ecosystem” in bright leaf green.
+Supporting text:
+“A dedicated leadership team steering sustainable farming, modern processing, renewable energy and global market growth.”
+
+Four feature labels:
+1. Sustainable Growth
+2. Responsible Governance
+3. Integrated Value Chain
+4. Global Competitiveness
+
+LAYOUT
+- Keep text on the left with comfortable spacing and a clear hierarchy.
+- Headline uses the same elegant serif typography as the homepage hero.
+- Body and labels use the existing sans-serif site font.
+- Gold short underline below the headline.
+- Feature items form one horizontal row on desktop, each with an outlined icon inside a dark-green rounded square with a thin gold border.
+- Add subtle vertical separators between feature items.
+- Right-side image should remain visually dominant but not obscure the text.
+
+RESPONSIVE
+- Desktop: two-part cinematic composition, approximately 45% text / 55% image.
+- Tablet: reduce headline size and image crop; retain clear separation.
+- Mobile: stack content above image or use a compact image panel below the heading; do not squeeze the desktop curved split into a narrow viewport.
+- Move feature items into a 2-column grid on mobile.
+- Hide or reduce leaf decorations on mobile.
+- Prevent horizontal overflow at 320, 375, 390, and 430 px.
+- Keep text readable and preserve contrast.
+
+IMPLEMENTATION RULES
+- Use semantic HTML and accessible alt text.
+- Use Next.js Image for raster assets where appropriate.
+- Use SVG files as external assets or inline SVG components; do not replace them with emoji.
+- Do not flatten the whole design into one background image.
+- Do not add fake text to images.
+- Keep all headings and labels as real HTML text.
+- Use CSS/Tailwind for gradients, glow, clipping, spacing, and responsive behavior.
+- Keep animations subtle: fade/slide-in on scroll and small hover transitions for feature items. Respect prefers-reduced-motion.
+
+FINAL CHECK
+1. Confirm the correct files were copied into public/assets/management-hero/.
+2. Confirm the right image is the standalone facility photo, not a screenshot.
+3. Confirm transparent leaf PNGs have transparent backgrounds.
+4. Confirm all five icons load as SVG.
+5. Test desktop, tablet and mobile sizes.
+6. Run `npm run build` and fix all errors.
+7. Do not change the existing navbar, homepage hero, or other sections.

@@ -1,0 +1,10 @@
+/* Brand background layers for the Management hero */
+.management-hero-bg {
+  background: radial-gradient(ellipse at 45% 48%, rgba(0,91,54,.55), transparent 55%),
+              linear-gradient(125deg, #013D26 0%, #002D1D 58%, #00452C 100%);
+}
+.management-hero-glow {
+  background: radial-gradient(ellipse, rgba(219,174,55,.24) 0%, rgba(219,174,55,0) 68%);
+  filter: blur(24px);
+  pointer-events: none;
+}
