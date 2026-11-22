@@ -20,7 +20,7 @@ export default function LeadershipSection() {
   const otherLeaders = LEADERSHIP_TEAM.slice(1);
 
   return (
-    <section
+    <section 
       id="leadership-team"
       aria-label="Our Leadership Team"
       className="relative w-full bg-[#F8F6EF] border-t-2 border-b-2 border-[#C9A13B]/60 py-16 sm:py-20 lg:py-24 overflow-hidden selection:bg-[#C9A13B]/20 selection:text-[#013D26] shadow-[0_0_30px_rgba(201,161,59,0.12)]"
