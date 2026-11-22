@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import ManagementHero from "@/components/management/ManagementHero";
+import LeadershipSection from "@/components/management/LeadershipSection";
 
 export const metadata: Metadata = {
   title: "Our Management — Leadership for a Sustainable Agro Future | Merchants Agro Valley",
@@ -17,6 +18,9 @@ export default function ManagementPage() {
 
       {/* Management Hero / First Section */}
       <ManagementHero />
+
+      {/* Our Leadership Team Section */}
+      <LeadershipSection />
     </main>
   );
 }
