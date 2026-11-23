@@ -20,79 +20,44 @@ export default function LeadershipSection() {
   const otherLeaders = LEADERSHIP_TEAM.slice(1);
 
   return (
-    <section 
+    <section
       id="leadership-team"
       aria-label="Our Leadership Team"
-      className="relative w-full bg-[#FAF8F3] border-t-2 border-b-2 border-[#D6A638]/50 py-16 sm:py-20 lg:py-26 overflow-hidden selection:bg-[#D6A638]/20 selection:text-[#013D26] shadow-[0_0_30px_rgba(214,166,56,0.08)]"
+      className="relative w-full bg-[#FAF8F3] py-16 sm:py-20 lg:py-26 overflow-visible selection:bg-[#D6A638]/20 selection:text-[#013D26]"
     >
-      {/* 1. TOP GOLD GRADIENT ACCENT LINE */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-transparent via-[#D6A638] to-transparent z-20"
-        aria-hidden="true"
-      />
+      {/* Background */}
+      <div className="absolute inset-0 bg-[#FAF8F3]" aria-hidden="true" />
 
-      {/* 2. BOTTOM GOLD GRADIENT ACCENT LINE (BORDER BOTTOM OF LEADERSHIP SECTION) */}
+      {/* Top-Left Corner Accent - Non-overlapping */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-transparent via-[#D6A638] to-transparent z-20"
-        aria-hidden="true"
-      />
-
-      {/* 3. SUBTLE WARM IVORY RADIAL BACKGROUND */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse at 50% 15%, rgba(255, 255, 255, 0.9) 0%, rgba(250, 248, 243, 0.95) 55%, #F4EFE5 100%)",
-        }}
-        aria-hidden="true"
-      />
-
-      {/* 4. TOP-LEFT ENHANCED DARK GREEN & GOLD CORNER ACCENT */}
-      <div
-        className="absolute top-0 left-0 w-[260px] sm:w-[340px] lg:w-[440px] h-auto pointer-events-none select-none z-0 opacity-85"
+        className="absolute top-0 left-0 w-[180px] sm:w-[220px] lg:w-[260px] h-[180px] sm:h-[220px] lg:h-[260px] pointer-events-none select-none z-0"
         aria-hidden="true"
       >
-        <svg viewBox="0 0 440 320" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
-          <path d="M-60 -60 C 160 20 290 140 330 320 L -60 320 Z" fill="#013D26" opacity="0.95" />
-          <path d="M-60 -60 C 160 20 290 140 330 320" stroke="#D6A638" strokeWidth="3.5" />
-          <path d="M-50 -50 C 165 26 293 144 332 320" stroke="#E8C979" strokeWidth="1.5" opacity="0.75" />
+        <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+          <path d="M0 0 C 80 40 160 120 200 260 L 0 260 Z" fill="#013D26" opacity="0.95" />
+          <path d="M0 0 C 80 40 160 120 200 260" stroke="#D6A638" strokeWidth="2.5" />
         </svg>
       </div>
 
-      {/* 5. TOP-RIGHT WATERMARK PNG IMAGE (REQUESTED IN USER DESIGN) */}
+      {/* Top-Right Foliage Watermark - Very Subtle */}
       <div
-        className="absolute top-0 right-0 w-[320px] sm:w-[440px] lg:w-[560px] pointer-events-none select-none z-0 opacity-18 filter contrast-125"
-        aria-hidden="true"
-      >
-        <Image
-          src="/assets/management/watermark-farmland.png"
-          alt=""
-          width={560}
-          height={380}
-          className="w-full h-auto object-contain object-top-right mix-blend-multiply"
-          priority
-        />
-      </div>
-
-      {/* Delicate Botanical Leaf Watermark Accent in Top Right Corner */}
-      <div
-        className="absolute top-2 right-2 w-[180px] sm:w-[240px] pointer-events-none select-none z-0 opacity-25"
+        className="absolute top-4 right-4 w-[140px] sm:w-[180px] pointer-events-none select-none z-0 opacity-[0.06]"
         aria-hidden="true"
       >
         <Image
           src="/assets/management/top-right-foliage.png"
           alt=""
-          width={240}
-          height={160}
+          width={180}
+          height={120}
           className="w-full h-auto object-contain"
         />
       </div>
 
       <div className="relative z-10 max-w-[1600px] mx-auto px-4 xs:px-6 sm:px-8 md:px-12 lg:px-14 xl:px-18">
-        
+
         {/* SECTION HEADER BLOCK */}
         <div className="text-center max-w-3xl mx-auto pt-2 sm:pt-4">
-          
+
           {/* Eyebrow Pill with decorative gold lines */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -140,10 +105,10 @@ export default function LeadershipSection() {
           </motion.p>
         </div>
 
-        {/* 6. CLEAN FULL-WIDTH BORDER BOTTOM UNDER HEADER (REPLACED OLD TICK-MARK LINE) */}
-        <div 
-          className="w-full h-[1.5px] bg-gradient-to-r from-transparent via-[#D6A638]/70 to-transparent mt-8 sm:mt-10 lg:mt-12 mb-10 sm:mb-14" 
-          aria-hidden="true" 
+        {/* SOLID BORDER BOTTOM - LEFT TO RIGHT */}
+        <div
+          className="w-full h-[2px] bg-[#C4985F] mt-8 sm:mt-10 lg:mt-12 mb-10 sm:mb-14"
+          aria-hidden="true"
         />
 
         {/* ROW 1: CHAIRMAN PROMINENT HORIZONTAL FEATURE CARD */}
@@ -157,7 +122,7 @@ export default function LeadershipSection() {
           <div className="relative rounded-2xl sm:rounded-3xl bg-white border border-[#D6A638]/70 shadow-[0_8px_30px_rgba(1,61,38,0.06)] hover:shadow-[0_12px_40px_rgba(214,166,56,0.2)] transition-all duration-300 overflow-hidden">
             {/* Subtle Gold Globe / International Business Watermark on Right */}
             <div
-              className="absolute right-0 top-0 bottom-0 w-[280px] sm:w-[360px] pointer-events-none select-none opacity-15 z-0 flex items-center justify-end pr-4"
+              className="absolute right-0 top-0 bottom-0 w-[280px] sm:w-[360px] pointer-events-none select-none opacity-[0.06] z-0 flex items-center justify-end pr-4"
               aria-hidden="true"
             >
               <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto text-[#D6A638]">

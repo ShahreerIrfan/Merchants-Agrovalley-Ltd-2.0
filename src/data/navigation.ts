@@ -33,7 +33,7 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     name: "Human Rights",
-    href: "/#human-rights",
+    href: "/human-rights",
     iconName: "HeartHandshake",
   },
   {
