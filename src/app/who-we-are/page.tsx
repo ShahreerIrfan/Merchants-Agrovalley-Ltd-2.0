@@ -4,7 +4,6 @@ import Navbar from "@/components/Navbar";
 import WhoWeAreHero from "@/components/who-we-are/WhoWeAreHero";
 import OurStorySection from "@/components/who-we-are/OurStorySection";
 import AgroEcosystemSection from "@/components/who-we-are/AgroEcosystemSection";
-import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Who We Are — A Leading Agro-Industrial Enterprise | Merchants Agro Valley",
@@ -26,9 +25,6 @@ export default function WhoWeArePage() {
 
       {/* Section 03: Our Integrated Agro Ecosystem */}
       <AgroEcosystemSection />
-
-      {/* Website Footer */}
-      <Footer />
     </main>
   );
 }
