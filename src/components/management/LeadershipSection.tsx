@@ -23,45 +23,76 @@ export default function LeadershipSection() {
     <section 
       id="leadership-team"
       aria-label="Our Leadership Team"
-      className="relative w-full bg-[#F8F6EF] border-t-2 border-b-2 border-[#C9A13B]/60 py-16 sm:py-20 lg:py-24 overflow-hidden selection:bg-[#C9A13B]/20 selection:text-[#013D26] shadow-[0_0_30px_rgba(201,161,59,0.12)]"
+      className="relative w-full bg-[#FAF8F3] border-t-2 border-b-2 border-[#D6A638]/50 py-16 sm:py-20 lg:py-26 overflow-hidden selection:bg-[#D6A638]/20 selection:text-[#013D26] shadow-[0_0_30px_rgba(214,166,56,0.08)]"
     >
-      {/* TOP GOLD GRADIENT ACCENT LINE */}
+      {/* 1. TOP GOLD GRADIENT ACCENT LINE */}
       <div
-        className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#C9A13B]/40 via-[#C9A13B] to-[#C9A13B]/40 z-20"
+        className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-transparent via-[#D6A638] to-transparent z-20"
         aria-hidden="true"
       />
 
-      {/* BOTTOM GOLD GRADIENT ACCENT LINE */}
+      {/* 2. BOTTOM GOLD GRADIENT ACCENT LINE (BORDER BOTTOM OF LEADERSHIP SECTION) */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#C9A13B]/40 via-[#C9A13B] to-[#C9A13B]/40 z-20"
+        className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-transparent via-[#D6A638] to-transparent z-20"
         aria-hidden="true"
       />
 
-      {/* SUBTLE CREAM / IVORY GRADIENT BACKGROUND */}
+      {/* 3. SUBTLE WARM IVORY RADIAL BACKGROUND */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 20%, rgba(255, 255, 255, 0.8) 0%, rgba(248, 246, 239, 0.95) 60%, #F3EFE4 100%)",
+            "radial-gradient(ellipse at 50% 15%, rgba(255, 255, 255, 0.9) 0%, rgba(250, 248, 243, 0.95) 55%, #F4EFE5 100%)",
         }}
         aria-hidden="true"
       />
 
-      {/* TOP-LEFT RESTRAINED DARK GREEN & GOLD CORNER SWOOSH */}
+      {/* 4. TOP-LEFT ENHANCED DARK GREEN & GOLD CORNER ACCENT */}
       <div
-        className="absolute top-0 left-0 w-[240px] sm:w-[320px] lg:w-[420px] h-auto pointer-events-none select-none z-0 opacity-80"
+        className="absolute top-0 left-0 w-[260px] sm:w-[340px] lg:w-[440px] h-auto pointer-events-none select-none z-0 opacity-85"
         aria-hidden="true"
       >
-        <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
-          <path d="M-50 -50 C 150 20 280 140 320 300 L -50 300 Z" fill="#013D26" opacity="0.9" />
-          <path d="M-50 -50 C 150 20 280 140 320 300" stroke="#C9A13B" strokeWidth="4" />
-          <path d="M-40 -40 C 155 26 283 144 322 300" stroke="#E8C979" strokeWidth="1.5" opacity="0.8" />
+        <svg viewBox="0 0 440 320" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+          <path d="M-60 -60 C 160 20 290 140 330 320 L -60 320 Z" fill="#013D26" opacity="0.95" />
+          <path d="M-60 -60 C 160 20 290 140 330 320" stroke="#D6A638" strokeWidth="3.5" />
+          <path d="M-50 -50 C 165 26 293 144 332 320" stroke="#E8C979" strokeWidth="1.5" opacity="0.75" />
         </svg>
       </div>
 
+      {/* 5. TOP-RIGHT WATERMARK PNG IMAGE (REQUESTED IN USER DESIGN) */}
+      <div
+        className="absolute top-0 right-0 w-[320px] sm:w-[440px] lg:w-[560px] pointer-events-none select-none z-0 opacity-18 filter contrast-125"
+        aria-hidden="true"
+      >
+        <Image
+          src="/assets/management/watermark-farmland.png"
+          alt=""
+          width={560}
+          height={380}
+          className="w-full h-auto object-contain object-top-right mix-blend-multiply"
+          priority
+        />
+      </div>
+
+      {/* Delicate Botanical Leaf Watermark Accent in Top Right Corner */}
+      <div
+        className="absolute top-2 right-2 w-[180px] sm:w-[240px] pointer-events-none select-none z-0 opacity-25"
+        aria-hidden="true"
+      >
+        <Image
+          src="/assets/management/top-right-foliage.png"
+          alt=""
+          width={240}
+          height={160}
+          className="w-full h-auto object-contain"
+        />
+      </div>
+
       <div className="relative z-10 max-w-[1600px] mx-auto px-4 xs:px-6 sm:px-8 md:px-12 lg:px-14 xl:px-18">
-        {/* SECTION HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        
+        {/* SECTION HEADER BLOCK */}
+        <div className="text-center max-w-3xl mx-auto pt-2 sm:pt-4">
+          
           {/* Eyebrow Pill with decorative gold lines */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -70,10 +101,10 @@ export default function LeadershipSection() {
             transition={{ duration: 0.5 }}
             className="flex items-center justify-center gap-3 sm:gap-4 mb-4"
           >
-            <div className="w-10 sm:w-16 h-[1.5px] bg-gradient-to-r from-transparent via-[#C9A13B]/50 to-[#C9A13B]" aria-hidden="true" />
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#FAF6E9] via-[#F3EDD7] to-[#FAF6E9] border border-[#C9A13B]/60 shadow-xs">
-              <div className="w-4 h-4 text-[#5EA81E] shrink-0" aria-hidden="true">
-                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full fill-[#5EA81E]/20">
+            <div className="w-10 sm:w-16 h-[1.5px] bg-gradient-to-r from-transparent via-[#D6A638]/50 to-[#D6A638]" aria-hidden="true" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#FAF6E9] via-[#F3EDD7] to-[#FAF6E9] border border-[#D6A638]/60 shadow-xs">
+              <div className="w-4 h-4 text-[#013D26] shrink-0" aria-hidden="true">
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full fill-[#013D26]/20">
                   <path d="M4 17C12 4 23 3 29 3c0 11-5 22-18 23" />
                   <path d="M5 28c6-8 12-13 21-20" />
                   <path d="M14 18c-1-5-4-8-8-9" />
@@ -83,7 +114,7 @@ export default function LeadershipSection() {
                 OUR MANAGEMENT
               </span>
             </div>
-            <div className="w-10 sm:w-16 h-[1.5px] bg-gradient-to-l from-transparent via-[#C9A13B]/50 to-[#C9A13B]" aria-hidden="true" />
+            <div className="w-10 sm:w-16 h-[1.5px] bg-gradient-to-l from-transparent via-[#D6A638]/50 to-[#D6A638]" aria-hidden="true" />
           </motion.div>
 
           {/* Main Title */}
@@ -109,11 +140,11 @@ export default function LeadershipSection() {
           </motion.p>
         </div>
 
-        {/* BORDER AT BOTTOM OF HEADER (DIVIDING HEADER & CHAIRMAN CARD) */}
-        <div className="w-full my-8 sm:my-10 lg:my-12 relative flex items-center justify-center" aria-hidden="true">
-          <div className="w-full h-[2px] bg-gradient-to-r from-[#C9A13B]/30 via-[#C9A13B] to-[#C9A13B]/30 shadow-[0_1px_6px_rgba(201,161,59,0.3)]" />
-          <div className="absolute w-12 sm:w-16 h-[3.5px] bg-[#C9A13B] rounded-full shadow-[0_0_10px_rgba(201,161,59,0.6)]" />
-        </div>
+        {/* 6. CLEAN FULL-WIDTH BORDER BOTTOM UNDER HEADER (REPLACED OLD TICK-MARK LINE) */}
+        <div 
+          className="w-full h-[1.5px] bg-gradient-to-r from-transparent via-[#D6A638]/70 to-transparent mt-8 sm:mt-10 lg:mt-12 mb-10 sm:mb-14" 
+          aria-hidden="true" 
+        />
 
         {/* ROW 1: CHAIRMAN PROMINENT HORIZONTAL FEATURE CARD */}
         <motion.div
@@ -123,13 +154,13 @@ export default function LeadershipSection() {
           transition={{ duration: 0.7, delay: 0.25 }}
           className="max-w-4xl xl:max-w-[1020px] mx-auto mb-12 sm:mb-16"
         >
-          <div className="relative rounded-2xl sm:rounded-3xl bg-white border border-[#C9A13B]/70 shadow-[0_8px_30px_rgba(1,61,38,0.06)] hover:shadow-[0_12px_40px_rgba(201,161,59,0.2)] transition-all duration-300 overflow-hidden">
+          <div className="relative rounded-2xl sm:rounded-3xl bg-white border border-[#D6A638]/70 shadow-[0_8px_30px_rgba(1,61,38,0.06)] hover:shadow-[0_12px_40px_rgba(214,166,56,0.2)] transition-all duration-300 overflow-hidden">
             {/* Subtle Gold Globe / International Business Watermark on Right */}
             <div
-              className="absolute right-0 top-0 bottom-0 w-[280px] sm:w-[360px] pointer-events-none select-none opacity-20 z-0 flex items-center justify-end pr-4"
+              className="absolute right-0 top-0 bottom-0 w-[280px] sm:w-[360px] pointer-events-none select-none opacity-15 z-0 flex items-center justify-end pr-4"
               aria-hidden="true"
             >
-              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto text-[#C9A13B]">
+              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto text-[#D6A638]">
                 <circle cx="100" cy="100" r="90" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 3" />
                 <ellipse cx="100" cy="100" rx="45" ry="90" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 3" />
                 <ellipse cx="100" cy="100" rx="90" ry="45" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 3" />
@@ -145,14 +176,14 @@ export default function LeadershipSection() {
             >
               <svg viewBox="0 0 240 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
                 <path d="M 0 100 C 80 40 160 30 240 70 L 240 100 Z" fill="#013D26" />
-                <path d="M 0 100 C 80 40 160 30 240 70" stroke="#C9A13B" strokeWidth="3" />
+                <path d="M 0 100 C 80 40 160 30 240 70" stroke="#D6A638" strokeWidth="3" />
               </svg>
             </div>
 
             <div className="relative z-10 flex flex-col md:flex-row items-center md:items-stretch">
               {/* Chairman Photo with Green/Gold Framing */}
               <div className="w-full md:w-[320px] lg:w-[340px] shrink-0 p-4 sm:p-5 flex items-center justify-center">
-                <div className="relative w-full aspect-[4/5] max-w-[280px] md:max-w-none rounded-xl sm:rounded-2xl overflow-hidden border border-[#C9A13B]/50 shadow-md">
+                <div className="relative w-full aspect-[4/5] max-w-[280px] md:max-w-none rounded-xl sm:rounded-2xl overflow-hidden border border-[#D6A638]/50 shadow-md">
                   <Image
                     src={chairman.image}
                     alt={`${chairman.name} - ${chairman.designation}`}
@@ -162,7 +193,7 @@ export default function LeadershipSection() {
                     priority
                   />
                   {/* Subtle inner border glow */}
-                  <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-1 ring-inset ring-[#C9A13B]/30 pointer-events-none" />
+                  <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-1 ring-inset ring-[#D6A638]/30 pointer-events-none" />
                 </div>
               </div>
 
@@ -173,9 +204,12 @@ export default function LeadershipSection() {
                 </h3>
 
                 {/* Designation Badge */}
-                <div className="mt-2.5 mb-4">
+                <div className="mt-2.5 mb-4 flex items-center gap-2">
                   <span className="inline-block px-3.5 py-1 rounded-full bg-[#013D26] text-white text-[11.5px] sm:text-[12px] font-bold tracking-[0.14em] uppercase shadow-xs">
                     {chairman.designation}
+                  </span>
+                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#F3EDD7] border border-[#D6A638]/50 text-[#7C5A14] text-[11px] font-semibold tracking-wide">
+                    Executive Board
                   </span>
                 </div>
 
@@ -235,10 +269,10 @@ export default function LeadershipSection() {
                 transition={{ duration: 0.55, delay: 0.1 * index }}
                 className="flex flex-col h-full"
               >
-                <div className="relative rounded-2xl bg-white border border-[#C9A13B]/60 shadow-[0_4px_18px_rgba(1,61,38,0.04)] hover:shadow-[0_8px_28px_rgba(201,161,59,0.18)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full overflow-hidden p-3.5 xs:p-4 sm:p-4.5">
+                <div className="relative rounded-2xl bg-white border border-[#D6A638]/50 shadow-[0_4px_18px_rgba(1,61,38,0.04)] hover:shadow-[0_8px_28px_rgba(214,166,56,0.18)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full overflow-hidden p-3.5 xs:p-4 sm:p-4.5">
                   <div className="flex flex-row gap-3.5 sm:gap-4 items-start">
                     {/* Leader Portrait */}
-                    <div className="relative w-[115px] xs:w-[125px] sm:w-[130px] aspect-[4/5] shrink-0 rounded-xl overflow-hidden border border-[#C9A13B]/45 shadow-xs bg-[#EAE7DC]">
+                    <div className="relative w-[115px] xs:w-[125px] sm:w-[130px] aspect-[4/5] shrink-0 rounded-xl overflow-hidden border border-[#D6A638]/40 shadow-xs bg-[#EAE7DC]">
                       <Image
                         src={leader.image}
                         alt={`${leader.name} - ${leader.designation}`}
@@ -256,7 +290,7 @@ export default function LeadershipSection() {
 
                       {/* Designation Badge */}
                       <div className="mt-1.5 mb-2.5">
-                        <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#F7F2E2] border border-[#C9A13B]/40 text-[#7C5A14] text-[10px] sm:text-[10.5px] font-bold tracking-[0.08em] uppercase">
+                        <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#F7F2E2] border border-[#D6A638]/40 text-[#7C5A14] text-[10px] sm:text-[10.5px] font-bold tracking-[0.08em] uppercase">
                           {leader.designation}
                         </span>
                       </div>
