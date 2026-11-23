@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
 
 // Custom polished SVG icons matching the reference image exactly
@@ -172,13 +173,24 @@ export default function CommitmentToHumanRightsSection() {
             {/* Subtle Gold Accent Line */}
             <div className="w-12 h-[2.5px] bg-[#C99B36] rounded-full my-3 sm:my-4" />
 
-            {/* Description Paragraph */}
-            <p className="font-sans text-[#3A5446] text-base sm:text-[16.5px] leading-relaxed max-w-xl font-normal mb-8 sm:mb-9">
-              Merchants AgroValley Ltd is committed to respecting, protecting and
-              promoting human rights across all its business operations,
-              workplaces and supply chains. Every individual deserves dignity,
-              fairness, equality and respect.
-            </p>
+            {/* Full Description Paragraphs from content specification */}
+            <div className="font-sans text-[#3A5446] text-[14.5px] sm:text-[15.5px] leading-relaxed max-w-xl font-normal space-y-3 mb-8 sm:mb-9">
+              <p>
+                Merchants AgroValley Ltd is committed to respecting, protecting and
+                promoting human rights across all its business operations,
+                workplaces and supply chains. We believe every individual deserves
+                to be treated with dignity, fairness, equality and respect,
+                regardless of gender, background, religion or social status.
+              </p>
+              <p>
+                We uphold a zero-tolerance approach to child labour, forced labour,
+                human trafficking, workplace discrimination, harassment and
+                exploitation. Our commitment includes providing safe and healthy
+                working conditions, fair employment practices, equal opportunities,
+                reasonable working hours and appropriate employee welfare
+                facilities.
+              </p>
+            </div>
 
             {/* Four Feature Cards in 2x2 Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 w-full max-w-xl">
@@ -215,13 +227,13 @@ export default function CommitmentToHumanRightsSection() {
             </div>
           </motion.div>
 
-          {/* RIGHT COLUMN: WORKFORCE HERO PHOTOGRAPH (Span 6 on LG/XL) */}
+          {/* RIGHT COLUMN: WORKFORCE HERO PHOTOGRAPH & COMPANION ETHICAL CARD (Balanced Height) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-6 w-full relative"
+            className="lg:col-span-6 w-full flex flex-col justify-between relative"
           >
             {/* Top-Left Thin Gold Accent Arch */}
             <div
@@ -236,7 +248,7 @@ export default function CommitmentToHumanRightsSection() {
             />
 
             {/* Main Featured Photo Container */}
-            <div className="relative w-full aspect-[4/3] rounded-[32px] overflow-hidden shadow-[0_16px_44px_rgba(1,61,38,0.12)] border border-[#E1ECE4] bg-white group">
+            <div className="relative w-full aspect-[16/10.5] rounded-[32px] overflow-hidden shadow-[0_16px_44px_rgba(1,61,38,0.12)] border border-[#E1ECE4] bg-white group">
               <Image
                 src="/assets/human-rights/diverse-workforce-new.webp"
                 alt="Merchants Agro Valley diverse, proud team of Bangladeshi workers and professionals in modern hygienic food processing facility"
@@ -246,6 +258,40 @@ export default function CommitmentToHumanRightsSection() {
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-103"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
+            </div>
+
+            {/* COMPANION ETHICAL STANDARDS HIGHLIGHT CARD (Balances Column Height) */}
+            <div className="mt-4 sm:mt-4.5 bg-white rounded-2xl p-4.5 sm:p-5 border border-[#E2EBE5] shadow-[0_6px_20px_rgba(1,61,38,0.05)]">
+              <div className="flex items-center gap-3.5 sm:gap-4">
+                <div className="w-11 h-11 rounded-xl bg-[#F0F7EC] border border-[#D5E6CF] flex items-center justify-center shrink-0 text-[#013D26]">
+                  <ShieldCheck className="w-6 h-6 text-[#013D26]" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <h4 className="font-serif font-bold text-[16px] sm:text-[17px] text-[#013D26] leading-tight">
+                      Ethical Workplace Standards
+                    </h4>
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#EAF2EC] text-[#013D26] text-[10.5px] font-bold uppercase tracking-wider shrink-0">
+                      Fair Labor
+                    </span>
+                  </div>
+                  <p className="font-sans text-[#4A6355] text-[12.5px] sm:text-[13px] leading-relaxed">
+                    Ensuring fair compensation, equal opportunities, reasonable working hours, and compassionate employee welfare.
+                  </p>
+                </div>
+              </div>
+
+              {/* 2 Key Ethical Tags */}
+              <div className="mt-3 pt-2.5 border-t border-[#F0F5F1] grid grid-cols-2 gap-2 text-xs">
+                <div className="flex items-center gap-2 text-[#013D26] font-medium text-[11.5px] sm:text-[12px]">
+                  <span className="w-2 h-2 rounded-full bg-[#75B82A] shrink-0" />
+                  <span className="truncate">Zero Child/Forced Labor</span>
+                </div>
+                <div className="flex items-center gap-2 text-[#013D26] font-medium text-[11.5px] sm:text-[12px]">
+                  <span className="w-2 h-2 rounded-full bg-[#C99B36] shrink-0" />
+                  <span className="truncate">Equal Gender Opportunities</span>
+                </div>
+              </div>
             </div>
           </motion.div>
 
@@ -261,7 +307,7 @@ export default function CommitmentToHumanRightsSection() {
         >
           <p className="font-serif italic font-bold text-[#013D26] text-[17px] sm:text-[20px] md:text-[22px] leading-snug tracking-tight">
             <span className="text-[#C99B36] not-italic text-2xl sm:text-3xl mr-1.5 select-none font-serif">“</span>
-            Business growth must never come at the expense of human dignity, equality or fundamental human rights.
+            Our principle is simple: business growth must never come at the expense of human dignity, equality or fundamental human rights.
             <span className="text-[#C99B36] not-italic text-2xl sm:text-3xl ml-1.5 select-none font-serif">”</span>
           </p>
         </motion.div>
