@@ -315,7 +315,7 @@ export default function LocalCommunitiesSection() {
             {/* Main Featured Photo Container with balanced height */}
             <div className="relative w-full aspect-[16/11.5] sm:aspect-[16/11] lg:aspect-[16/11.8] rounded-[32px] sm:rounded-[36px] overflow-hidden shadow-[0_16px_46px_rgba(1,61,38,0.12)] border border-[#E1ECE4] bg-white group">
               <Image
-                src="/assets/we-love-local/local-community-handshake.webp"
+                src="/assets/we-love-local/local-community-partnership.webp"
                 alt="Merchants Agro Valley company representative shaking hands with elderly Bangladeshi farmer in green agricultural crop field"
                 fill
                 priority
