@@ -22,7 +22,7 @@ export const NAV_ITEMS: NavItem[] = [
     iconName: "Briefcase",
   },
   {
-    name: "Product & Service",
+    name: "Products & Services",
     href: "/#portfolio",
     iconName: "Package",
   },
@@ -32,7 +32,7 @@ export const NAV_ITEMS: NavItem[] = [
     iconName: "Leaf",
   },
   {
-    name: "Human Right",
+    name: "Human Rights",
     href: "/#human-rights",
     iconName: "HeartHandshake",
   },
