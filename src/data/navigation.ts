@@ -38,7 +38,7 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     name: "Health & Safety",
-    href: "/#health-safety",
+    href: "/health-safety",
     iconName: "ShieldCheck",
   },
   {
