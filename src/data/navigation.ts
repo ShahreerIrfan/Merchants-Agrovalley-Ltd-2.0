@@ -43,7 +43,7 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     name: "We Love Local",
-    href: "/#we-love-local",
+    href: "/we-love-local",
     iconName: "Heart",
   },
 ];
