@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import EnvironmentHero from "@/components/environment/EnvironmentHero";
+import RenewableEnergySection from "@/components/environment/RenewableEnergySection";
 
 export const metadata: Metadata = {
   title: "Environment — Sustainable Agriculture & Ecological Stewardship | Merchants Agro Valley",
@@ -17,6 +18,9 @@ export default function EnvironmentPage() {
 
       {/* Section 01: Environment Hero */}
       <EnvironmentHero />
+
+      {/* Section 02: Renewable Energy & Energy Efficiency */}
+      <RenewableEnergySection />
     </main>
   );
 }
