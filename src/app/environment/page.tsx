@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import EnvironmentHero from "@/components/environment/EnvironmentHero";
 import RenewableEnergySection from "@/components/environment/RenewableEnergySection";
+import CircularEconomySection from "@/components/environment/CircularEconomySection";
 
 export const metadata: Metadata = {
   title: "Environment — Sustainable Agriculture & Ecological Stewardship | Merchants Agro Valley",
@@ -21,6 +22,9 @@ export default function EnvironmentPage() {
 
       {/* Section 02: Renewable Energy & Energy Efficiency */}
       <RenewableEnergySection />
+
+      {/* Section 03: Circular Economy & Resource Recovery */}
+      <CircularEconomySection />
     </main>
   );
 }
