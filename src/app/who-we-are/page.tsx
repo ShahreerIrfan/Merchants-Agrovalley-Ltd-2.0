@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function WhoWeArePage() {
   return (
-    <main className="min-h-screen flex flex-col bg-white overflow-x-hidden">
+    <main className="min-h-screen flex flex-col bg-white overflow-x-clip">
       {/* Sticky Header / Navbar */}
       <Navbar />
 

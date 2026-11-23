@@ -34,7 +34,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
-      <body className="font-sans antialiased text-[#142C23] bg-white selection:bg-[#A6E51B] selection:text-[#063F2B] overflow-x-hidden">
+      <body className="font-sans antialiased text-[#142C23] bg-white selection:bg-[#A6E51B] selection:text-[#063F2B] overflow-x-clip">
         <MotionProvider>
           {children}
           <Footer />

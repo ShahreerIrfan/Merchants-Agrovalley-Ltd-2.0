@@ -46,14 +46,11 @@ export default function Navbar() {
   }, []);
 
   return (
-    <motion.header
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className={`sticky top-0 z-40 w-full bg-white transition-all duration-300 ${
+    <header
+      className={`sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md transition-all duration-300 ${
         scrolled
-          ? "shadow-[0_4px_24px_rgba(0,0,0,0.06)] border-b border-gray-100"
-          : "border-b border-gray-100/80"
+          ? "shadow-[0_4px_24px_rgba(0,0,0,0.08)] border-b border-gray-200"
+          : "border-b border-gray-100/90"
       }`}
     >
       <div className="max-w-[1700px] mx-auto px-3.5 sm:px-6 lg:px-6 xl:px-10 h-[80px] sm:h-[88px] lg:h-[92px] flex items-center justify-between">
@@ -152,6 +149,6 @@ export default function Navbar() {
         isOpen={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
       />
-    </motion.header>
+    </header>
   );
 }

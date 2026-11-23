@@ -6,7 +6,7 @@ import BusinessModelSection from "@/components/business-model/BusinessModelSecti
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen flex flex-col bg-white overflow-x-hidden">
+    <main className="min-h-screen flex flex-col bg-white overflow-x-clip">
       {/* Sticky Premium Navbar */}
       <Navbar />
 
