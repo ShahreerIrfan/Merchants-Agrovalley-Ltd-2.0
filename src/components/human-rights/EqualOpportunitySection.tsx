@@ -205,23 +205,124 @@ export default function EqualOpportunitySection() {
         className="absolute inset-0 pointer-events-none select-none z-0"
         style={{
           background:
-            "radial-gradient(circle at 85% 15%, rgba(117, 184, 42, 0.035) 0%, transparent 40%), radial-gradient(circle at 15% 85%, rgba(201, 155, 54, 0.03) 0%, transparent 45%)",
+            "radial-gradient(circle at 15% 15%, rgba(117, 184, 42, 0.035) 0%, transparent 40%), radial-gradient(circle at 85% 85%, rgba(201, 155, 54, 0.03) 0%, transparent 45%)",
         }}
         aria-hidden="true"
       />
 
       <div className="relative z-10 max-w-[1600px] mx-auto px-4 xs:px-6 sm:px-8 md:px-12 lg:px-14 xl:px-18">
         
-        {/* TWO-COLUMN LAYOUT ON DESKTOP */}
+        {/* TWO-COLUMN LAYOUT ON DESKTOP (ALTERNATING: IMAGE ON LEFT, TEXT ON RIGHT) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
           
-          {/* LEFT COLUMN: Section Label, Heading, Description & 2x2 Grid (Approx 45-48% width) */}
+          {/* COLUMN 1 (LEFT ON DESKTOP): LARGE WORKFORCE PHOTOGRAPH WITH REFINED GREEN & GOLD ACCENTS & COMPANION CARD */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-6 xl:col-span-7 w-full flex flex-col justify-between relative order-2 lg:order-1"
+          >
+            {/* Top-Left Decorative Organic Gold & Green Curved Accent Arch */}
+            <div
+              className="absolute -top-3.5 -left-3.5 w-36 h-36 pointer-events-none -z-10 hidden sm:block"
+              aria-hidden="true"
+            >
+              <svg viewBox="0 0 160 160" fill="none" className="w-full h-full">
+                <path
+                  d="M10 150 C 10 70, 70 10, 150 10"
+                  stroke="#C99B36"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M2 140 C 2 60, 60 2, 140 2"
+                  stroke="#75B82A"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  opacity="0.85"
+                />
+              </svg>
+            </div>
+
+            {/* Bottom-Right Complementary Curved Gold & Green Accent */}
+            <div
+              className="absolute -bottom-3.5 -right-3.5 w-36 h-36 pointer-events-none -z-10 hidden sm:block"
+              aria-hidden="true"
+            >
+              <svg viewBox="0 0 160 160" fill="none" className="w-full h-full">
+                <path
+                  d="M150 10 C 150 90, 90 150, 10 150"
+                  stroke="#C99B36"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M158 20 C 158 100, 100 158, 20 158"
+                  stroke="#013D26"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  opacity="0.85"
+                />
+              </svg>
+            </div>
+
+            {/* Main Featured Photo Container with balanced height */}
+            <div className="relative w-full aspect-[16/11] sm:aspect-[16/10.5] lg:aspect-[16/11] rounded-[32px] sm:rounded-[36px] overflow-hidden shadow-[0_16px_46px_rgba(1,61,38,0.12)] border border-[#E1ECE4] bg-white group">
+              <Image
+                src="/assets/human-rights/equal-opportunity-workforce.webp"
+                alt="Merchants Agro Valley diverse, proud team of Bangladeshi workers and professionals demonstrating equal opportunity in modern agro facility"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 55vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-103"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+            </div>
+
+            {/* COMPANION INCLUSIVE CULTURE CARD (Balances Column Height with Right Text Column) */}
+            <div className="mt-4 sm:mt-4.5 bg-white rounded-2xl p-4.5 sm:p-5 border border-[#E2EBE5] shadow-[0_6px_20px_rgba(1,61,38,0.04)]">
+              <div className="flex items-center gap-3.5 sm:gap-4">
+                <div className="w-11 h-11 rounded-xl bg-[#F0F7EC] border border-[#D5E6CF] flex items-center justify-center shrink-0 text-[#013D26]">
+                  <svg
+                    className="w-6 h-6 text-[#013D26]"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <h4 className="font-serif font-bold text-[16px] sm:text-[17px] text-[#013D26] leading-tight">
+                      Inclusive Workplace Culture
+                    </h4>
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#FAF6EC] border border-[#C99B36]/50 text-[#7C5A14] text-[10.5px] font-bold shrink-0">
+                      Equal Opportunity
+                    </span>
+                  </div>
+                  <p className="font-sans text-[#4A6355] text-[12.5px] sm:text-[13px] leading-relaxed">
+                    Committed to merit-based career progression, fair compensation, and equal representation across all operational roles.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* COLUMN 2 (RIGHT ON DESKTOP): Section Label, Heading, Description & 2x2 Grid (Approx 45-48% width) */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-6 xl:col-span-5 flex flex-col items-start"
+            className="lg:col-span-6 xl:col-span-5 flex flex-col items-start order-1 lg:order-2"
           >
             {/* Eyebrow Label with Green Leaf Icon */}
             <div className="flex items-center gap-2.5 mb-4 sm:mb-5">
@@ -278,72 +379,6 @@ export default function EqualOpportunitySection() {
                   </p>
                 </motion.div>
               ))}
-            </div>
-          </motion.div>
-
-          {/* RIGHT COLUMN: LARGE WORKFORCE PHOTOGRAPH WITH REFINED GREEN & GOLD ACCENTS (Approx 52-55% width) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-6 xl:col-span-7 w-full flex flex-col justify-center relative"
-          >
-            {/* Top-Left Decorative Organic Gold & Green Curved Accent Arch */}
-            <div
-              className="absolute -top-3.5 -left-3.5 w-36 h-36 pointer-events-none -z-10 hidden sm:block"
-              aria-hidden="true"
-            >
-              <svg viewBox="0 0 160 160" fill="none" className="w-full h-full">
-                <path
-                  d="M10 150 C 10 70, 70 10, 150 10"
-                  stroke="#C99B36"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M2 140 C 2 60, 60 2, 140 2"
-                  stroke="#75B82A"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  opacity="0.85"
-                />
-              </svg>
-            </div>
-
-            {/* Bottom-Right Complementary Curved Gold & Green Accent */}
-            <div
-              className="absolute -bottom-3.5 -right-3.5 w-36 h-36 pointer-events-none -z-10 hidden sm:block"
-              aria-hidden="true"
-            >
-              <svg viewBox="0 0 160 160" fill="none" className="w-full h-full">
-                <path
-                  d="M150 10 C 150 90, 90 150, 10 150"
-                  stroke="#C99B36"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M158 20 C 158 100, 100 158, 20 158"
-                  stroke="#013D26"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  opacity="0.85"
-                />
-              </svg>
-            </div>
-
-            {/* Main Featured Photo Container with balanced height */}
-            <div className="relative w-full aspect-[16/11] sm:aspect-[16/10.5] lg:aspect-[16/11.5] rounded-[32px] sm:rounded-[36px] overflow-hidden shadow-[0_16px_46px_rgba(1,61,38,0.12)] border border-[#E1ECE4] bg-white group">
-              <Image
-                src="/assets/human-rights/equal-opportunity-workforce.webp"
-                alt="Merchants Agro Valley diverse, proud team of Bangladeshi workers and professionals demonstrating equal opportunity in modern agro facility"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 55vw"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-103"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
             </div>
           </motion.div>
 
