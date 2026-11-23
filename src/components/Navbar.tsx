@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Home,
   Users,
@@ -32,6 +33,7 @@ const NAV_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -80,26 +82,34 @@ export default function Navbar() {
         >
           {NAV_ITEMS.map((item) => {
             const IconComponent = NAV_ICONS[item.iconName] || Home;
+            const isActive =
+              item.href === "/"
+                ? pathname === "/"
+                : item.href.startsWith("/#")
+                ? false
+                : item.href.startsWith("/")
+                ? pathname === item.href || pathname.startsWith(item.href + "/")
+                : false;
 
             return (
               <Link
                 key={item.name}
                 href={item.href}
                 className={`group relative flex items-center gap-1.5 py-1.5 px-2 xl:px-2.5 rounded-lg text-[12px] xl:text-[13px] 2xl:text-[14px] whitespace-nowrap transition-all duration-200 ${
-                  item.isActive
+                  isActive
                     ? "text-[#063F2B] font-semibold bg-[#08713D]/8"
                     : "text-[#142C23]/80 hover:text-[#063F2B] hover:bg-emerald-50/60 font-medium"
                 }`}
               >
                 <IconComponent
                   className={`w-3.5 h-3.5 xl:w-4 xl:h-4 shrink-0 transition-colors duration-200 ${
-                    item.isActive
+                    isActive
                       ? "text-[#08713D]"
                       : "text-gray-400 group-hover:text-[#08713D]"
                   }`}
                 />
                 <span>{item.name}</span>
-                {item.isActive ? (
+                {isActive ? (
                   <motion.span
                     layoutId="activeNavUnderline"
                     className="absolute bottom-0 left-2 right-2 h-[2px] bg-[#08713D] rounded-full"

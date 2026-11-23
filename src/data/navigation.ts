@@ -10,7 +10,6 @@ export const NAV_ITEMS: NavItem[] = [
     name: "Home",
     href: "/",
     iconName: "Home",
-    isActive: true,
   },
   {
     name: "Who We Are",
@@ -24,27 +23,27 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     name: "Product & Service",
-    href: "#portfolio",
+    href: "/#portfolio",
     iconName: "Package",
   },
   {
     name: "Environment",
-    href: "#business-model",
+    href: "/#business-model",
     iconName: "Leaf",
   },
   {
     name: "Human Right",
-    href: "#human-rights",
+    href: "/#human-rights",
     iconName: "HeartHandshake",
   },
   {
     name: "Health & Safety",
-    href: "#health-safety",
+    href: "/#health-safety",
     iconName: "ShieldCheck",
   },
   {
     name: "We Love Local",
-    href: "#we-love-local",
+    href: "/#we-love-local",
     iconName: "Heart",
   },
 ];

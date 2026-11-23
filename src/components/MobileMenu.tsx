@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   X,
   Mail,
@@ -34,6 +35,8 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+  const pathname = usePathname();
+
   // Close on escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -96,6 +99,14 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         <div className="flex-1 overflow-y-auto px-5 py-6 space-y-1.5">
           {NAV_ITEMS.map((item) => {
             const IconComponent = NAV_ICONS[item.iconName] || Home;
+            const isActive =
+              item.href === "/"
+                ? pathname === "/"
+                : item.href.startsWith("/#")
+                ? false
+                : item.href.startsWith("/")
+                ? pathname === item.href || pathname.startsWith(item.href + "/")
+                : false;
 
             return (
               <Link
@@ -103,14 +114,14 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 href={item.href}
                 onClick={onClose}
                 className={`flex items-center gap-3 py-3 px-3.5 rounded-xl text-[15px] font-medium transition-all ${
-                  item.isActive
+                  isActive
                     ? "text-[#063F2B] font-semibold bg-emerald-50/80"
                     : "text-[#142C23] hover:text-[#08713D] hover:bg-gray-50"
                 }`}
               >
                 <div
                   className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
-                    item.isActive
+                    isActive
                       ? "bg-[#08713D] text-white"
                       : "bg-gray-100 text-gray-600 group-hover:bg-emerald-100"
                   }`}
@@ -118,7 +129,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   <IconComponent className="w-4 h-4" />
                 </div>
                 <span className="flex-1">{item.name}</span>
-                {item.isActive && (
+                {isActive && (
                   <span className="w-1.5 h-1.5 rounded-full bg-[#08713D]" />
                 )}
               </Link>
