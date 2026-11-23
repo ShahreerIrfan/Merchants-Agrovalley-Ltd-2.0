@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import CommitmentToHumanRightsSection from "@/components/human-rights/CommitmentToHumanRightsSection";
 import EqualOpportunitySection from "@/components/human-rights/EqualOpportunitySection";
+import ZeroToleranceSection from "@/components/human-rights/ZeroToleranceSection";
 
 export const metadata: Metadata = {
   title: "Human Rights — Ethical Responsibility & Dignity | Merchants Agro Valley",
@@ -21,6 +22,9 @@ export default function HumanRightsPage() {
 
       {/* Section 02: Equal Opportunity & Non-Discrimination */}
       <EqualOpportunitySection />
+
+      {/* Section 03: Zero Tolerance for Exploitation */}
+      <ZeroToleranceSection />
     </main>
   );
 }
