@@ -204,12 +204,22 @@ export default function EnvironmentHero() {
             </h1>
 
             {/* Description */}
-            <p className="font-sans text-[#3A5446] text-base sm:text-[17px] leading-relaxed max-w-xl font-normal mb-8 sm:mb-9">
-              We advance sustainable agriculture, harness renewable energy,
-              practice responsible resource management, and uphold strong
-              environmental stewardship across our operations, creating
-              long-term value for people, communities, and the planet.
-            </p>
+            <div className="font-sans text-[#3A5446] text-[15px] sm:text-[16px] leading-relaxed max-w-xl font-normal space-y-3 mb-8 sm:mb-9">
+              <p>
+                Merchants AgroValley Ltd is committed to developing an environmentally
+                responsible, sustainable and resource-efficient agro-industrial
+                ecosystem. Our approach integrates modern agricultural practices,
+                renewable energy, waste management and responsible natural resource
+                utilisation to minimise environmental impact while supporting
+                long-term agricultural productivity.
+              </p>
+              <p>
+                Our commitment is to build a greener agricultural future by balancing
+                commercial growth with environmental protection, resource efficiency
+                and social responsibility—creating lasting value for communities,
+                future generations and the planet.
+              </p>
+            </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 mb-9 sm:mb-11">

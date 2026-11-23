@@ -7,7 +7,7 @@ import RenewableEnergySection from "@/components/environment/RenewableEnergySect
 export const metadata: Metadata = {
   title: "Environment — Sustainable Agriculture & Ecological Stewardship | Merchants Agro Valley",
   description:
-    "We advance sustainable agriculture, harness renewable energy, practice responsible resource management, and uphold strong environmental stewardship across our operations.",
+    "Merchants AgroValley Ltd is committed to developing an environmentally responsible, sustainable and resource-efficient agro-industrial ecosystem.",
 };
 
 export default function EnvironmentPage() {
