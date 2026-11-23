@@ -21,7 +21,7 @@ function CropsProductionIcon({ className }: { className?: string }) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="16" cy="10" r="2.2" fill="#C9A13B" />
+      <circle cx="16" cy="10" r="2.2" fill="#D6A638" />
       <path
         d="M10 28h12"
         stroke="#013D26"
@@ -45,8 +45,8 @@ function LivestockPoultryIcon({ className }: { className?: string }) {
       aria-hidden="true"
     >
       <path d="M25 8c-2 0-3.5.8-4.8 2C19 11.2 17.5 12 16 12s-3-.8-4.2-2C10.5 8.8 9 8 7 8c-2.5 0-4 2-4 4 0 3.2 2.5 5.8 5 6.5V25c0 .6.4 1 1 1h2.5c.6 0 1-.4 1-1v-5h7v5c0 .6.4 1 1 1H23c.6 0 1-.4 1-1v-6.5c2.5-.7 5-3.3 5-6.5 0-2-1.5-4-4-4z" />
-      <circle cx="10" cy="14" r="1.3" fill="#C9A13B" stroke="none" />
-      <circle cx="22" cy="14" r="1.3" fill="#C9A13B" stroke="none" />
+      <circle cx="10" cy="14" r="1.3" fill="#D6A638" stroke="none" />
+      <circle cx="22" cy="14" r="1.3" fill="#D6A638" stroke="none" />
     </svg>
   );
 }
@@ -64,10 +64,10 @@ function HygienicProcessingIcon({ className }: { className?: string }) {
       aria-hidden="true"
     >
       <path d="M4 27h24M6 27V13l7 4V13l7 4V7h6v20" />
-      <circle cx="10" cy="19" r="1" fill="#C9A13B" stroke="none" />
-      <circle cx="17" cy="19" r="1" fill="#C9A13B" stroke="none" />
-      <circle cx="23" cy="12" r="1" fill="#C9A13B" stroke="none" />
-      <circle cx="23" cy="17" r="1" fill="#C9A13B" stroke="none" />
+      <circle cx="10" cy="19" r="1" fill="#D6A638" stroke="none" />
+      <circle cx="17" cy="19" r="1" fill="#D6A638" stroke="none" />
+      <circle cx="23" cy="12" r="1" fill="#D6A638" stroke="none" />
+      <circle cx="23" cy="17" r="1" fill="#D6A638" stroke="none" />
     </svg>
   );
 }
@@ -84,7 +84,7 @@ function SolarEnergyIcon({ className }: { className?: string }) {
       className={className || "w-6 h-6"}
       aria-hidden="true"
     >
-      <circle cx="16" cy="8" r="3.5" fill="#C9A13B" stroke="#013D26" strokeWidth="1.5" />
+      <circle cx="16" cy="8" r="3.5" fill="#D6A638" stroke="#013D26" strokeWidth="1.5" />
       <path d="M16 2v2M9.5 4.5l1.5 1.5M22.5 4.5l-1.5 1.5" />
       <path d="M5 26l3-11h16l3 11H5z" />
       <path d="M16 15v11M8 20.5h16" />
@@ -107,7 +107,7 @@ function GlobalTradeIcon({ className }: { className?: string }) {
       <path d="M3 21l3-10h20l3 10c0 1.5-1.5 3-3 3H6c-1.5 0-3-1.5-3-3z" />
       <path d="M11 11V7h10v4" />
       <path d="M14 7V4h4v3" />
-      <path d="M7 21h18" stroke="#C9A13B" strokeWidth="2.2" />
+      <path d="M7 21h18" stroke="#D6A638" strokeWidth="2.2" />
       <path d="M2 27c4 1 8-1 12 0s8 1 12 0 4-1 4-1" stroke="#013D26" strokeWidth="1.8" />
     </svg>
   );
@@ -127,7 +127,8 @@ const ECOSYSTEM_STEPS: EcosystemStep[] = [
     step: "01",
     id: "agricultural-production",
     title: "Agricultural Production",
-    description: "Green agricultural fields and crop cultivation.",
+    description:
+      "Sustainably grow high-quality crops to feed people, livestock and industry.",
     image: "/assets/who-we-are/ecosystem/crop-cultivation.jpg",
     icon: <CropsProductionIcon className="w-6 h-6" />,
   },
@@ -135,7 +136,8 @@ const ECOSYSTEM_STEPS: EcosystemStep[] = [
     step: "02",
     id: "livestock-poultry",
     title: "Livestock & Poultry",
-    description: "Healthy cattle and poultry farming.",
+    description:
+      "Raise healthy livestock and poultry through modern, responsible and efficient farming systems.",
     image: "/assets/who-we-are/ecosystem/livestock-poultry.webp",
     icon: <LivestockPoultryIcon className="w-6 h-6" />,
   },
@@ -143,7 +145,8 @@ const ECOSYSTEM_STEPS: EcosystemStep[] = [
     step: "03",
     id: "food-processing",
     title: "Food Processing",
-    description: "Modern hygienic food processing facilities.",
+    description:
+      "Convert farm and livestock output into safe, high-quality food products.",
     image: "/assets/who-we-are/ecosystem/food-processing.webp",
     icon: <HygienicProcessingIcon className="w-6 h-6" />,
   },
@@ -151,7 +154,8 @@ const ECOSYSTEM_STEPS: EcosystemStep[] = [
     step: "04",
     id: "renewable-energy",
     title: "Renewable Energy",
-    description: "Solar energy and sustainable industrial operations.",
+    description:
+      "Generate clean, renewable energy from agro-resources to power our operations sustainably.",
     image: "/assets/who-we-are/ecosystem/renewable-energy.jpg",
     icon: <SolarEnergyIcon className="w-6 h-6" />,
   },
@@ -159,7 +163,8 @@ const ECOSYSTEM_STEPS: EcosystemStep[] = [
     step: "05",
     id: "international-trade",
     title: "International Trade & Export",
-    description: "Cargo vessels, shipping and global trade.",
+    description:
+      "Deliver high-quality agro and food products to customers in global markets.",
     image: "/assets/who-we-are/ecosystem/international-trade.jpg",
     icon: <GlobalTradeIcon className="w-6 h-6" />,
   },
@@ -170,7 +175,7 @@ export default function AgroEcosystemSection() {
     <section
       id="our-integrated-agro-ecosystem"
       aria-label="Our Integrated Agro Ecosystem"
-      className="relative w-full bg-[#FAF8F5] text-[#193B28] py-16 sm:py-20 lg:py-24 border-t border-[#C9A13B]/25 overflow-hidden selection:bg-[#C9A13B]/20 selection:text-[#013D26]"
+      className="relative w-full bg-[#FAF8F5] text-[#193B28] py-16 sm:py-20 lg:py-24 border-t border-[#D6A638]/25 overflow-hidden selection:bg-[#D6A638]/20 selection:text-[#013D26]"
     >
       {/* Subtle Warm Backdrop Lighting */}
       <div
@@ -197,7 +202,7 @@ export default function AgroEcosystemSection() {
           >
             {/* Eyebrow Label */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EAF2EC] border border-[#CDE1D4] text-[#013D26] text-xs sm:text-[13px] font-semibold tracking-wider uppercase mb-5 shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-[#C9A13B]" />
+              <span className="w-2 h-2 rounded-full bg-[#D6A638]" />
               <Leaf className="w-3.5 h-3.5 text-[#013D26]" />
               <span>OUR INTEGRATED AGRO ECOSYSTEM</span>
             </div>
@@ -209,16 +214,16 @@ export default function AgroEcosystemSection() {
 
             {/* Short Description */}
             <p className="text-[#335242] text-base sm:text-lg md:text-[19px] leading-relaxed max-w-2xl font-normal">
-              An integrated agro-industrial ecosystem that brings together farming,
-              feed, livestock, processing and international trade to deliver
-              safe, traceable and high-quality food.
+              An integrated agro-industrial ecosystem that connects farming,
+              feed, livestock, processing, renewable energy and international trade,
+              creating sustainable value from land to global customers.
             </p>
 
             {/* Subtle Gold Accent Separator Line */}
             <div className="mt-6 flex items-center gap-2">
-              <span className="w-12 h-[2.5px] bg-[#C9A13B] rounded-full" />
+              <span className="w-12 h-[2.5px] bg-[#D6A638] rounded-full" />
               <span className="w-2 h-[2.5px] bg-[#013D26] rounded-full" />
-              <span className="w-1.5 h-[1.5px] bg-[#C9A13B] rounded-full" />
+              <span className="w-1.5 h-[1.5px] bg-[#D6A638] rounded-full" />
             </div>
           </motion.div>
 
@@ -258,7 +263,7 @@ export default function AgroEcosystemSection() {
           
           {/* Desktop Connecting Line behind cards */}
           <div
-            className="hidden xl:block absolute top-[90px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-transparent via-[#C9A13B]/40 to-transparent pointer-events-none z-0"
+            className="hidden xl:block absolute top-[90px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-transparent via-[#D6A638]/40 to-transparent pointer-events-none z-0"
             aria-hidden="true"
           />
 
@@ -290,7 +295,7 @@ export default function AgroEcosystemSection() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                     
                     {/* Step Number Badge */}
-                    <div className="absolute top-2.5 left-2.5 bg-[#013D26]/90 backdrop-blur-md px-2 py-0.5 rounded-md border border-[#C9A13B]/40 text-[#E7C978] text-[11px] font-bold tracking-wider">
+                    <div className="absolute top-2.5 left-2.5 bg-[#013D26]/90 backdrop-blur-md px-2 py-0.5 rounded-md border border-[#D6A638]/40 text-[#E7C978] text-[11px] font-bold tracking-wider">
                       {step.step}
                     </div>
 
@@ -303,9 +308,13 @@ export default function AgroEcosystemSection() {
                   {/* Card Content */}
                   <div className="p-4 sm:p-4.5 flex flex-col flex-1 justify-between bg-white">
                     <div>
-                      <h3 className="font-serif text-[#013D26] text-[17px] sm:text-[18px] font-bold leading-snug tracking-tight mb-2 group-hover:text-[#006B3C] transition-colors">
-                        {step.title}
+                      <h3 className="font-serif text-[#013D26] text-[16px] sm:text-[17px] font-bold leading-snug tracking-tight group-hover:text-[#006B3C] transition-colors">
+                        {step.step}. {step.title}
                       </h3>
+
+                      {/* Subtle Gold Decorative Separator */}
+                      <div className="w-8 h-[2px] bg-[#D6A638] my-2.5 rounded-full" />
+
                       <p className="text-[#4A6B5B] text-[13px] sm:text-[13.5px] leading-relaxed">
                         {step.description}
                       </p>
@@ -316,7 +325,7 @@ export default function AgroEcosystemSection() {
                       <span className="text-[11px] text-[#6E8F7F] uppercase tracking-wider font-semibold">
                         Stage {step.step}
                       </span>
-                      <div className="flex items-center gap-1 text-[#C9A13B] group-hover:text-[#013D26] group-hover:translate-x-1 transition-all">
+                      <div className="flex items-center gap-1 text-[#D6A638] group-hover:text-[#013D26] group-hover:translate-x-1 transition-all">
                         <span className="text-[11px] font-semibold">Flow</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </div>
@@ -326,10 +335,10 @@ export default function AgroEcosystemSection() {
                   {/* Desktop Step Arrow Connector between cards (except last card) */}
                   {!isLast && (
                     <div
-                      className="hidden lg:flex xl:flex absolute -right-2.5 top-[38%] -translate-y-1/2 z-20 w-5 h-5 rounded-full bg-[#FAF8F5] border border-[#C9A13B] shadow-xs items-center justify-center pointer-events-none"
+                      className="hidden lg:flex xl:flex absolute -right-2.5 top-[38%] -translate-y-1/2 z-20 w-5 h-5 rounded-full bg-[#FAF8F5] border border-[#D6A638] shadow-xs items-center justify-center pointer-events-none"
                       aria-hidden="true"
                     >
-                      <ArrowRight className="w-3 h-3 text-[#C9A13B]" />
+                      <ArrowRight className="w-3 h-3 text-[#D6A638]" />
                     </div>
                   )}
                 </motion.div>
