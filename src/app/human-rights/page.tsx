@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import CommitmentToHumanRightsSection from "@/components/human-rights/CommitmentToHumanRightsSection";
+import EqualOpportunitySection from "@/components/human-rights/EqualOpportunitySection";
 
 export const metadata: Metadata = {
   title: "Human Rights — Ethical Responsibility & Dignity | Merchants Agro Valley",
@@ -17,6 +18,9 @@ export default function HumanRightsPage() {
 
       {/* Section 01: Commitment to Human Rights */}
       <CommitmentToHumanRightsSection />
+
+      {/* Section 02: Equal Opportunity & Non-Discrimination */}
+      <EqualOpportunitySection />
     </main>
   );
 }
