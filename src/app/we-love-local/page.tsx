@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import LocalCommunitiesSection from "@/components/we-love-local/LocalCommunitiesSection";
+import SupportingFarmersSection from "@/components/we-love-local/SupportingFarmersSection";
 
 export const metadata: Metadata = {
   title: "We Love Local — Community & Domestic Agriculture | Merchants Agro Valley",
@@ -17,6 +18,9 @@ export default function WeLoveLocalPage() {
 
       {/* Section 01: Our Commitment to Local Communities */}
       <LocalCommunitiesSection />
+
+      {/* Section 02: Supporting Local Farmers & Rural Entrepreneurs */}
+      <SupportingFarmersSection />
     </main>
   );
 }
