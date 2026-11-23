@@ -162,16 +162,84 @@ export default function RenewableEnergySection() {
 
       <div className="relative z-10 max-w-[1600px] mx-auto px-4 xs:px-6 sm:px-8 md:px-12 lg:px-14 xl:px-18">
         
-        {/* TWO-COLUMN DESKTOP LAYOUT */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
+        {/* TWO-COLUMN DESKTOP LAYOUT (ALTERNATING: IMAGE LEFT, TEXT RIGHT) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-start">
           
-          {/* LEFT COLUMN: HEADINGS, DESCRIPTION & 2x2 FEATURE CARDS */}
+          {/* COLUMN 1 (LEFT ON DESKTOP): RENEWABLE ENERGY PHOTOGRAPH & COMPANION IMPACT CARD */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-6 w-full flex flex-col justify-between order-2 lg:order-1 relative"
+          >
+            {/* Tasteful Green Decorative Backdrop Accents Matching Reference */}
+            <div
+              className="hidden sm:block absolute -left-4 top-[20%] w-8 h-24 bg-[#75B82A] rounded-2xl -z-10 opacity-90"
+              aria-hidden="true"
+            />
+            <div
+              className="absolute -bottom-3.5 -right-3 sm:-right-4 w-28 sm:w-36 h-12 sm:h-16 bg-[#75B82A] rounded-3xl -z-10 opacity-90"
+              aria-hidden="true"
+            />
+
+            {/* Main Featured Photo Container */}
+            <div className="relative w-full aspect-[16/10.5] rounded-[32px] overflow-hidden shadow-[0_16px_44px_rgba(1,61,38,0.12)] border border-[#E1ECE4] bg-white group">
+              <Image
+                src="/assets/environment/renewable-cogen-hd.webp"
+                alt="Merchants Agro Valley modern industrial cogeneration facility and ground-mounted solar panels in daylight"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-103"
+              />
+              
+              {/* Subtle Natural Daylight Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+            </div>
+
+            {/* COMPANION CLEAN POWER HIGHLIGHT CARD (Balances Column Height) */}
+            <div className="mt-4 sm:mt-4.5 bg-white rounded-2xl p-4.5 sm:p-5 border border-[#E2EBE5] shadow-[0_6px_20px_rgba(1,61,38,0.05)]">
+              <div className="flex items-center gap-3.5 sm:gap-4">
+                <div className="w-11 h-11 rounded-xl bg-[#F0F7EC] border border-[#D5E6CF] flex items-center justify-center shrink-0 text-[#75B82A]">
+                  <SolarPanelIcon className="w-6 h-6" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <h4 className="font-serif font-bold text-[16px] sm:text-[17px] text-[#013D26] leading-tight">
+                      Clean Power Generation
+                    </h4>
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#FAF6EC] border border-[#C99B36]/50 text-[#7C5A14] text-[10.5px] font-bold shrink-0">
+                      12 MW Capacity
+                    </span>
+                  </div>
+                  <p className="font-sans text-[#4A6355] text-[12.5px] sm:text-[13px] leading-relaxed">
+                    High-efficiency cogeneration combined with on-site solar arrays provides uninterrupted green power for our agro operations.
+                  </p>
+                </div>
+              </div>
+
+              {/* 2 Key Energy Tags */}
+              <div className="mt-3 pt-2.5 border-t border-[#F0F5F1] grid grid-cols-2 gap-2 text-xs">
+                <div className="flex items-center gap-2 text-[#013D26] font-medium text-[11.5px] sm:text-[12px]">
+                  <span className="w-2 h-2 rounded-full bg-[#75B82A] shrink-0" />
+                  <span className="truncate">78 TPH Steam Recovery</span>
+                </div>
+                <div className="flex items-center gap-2 text-[#013D26] font-medium text-[11.5px] sm:text-[12px]">
+                  <span className="w-2 h-2 rounded-full bg-[#C99B36] shrink-0" />
+                  <span className="truncate">Low-Carbon Grid Output</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* COLUMN 2 (RIGHT ON DESKTOP): HEADINGS, DESCRIPTION & 2x2 FEATURE CARDS */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-6 flex flex-col items-start"
+            className="lg:col-span-6 flex flex-col items-start order-1 lg:order-2"
           >
             {/* Small Eyebrow Label with Gold Indicator */}
             <div className="flex items-center gap-3 mb-4 sm:mb-5">
@@ -229,42 +297,6 @@ export default function RenewableEnergySection() {
                   </div>
                 </motion.div>
               ))}
-            </div>
-          </motion.div>
-
-          {/* RIGHT COLUMN: RENEWABLE ENERGY & COGENERATION FACILITY PHOTOGRAPH */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-6 w-full relative"
-          >
-            {/* Tasteful Green Decorative Backdrop Accents Matching Reference */}
-            {/* Left Pill Accent */}
-            <div
-              className="hidden sm:block absolute -left-4 top-[24%] w-8 h-24 bg-[#75B82A] rounded-2xl -z-10 opacity-90"
-              aria-hidden="true"
-            />
-            {/* Bottom-Right Rounded Shape Accent */}
-            <div
-              className="absolute -bottom-3.5 -right-3 sm:-right-4 w-28 sm:w-36 h-12 sm:h-16 bg-[#75B82A] rounded-3xl -z-10 opacity-90"
-              aria-hidden="true"
-            />
-
-            {/* Main Featured Photo Container */}
-            <div className="relative w-full aspect-[4/3.3] rounded-[32px] overflow-hidden shadow-[0_16px_44px_rgba(1,61,38,0.12)] border border-[#E1ECE4] bg-white group">
-              <Image
-                src="/assets/environment/renewable-cogen-hd.webp"
-                alt="Merchants Agro Valley modern industrial cogeneration facility and ground-mounted solar panels in daylight"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-103"
-              />
-              
-              {/* Subtle Natural Daylight Vignette */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
             </div>
           </motion.div>
 

@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Leaf } from "lucide-react";
 import { motion } from "framer-motion";
 
 // Clean vector icons matching the reference image exactly
@@ -274,14 +274,15 @@ export default function EnvironmentHero() {
             </div>
           </motion.div>
 
-          {/* RIGHT COLUMN: HERO PHOTOGRAPH OF SUSTAINABLE AGRO FACILITY (Span 6 on LG/XL) */}
+          {/* RIGHT COLUMN: HERO PHOTOGRAPH & COMPANION HIGHLIGHT CARD (Balanced Height) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-6 w-full"
+            className="lg:col-span-6 w-full flex flex-col justify-between"
           >
-            <div className="relative w-full aspect-[16/11.5] rounded-3xl sm:rounded-[32px] overflow-hidden shadow-[0_16px_44px_rgba(1,61,38,0.12)] border border-[#E1ECE4] bg-white group">
+            {/* Main Featured Photo Container */}
+            <div className="relative w-full aspect-[16/10.5] rounded-3xl sm:rounded-[32px] overflow-hidden shadow-[0_16px_44px_rgba(1,61,38,0.12)] border border-[#E1ECE4] bg-white group">
               <Image
                 src="/assets/environment/sustainable-facility-hd.webp"
                 alt="Merchants Agro Valley sustainable agro-industrial facility in golden-hour sunlight with solar panels, grain silos, and lush crop field"
@@ -293,6 +294,40 @@ export default function EnvironmentHero() {
               
               {/* Subtle Natural Daylight Vignette */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
+            </div>
+
+            {/* COMPANION HIGHLIGHT CARD (Aligns height with left column) */}
+            <div className="mt-4 sm:mt-4.5 bg-white rounded-2xl p-4.5 sm:p-5 border border-[#E2EBE5] shadow-[0_6px_20px_rgba(1,61,38,0.05)]">
+              <div className="flex items-center gap-3.5 sm:gap-4">
+                <div className="w-11 h-11 rounded-xl bg-[#F0F7EC] border border-[#D5E6CF] flex items-center justify-center shrink-0 text-[#75B82A]">
+                  <Leaf className="w-5 h-5 text-[#75B82A]" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <h4 className="font-serif font-bold text-[16px] sm:text-[17px] text-[#013D26] leading-tight">
+                      Responsible Ecosystem Hub
+                    </h4>
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#EAF2EC] text-[#013D26] text-[10.5px] font-bold uppercase tracking-wider shrink-0">
+                      Zero Harm
+                    </span>
+                  </div>
+                  <p className="font-sans text-[#4A6355] text-[12.5px] sm:text-[13px] leading-relaxed">
+                    Balancing commercial agro-processing with environmental preservation, biological safety, and green resource utilization.
+                  </p>
+                </div>
+              </div>
+
+              {/* 2 Key Ecological Tags */}
+              <div className="mt-3 pt-2.5 border-t border-[#F0F5F1] grid grid-cols-2 gap-2 text-xs">
+                <div className="flex items-center gap-2 text-[#013D26] font-medium text-[11.5px] sm:text-[12px]">
+                  <span className="w-2 h-2 rounded-full bg-[#75B82A] shrink-0" />
+                  <span className="truncate">100% Traceable Farming</span>
+                </div>
+                <div className="flex items-center gap-2 text-[#013D26] font-medium text-[11.5px] sm:text-[12px]">
+                  <span className="w-2 h-2 rounded-full bg-[#C99B36] shrink-0" />
+                  <span className="truncate">Clean Energy Integrated</span>
+                </div>
+              </div>
             </div>
           </motion.div>
 

@@ -285,16 +285,16 @@ export default function CircularEconomySection() {
             </div>
           </motion.div>
 
-          {/* RIGHT COLUMN: CIRCULAR FACILITY IMAGE + FLOATING CLOSED-LOOP CARD (Span 6) */}
+          {/* RIGHT COLUMN: CIRCULAR FACILITY IMAGE + CLOSED-LOOP CARD (Balanced Height) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-6 w-full flex flex-col"
+            className="lg:col-span-6 w-full flex flex-col justify-between"
           >
             {/* Main Featured Photo Container */}
-            <div className="relative w-full aspect-[4/3.3] rounded-[32px] overflow-hidden shadow-[0_16px_44px_rgba(1,61,38,0.12)] border border-[#E1ECE4] bg-white group">
+            <div className="relative w-full aspect-[16/10.5] rounded-[32px] overflow-hidden shadow-[0_16px_44px_rgba(1,61,38,0.12)] border border-[#E1ECE4] bg-white group">
               <Image
                 src="/assets/environment/circular-economy-facility.webp"
                 alt="Merchants Agro Valley circular economy facility with biogas storage dome, compost recovery, and recyclable materials sorting"
@@ -306,24 +306,38 @@ export default function CircularEconomySection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
             </div>
 
-            {/* FLOATING / HIGHLIGHT INFO CARD (Below Image on Right) */}
+            {/* FLOATING / HIGHLIGHT INFO CARD (Below Image on Right, Balances Height) */}
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-4 sm:mt-5 bg-white rounded-2xl p-4.5 sm:p-5 border border-[#E2EBE5] shadow-[0_8px_24px_rgba(1,61,38,0.06)] flex items-center gap-4.5"
+              className="mt-4 sm:mt-4.5 bg-white rounded-2xl p-4.5 sm:p-5 border border-[#E2EBE5] shadow-[0_8px_24px_rgba(1,61,38,0.06)] flex flex-col justify-between"
             >
-              <div className="shrink-0 p-1">
-                <ClosedLoopIcon className="w-11 h-11" />
+              <div className="flex items-center gap-3.5 sm:gap-4">
+                <div className="shrink-0 p-1 text-[#75B82A]">
+                  <ClosedLoopIcon className="w-10 h-10 sm:w-11 sm:h-11" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-serif font-bold text-[16px] sm:text-[17px] text-[#013D26] leading-tight mb-1">
+                    A Closed-Loop Approach
+                  </h4>
+                  <p className="font-sans text-[#4A6355] text-[12.5px] sm:text-[13px] leading-relaxed">
+                    From by-products to renewable energy, bio-fertilizer and reusable materials.
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-col min-w-0">
-                <h4 className="font-serif font-bold text-[17px] sm:text-[18px] text-[#013D26] leading-tight mb-1">
-                  A Closed-Loop Approach
-                </h4>
-                <p className="font-sans text-[#4A6355] text-[13px] sm:text-[13.5px] leading-relaxed">
-                  From by-products to renewable energy, bio-fertilizer and reusable materials.
-                </p>
+
+              {/* 2 Key Circular Tags to balance height with the CTA buttons */}
+              <div className="mt-3 pt-2.5 border-t border-[#F0F5F1] grid grid-cols-2 gap-2 text-xs">
+                <div className="flex items-center gap-2 text-[#013D26] font-medium text-[11.5px] sm:text-[12px]">
+                  <span className="w-2 h-2 rounded-full bg-[#75B82A] shrink-0" />
+                  <span className="truncate">Zero Organic Landfill</span>
+                </div>
+                <div className="flex items-center gap-2 text-[#013D26] font-medium text-[11.5px] sm:text-[12px]">
+                  <span className="w-2 h-2 rounded-full bg-[#C99B36] shrink-0" />
+                  <span className="truncate">Bio-Nutrient Recycle</span>
+                </div>
               </div>
             </motion.div>
           </motion.div>
