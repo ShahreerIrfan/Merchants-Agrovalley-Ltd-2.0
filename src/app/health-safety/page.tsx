@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import HealthSafetyWellbeingSection from "@/components/health-safety/HealthSafetyWellbeingSection";
+import WorkplaceSafetySection from "@/components/health-safety/WorkplaceSafetySection";
 
 export const metadata: Metadata = {
   title: "Health, Safety & Wellbeing | Merchants Agro Valley",
@@ -17,6 +18,9 @@ export default function HealthSafetyPage() {
 
       {/* Section 01: Health, Safety & Wellbeing */}
       <HealthSafetyWellbeingSection />
+
+      {/* Section 02: Workplace Safety & Risk Prevention */}
+      <WorkplaceSafetySection />
     </main>
   );
 }
