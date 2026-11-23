@@ -238,7 +238,7 @@ export default function CommitmentToHumanRightsSection() {
             {/* Main Featured Photo Container */}
             <div className="relative w-full aspect-[4/3] rounded-[32px] overflow-hidden shadow-[0_16px_44px_rgba(1,61,38,0.12)] border border-[#E1ECE4] bg-white group">
               <Image
-                src="/assets/human-rights/diverse-workforce-ref.webp"
+                src="/assets/human-rights/diverse-workforce-new.webp"
                 alt="Merchants Agro Valley diverse, proud team of Bangladeshi workers and professionals in modern hygienic food processing facility"
                 fill
                 priority
