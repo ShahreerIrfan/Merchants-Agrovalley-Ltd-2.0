@@ -33,11 +33,11 @@ const PILLARS = [
 export default function OurStorySection() {
   return (
     <section
-      id="our-story-and-purpose"
-      aria-label="Our Story & Purpose"
+      id="about-us"
+      aria-label="About Us — Building a Sustainable, Integrated and Technology-Driven Agro-Industrial Future"
       className="relative w-full bg-[#F3F7EE] text-[#193B28] overflow-hidden py-16 sm:py-20 lg:py-24 border-t-2 border-[#C9A13B]/40 selection:bg-[#C9A13B]/20 selection:text-[#013D26] shadow-[0_-4px_20px_rgba(201,161,59,0.06)]"
     >
-      {/* 1. TOP GOLD ACCENT LINE TO DISTINGUISH FROM SECTION 1 */}
+      {/* 1. TOP GOLD ACCENT LINE */}
       <div
         className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C9A13B] to-transparent z-20"
         aria-hidden="true"
@@ -53,7 +53,7 @@ export default function OurStorySection() {
         aria-hidden="true"
       />
 
-      {/* Subtle Topographical Field Contour Lines (Distinct from Section 1 wheat) */}
+      {/* Subtle Topographical Field Contour Lines */}
       <div
         className="absolute bottom-0 right-0 w-[350px] sm:w-[500px] lg:w-[650px] pointer-events-none select-none z-0 opacity-20"
         aria-hidden="true"
@@ -68,10 +68,10 @@ export default function OurStorySection() {
       {/* 3. MAIN CONTAINER */}
       <div className="relative z-10 max-w-[1600px] mx-auto px-4 xs:px-6 sm:px-8 md:px-12 lg:px-14 xl:px-18">
         
-        {/* ALTERNATING TWO-COLUMN COMPOSITION: IMAGES ON LEFT, STORY CONTENT ON RIGHT */}
+        {/* TWO-COLUMN COMPOSITION: IMAGES ON LEFT, ABOUT US CONTENT ON RIGHT */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-10 xl:gap-16 items-center">
           
-          {/* LEFT: UNIQUE HUMAN-CENTRIC PHOTOGRAPHY SHOWCASE (Span 6 on LG) */}
+          {/* LEFT: HUMAN-CENTRIC PHOTOGRAPHY SHOWCASE (Span 6 on LG) */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -79,7 +79,7 @@ export default function OurStorySection() {
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-6 flex flex-col gap-3.5 sm:gap-4 order-2 lg:order-1"
           >
-            {/* Primary Featured Card: Bangladeshi Farmer in Lush Field (HD) */}
+            {/* Primary Featured Card: Bangladeshi Farmer in Lush Field */}
             <div className="relative w-full aspect-[16/8.5] rounded-2xl overflow-hidden shadow-[0_12px_32px_rgba(1,61,38,0.12)] border border-[#D5E1CE] bg-white group">
               <Image
                 src="/assets/who-we-are/story/farmer-hd.webp"
@@ -103,9 +103,9 @@ export default function OurStorySection() {
               </div>
             </div>
 
-            {/* Bottom Row: Companion Facility Photos (HD) */}
+            {/* Bottom Row: Companion Facility Photos */}
             <div className="grid grid-cols-2 gap-3.5">
-              {/* Bottling Plant Photo (HD) */}
+              {/* Bottling Plant Photo */}
               <div className="relative aspect-[16/9.5] rounded-xl overflow-hidden shadow-[0_4px_16px_rgba(1,61,38,0.06)] border border-[#D5E1CE] bg-white group">
                 <Image
                   src="/assets/who-we-are/story/bottling-hd.webp"
@@ -119,7 +119,7 @@ export default function OurStorySection() {
                 </div>
               </div>
 
-              {/* Newly Generated Agro Complex Photo (HD) */}
+              {/* Agro Complex Photo */}
               <div className="relative aspect-[16/9.5] rounded-xl overflow-hidden shadow-[0_4px_16px_rgba(1,61,38,0.06)] border border-[#D5E1CE] bg-white group">
                 <Image
                   src="/assets/who-we-are/story/complex-hd.webp"
@@ -135,15 +135,15 @@ export default function OurStorySection() {
             </div>
           </motion.div>
 
-          {/* RIGHT: STORY & PURPOSE CONTENT (Span 6 on LG) */}
+          {/* RIGHT: ABOUT US CONTENT (Span 6 on LG) */}
           <div className="lg:col-span-6 flex flex-col justify-center order-1 lg:order-2">
-            {/* Eyebrow Label */}
+            {/* Eyebrow Label: About Us */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="inline-flex items-center gap-2.5 mb-4 sm:mb-5"
+              className="inline-flex items-center gap-2.5 mb-3 sm:mb-4"
             >
               <div
                 className="w-7 h-7 rounded-full bg-[#E4EFE0] border border-[#6E9C23]/35 flex items-center justify-center text-[#013D26] shadow-2xs"
@@ -164,7 +164,7 @@ export default function OurStorySection() {
                 </svg>
               </div>
               <span className="text-[13px] sm:text-[14px] font-bold text-[#013D26] uppercase tracking-[0.16em] font-sans">
-                OUR STORY & PURPOSE
+                About Us
               </span>
             </motion.div>
 
@@ -174,37 +174,42 @@ export default function OurStorySection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="font-serif text-3xl xs:text-4xl sm:text-[44px] md:text-[48px] lg:text-[44px] xl:text-[50px] font-bold leading-[1.16] tracking-tight text-[#013D26]"
+              className="font-serif text-2xl xs:text-3xl sm:text-[38px] md:text-[42px] lg:text-[38px] xl:text-[44px] font-bold leading-[1.2] tracking-tight text-[#013D26] mb-4 sm:mb-5"
             >
-              Building a Sustainable
-              <br />
-              Agro-Industrial Future
+              Building a Sustainable, Integrated and Technology-Driven Agro-Industrial Future
             </motion.h2>
 
-            {/* Description - Paragraph 1 */}
+            {/* Exact Content - Paragraph 1 */}
             <motion.p
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.65, delay: 0.2, ease: "easeOut" }}
-              className="font-sans text-[15px] sm:text-[16px] xl:text-[16.5px] text-[#3F5448] leading-relaxed max-w-xl mt-4 sm:mt-5 font-normal"
+              transition={{ duration: 0.65, delay: 0.18, ease: "easeOut" }}
+              className="font-sans text-[14.5px] sm:text-[15.5px] xl:text-[16px] text-[#3F5448] leading-relaxed max-w-xl font-normal"
             >
-              Merchants Agro Valley is committed to building a connected agro-industrial
-              ecosystem that brings together agricultural production, livestock, food
-              processing, renewable energy and international trade.
+              Merchants AgroValley Ltd. is an emerging diversified agro-industrial enterprise in Bangladesh, established with a vision to develop a fully integrated, sustainable and technology-driven agricultural ecosystem. Our business focuses on modern livestock farming, poultry production, animal feed manufacturing, dairy operations, meat processing, aquaculture, renewable energy and agricultural by-product management.
             </motion.p>
 
-            {/* Description - Paragraph 2 */}
+            {/* Exact Content - Paragraph 2 */}
             <motion.p
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.65, delay: 0.25, ease: "easeOut" }}
-              className="font-sans text-[15px] sm:text-[16px] xl:text-[16.5px] text-[#3F5448] leading-relaxed max-w-xl mt-3 sm:mt-3.5 font-normal"
+              transition={{ duration: 0.65, delay: 0.24, ease: "easeOut" }}
+              className="font-sans text-[14.5px] sm:text-[15.5px] xl:text-[16px] text-[#3F5448] leading-relaxed max-w-xl mt-3 sm:mt-3.5 font-normal"
             >
-              Through responsible operations, quality-focused practices and strategic
-              development, we aim to create sustainable value for communities, partners and
-              global markets.
+              Our objective is to contribute to Bangladesh&apos;s and international growing demand for safe, nutritious and high-quality food while creating opportunities for domestic distribution, import substitution and international export markets.
+            </motion.p>
+
+            {/* Exact Content - Paragraph 3 */}
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, delay: 0.3, ease: "easeOut" }}
+              className="font-sans text-[14.5px] sm:text-[15.5px] xl:text-[16px] text-[#3F5448] leading-relaxed max-w-xl mt-3 sm:mt-3.5 font-normal"
+            >
+              Through a strategically structured, four-phase development programme, Merchants AgroValley Ltd. aims to establish an interconnected agro-industrial value chain, combining advanced farming techniques, automated production facilities, hygienic food processing, efficient resource utilisation and sustainable energy solutions.
             </motion.p>
 
             {/* CTA Button: "Discover Our Business →" */}
@@ -212,8 +217,8 @@ export default function OurStorySection() {
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.65, delay: 0.35, ease: "easeOut" }}
-              className="mt-7 sm:mt-8"
+              transition={{ duration: 0.65, delay: 0.38, ease: "easeOut" }}
+              className="mt-6 sm:mt-8"
             >
               <Link
                 href="/#portfolio"
