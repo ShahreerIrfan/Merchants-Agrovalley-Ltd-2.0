@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import {
   X,
   Mail,
+  User,
   Home,
   Users,
   Briefcase,
@@ -141,12 +142,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         {/* Drawer Footer CTA */}
         <div className="p-5 sm:p-6 border-t border-[#D4A72C]/40 bg-[#FDF0BE]/80">
           <Link
-            href="#contact"
+            href="/login"
             onClick={onClose}
             className="w-full flex items-center justify-center gap-2 py-2.5 sm:py-3 px-5 rounded-full bg-[#003F29] hover:bg-[#064E32] text-white font-semibold text-[13.5px] sm:text-[14px] border-2 border-[#D4A72C] shadow-[0_3px_12px_rgba(0,63,41,0.25)] transition-all duration-200"
           >
-            <Mail className="w-4 h-4 text-[#F3C34D]" />
-            <span>Get in Touch</span>
+            <User className="w-4 h-4 text-[#F3C34D]" />
+            <span>Sign In / Register</span>
           </Link>
           <p className="text-center text-[11px] sm:text-xs text-[#064E32]/80 mt-2.5 font-bold">
             Merchants Agro Valley Ltd

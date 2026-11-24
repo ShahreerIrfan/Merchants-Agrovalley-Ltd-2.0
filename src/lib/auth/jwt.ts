@@ -1,23 +1,31 @@
 import { SignJWT, jwtVerify, type JWTPayload } from "jose";
 import { getAuthEnv } from "./env";
 
-export interface AdminTokenPayload extends JWTPayload {
+export interface UserTokenPayload extends JWTPayload {
   sub: string;
-  role: "admin";
+  role: "admin" | "user";
+  name?: string;
 }
 
 /**
- * Sign a new HS256 JWT valid for exactly 15 minutes.
- * Minimal claims: sub, role, iss, aud, exp, nbf, iat, jti.
+ * Sign a new HS256 JWT valid for 15 minutes.
+ * Minimal claims: sub, role, name, iss, aud, exp, nbf, iat, jti.
  */
-export async function signAdminToken(email: string): Promise<string> {
+export async function signUserToken(params: {
+  email: string;
+  role: "admin" | "user";
+  name?: string;
+}): Promise<string> {
   const env = getAuthEnv();
   const secretKey = new TextEncoder().encode(env.JWT_SECRET);
   const jti = crypto.randomUUID();
 
-  return await new SignJWT({ role: "admin" })
+  return await new SignJWT({
+    role: params.role,
+    name: params.name || (params.role === "admin" ? "Admin User" : "Member"),
+  })
     .setProtectedHeader({ alg: "HS256", typ: "JWT" })
-    .setSubject(email.toLowerCase().trim())
+    .setSubject(params.email.toLowerCase().trim())
     .setIssuer(env.JWT_ISSUER)
     .setAudience(env.JWT_AUDIENCE)
     .setIssuedAt()
@@ -27,13 +35,18 @@ export async function signAdminToken(email: string): Promise<string> {
     .sign(secretKey);
 }
 
+// Backward-compatible alias
+export async function signAdminToken(email: string): Promise<string> {
+  return signUserToken({ email, role: "admin", name: "Admin User" });
+}
+
 /**
  * Strict verification of incoming JWT.
- * - Enforces fixed algorithm: 'HS256' only (rejects 'none' and mismatched algorithms)
+ * - Enforces fixed algorithm: 'HS256' only
  * - Validates issuer and audience
  * - Validates exp, nbf, iat
  */
-export async function verifyAdminToken(token: string): Promise<AdminTokenPayload | null> {
+export async function verifyUserToken(token: string): Promise<UserTokenPayload | null> {
   if (!token || typeof token !== "string") {
     return null;
   }
@@ -43,19 +56,27 @@ export async function verifyAdminToken(token: string): Promise<AdminTokenPayload
     const secretKey = new TextEncoder().encode(env.JWT_SECRET);
 
     const { payload } = await jwtVerify(token, secretKey, {
-      algorithms: ["HS256"], // Strictly allowlist HS256 only
+      algorithms: ["HS256"],
       issuer: env.JWT_ISSUER,
       audience: env.JWT_AUDIENCE,
-      clockTolerance: 5, // 5 seconds grace for slight clock drift
+      clockTolerance: 5,
     });
 
-    if (payload.role !== "admin" || !payload.sub) {
+    if (!payload.sub || (payload.role !== "admin" && payload.role !== "user")) {
       return null;
     }
 
-    return payload as AdminTokenPayload;
-  } catch (err) {
-    // Signature mismatch, expired, tampered, or unsupported algorithm fails closed
+    return payload as UserTokenPayload;
+  } catch {
     return null;
   }
+}
+
+// Backward-compatible alias
+export async function verifyAdminToken(token: string) {
+  const payload = await verifyUserToken(token);
+  if (payload && payload.role === "admin") {
+    return payload;
+  }
+  return null;
 }

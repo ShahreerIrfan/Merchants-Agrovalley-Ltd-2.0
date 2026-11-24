@@ -15,6 +15,7 @@ import {
   Heart,
   Mail,
   Menu,
+  User,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { NAV_ITEMS } from "@/data/navigation";
@@ -252,15 +253,15 @@ export default function Navbar() {
             aria-hidden="true"
           />
 
-          {/* Premium Eye-Catching CTA Button */}
+          {/* Sign In / Register CTA Button */}
           <MagneticButton>
             <Link
-              href="#contact"
+              href="/login"
               className="inline-flex items-center gap-1.5 sm:gap-2 bg-[#003F29] hover:bg-[#064E32] text-white font-semibold text-[12px] xs:text-[12.5px] sm:text-[13.5px] xl:text-[14px] px-3.5 sm:px-4.5 xl:px-5 py-1.5 sm:py-2.5 rounded-full border-2 border-[#D4A72C] shadow-[0_3px_12px_rgba(0,63,41,0.28)] hover:shadow-[0_6px_20px_rgba(212,167,44,0.45)] hover:scale-[1.02] transition-all duration-300 group focus:outline-hidden focus:ring-2 focus:ring-[#D4A72C]"
             >
-              <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#F3C34D] transition-transform duration-300 group-hover:scale-110 shrink-0" />
-              <span className="hidden xs:inline">Get in Touch</span>
-              <span className="xs:hidden">Contact</span>
+              <User className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#F3C34D] transition-transform duration-300 group-hover:scale-110 shrink-0" />
+              <span className="hidden xs:inline">Sign In / Register</span>
+              <span className="xs:hidden">Sign In</span>
             </Link>
           </MagneticButton>
 

@@ -341,8 +341,8 @@ async function runTests() {
   try {
     const apiDir = path.resolve("src/app/api");
     const subDirs = fs.existsSync(apiDir) ? fs.readdirSync(apiDir) : [];
-    // Only admin/auth exists in src/app/api
-    const otherApis = subDirs.filter((d) => d !== "admin");
+    // Only admin/auth and auth routes exist in src/app/api
+    const otherApis = subDirs.filter((d) => d !== "admin" && d !== "auth");
     let adminApis = [];
     if (fs.existsSync(path.join(apiDir, "admin"))) {
       adminApis = fs.readdirSync(path.join(apiDir, "admin")).filter((d) => d !== "auth");

@@ -1,19 +1,20 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getCookieName } from "./cookies";
-import { verifyAdminToken, type AdminTokenPayload } from "./jwt";
+import { verifyUserToken, type UserTokenPayload } from "./jwt";
 
-export interface AdminSession {
+export interface UserSession {
   email: string;
-  role: "admin";
+  role: "admin" | "user";
+  name: string;
 }
 
 /**
- * Retrieve current admin session from incoming cookie.
+ * Retrieve current user session from incoming cookie.
  * Supports both Next.js server components (via cookies())
  * and Request objects (via Cookie header).
  */
-export async function getAdminSession(req?: Request): Promise<AdminSession | null> {
+export async function getSession(req?: Request): Promise<UserSession | null> {
   const cookieName = getCookieName();
   let token: string | undefined;
 
@@ -41,25 +42,50 @@ export async function getAdminSession(req?: Request): Promise<AdminSession | nul
     return null;
   }
 
-  const payload: AdminTokenPayload | null = await verifyAdminToken(token);
+  const payload: UserTokenPayload | null = await verifyUserToken(token);
   if (!payload || !payload.sub) {
     return null;
   }
 
   return {
     email: payload.sub,
-    role: "admin",
+    role: payload.role,
+    name: payload.name || (payload.role === "admin" ? "Admin User" : "Member"),
   };
 }
 
+// Backward-compatible alias for admin checks
+export async function getAdminSession(req?: Request) {
+  const session = await getSession(req);
+  if (session && session.role === "admin") {
+    return session;
+  }
+  return null;
+}
+
 /**
- * Server Component guard.
- * Redirects unauthenticated visitors to /admin/login.
+ * Server Component guard for Admin Dashboard.
+ * Redirects unauthenticated or non-admin visitors to /login.
  */
-export async function requireAdmin(): Promise<AdminSession> {
-  const session = await getAdminSession();
+export async function requireAdmin(): Promise<UserSession> {
+  const session = await getSession();
   if (!session) {
-    redirect("/admin/login");
+    redirect("/login");
+  }
+  if (session.role !== "admin") {
+    redirect("/dashboard");
+  }
+  return session;
+}
+
+/**
+ * Server Component guard for Normal User Dashboard.
+ * Redirects unauthenticated visitors to /login.
+ */
+export async function requireUser(): Promise<UserSession> {
+  const session = await getSession();
+  if (!session) {
+    redirect("/login");
   }
   return session;
 }
