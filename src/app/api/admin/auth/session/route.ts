@@ -33,21 +33,8 @@ export async function GET(req: Request) {
   );
 }
 
-// Reject unsupported HTTP methods
-export async function POST() {
-  return methodNotAllowed();
-}
-export async function PUT() {
-  return methodNotAllowed();
-}
-export async function DELETE() {
-  return methodNotAllowed();
-}
-export async function PATCH() {
-  return methodNotAllowed();
-}
-
-function methodNotAllowed() {
+function methodNotAllowed(req?: Request) {
+  const _ = req?.headers?.get("host");
   return NextResponse.json(
     { error: "Method Not Allowed" },
     {
@@ -58,4 +45,17 @@ function methodNotAllowed() {
       },
     }
   );
+}
+
+export async function POST(req?: Request) {
+  return methodNotAllowed(req);
+}
+export async function PUT(req?: Request) {
+  return methodNotAllowed(req);
+}
+export async function DELETE(req?: Request) {
+  return methodNotAllowed(req);
+}
+export async function PATCH(req?: Request) {
+  return methodNotAllowed(req);
 }

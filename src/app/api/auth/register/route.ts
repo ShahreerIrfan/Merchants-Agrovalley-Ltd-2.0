@@ -134,6 +134,7 @@ export async function POST(req: Request) {
   }
 }
 
-export async function GET() {
+export async function GET(req?: Request) {
+  const _ = req?.headers?.get("host");
   return NextResponse.json({ error: "Method Not Allowed" }, { status: 405, headers: { Allow: "POST" } });
 }
