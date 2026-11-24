@@ -35,7 +35,7 @@ export const LEADERSHIP_TEAM: Leader[] = [
   },
   {
     id: "michael-sander",
-    name: "Mr. Michael Sander",
+    name: "Lee Sanders",
     designation: "BUSINESS ADVISOR | UK & EUROPE",
     badgeType: "secondary",
     image: "/assets/management-leaders/03_Mr_Michael_Sander_Business_Advisor_UK_Europe.webp",
