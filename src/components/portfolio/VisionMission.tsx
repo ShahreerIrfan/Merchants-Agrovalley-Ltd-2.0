@@ -40,7 +40,7 @@ export default function VisionMission() {
             </div>
           </div>
 
-          {/* Vision Statement */}
+          {/* Exact Vision Statement */}
           <p className="text-white/95 text-[15px] sm:text-[16px] leading-[1.72] font-normal text-pretty">
             {visionMission.vision.statement}
           </p>
@@ -53,7 +53,7 @@ export default function VisionMission() {
         />
       </motion.div>
 
-      {/* PANEL 2: Our Mission — SOFT GREEN CARD WITH 2-COLUMN CHECKLIST */}
+      {/* PANEL 2: Our Mission — SOFT GREEN CARD WITH COMPREHENSIVE MISSION & BULLETS */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +65,7 @@ export default function VisionMission() {
       >
         <div>
           {/* Header row: Icon tile & Heading */}
-          <div className="flex items-center gap-3.5 mb-5 sm:mb-6">
+          <div className="flex items-center gap-3.5 mb-4 sm:mb-5">
             <div className="w-[50px] h-[50px] rounded-xl bg-[#E4F3D6] border border-[#68A617]/35 flex items-center justify-center p-2.5 shrink-0">
               <Image
                 src={visionMission.mission.iconPath}
@@ -82,8 +82,13 @@ export default function VisionMission() {
             </div>
           </div>
 
-          {/* 6 Mission Bullets in 2-Column Responsive Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
+          {/* Exact Mission Statement */}
+          <p className="text-[#142C23]/90 text-[15px] sm:text-[15.5px] leading-[1.68] font-normal mb-5">
+            {visionMission.mission.statement}
+          </p>
+
+          {/* Mission Bullets in 2-Column Responsive Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
             {visionMission.mission.bullets.map((bullet, idx) => (
               <motion.div
                 key={idx}
@@ -96,7 +101,7 @@ export default function VisionMission() {
                 <span className="w-5 h-5 rounded-full bg-[#68A617] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </span>
-                <span className="text-[13.5px] sm:text-[14px] font-medium text-[#013D26] leading-snug">
+                <span className="text-[13px] sm:text-[13.5px] font-medium text-[#013D26] leading-snug">
                   {bullet}
                 </span>
               </motion.div>

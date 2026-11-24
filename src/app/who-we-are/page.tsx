@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import WhoWeAreHero from "@/components/who-we-are/WhoWeAreHero";
 import OurStorySection from "@/components/who-we-are/OurStorySection";
+import VisionMissionPhilosophySection from "@/components/who-we-are/VisionMissionPhilosophySection";
 import AgroEcosystemSection from "@/components/who-we-are/AgroEcosystemSection";
 
 export const metadata: Metadata = {
@@ -20,10 +21,13 @@ export default function WhoWeArePage() {
       {/* Section 01: Who We Are Hero / First Section */}
       <WhoWeAreHero />
 
-      {/* Section 02: Our Story & Purpose */}
+      {/* Section 02: About Us / Our Story */}
       <OurStorySection />
 
-      {/* Section 03: Our Integrated Agro Ecosystem */}
+      {/* Section 03: Our Vision, Mission & Core Business Philosophy */}
+      <VisionMissionPhilosophySection />
+
+      {/* Section 04: Our Integrated Agro Ecosystem */}
       <AgroEcosystemSection />
     </main>
   );

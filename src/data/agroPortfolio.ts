@@ -81,11 +81,13 @@ export const AGRO_PORTFOLIO_DATA = {
       title: "Our Vision",
       iconPath: "/icons/vision.svg",
       statement:
-        "To establish a recognised international agro-business from Bangladesh, connecting responsible agricultural production with quality-driven food processing and global trade.",
+        "To become one of Bangladesh's leading integrated agro-industrial enterprises, recognised for innovation, operational excellence, sustainable production, food safety and international business development.",
     },
     mission: {
       title: "Our Mission",
       iconPath: "/icons/mission.svg",
+      statement:
+        "To develop a commercially viable and environmentally responsible agro-industrial ecosystem that delivers high-quality food products, generates renewable energy, maximises agricultural resource utilisation and creates long-term value for consumers, business partners, investors and the wider community.",
       bullets: [
         "Commercially viable livestock, poultry and fish farms",
         "Hygiene and food-safety controls",
