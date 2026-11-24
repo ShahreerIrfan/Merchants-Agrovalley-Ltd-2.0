@@ -46,10 +46,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full bg-gradient-to-r from-[#FFFDF2] via-[#F8FCF0] to-[#EEF7E6] border-b border-[#D9A526]/30 transition-all duration-300 ${
+      className={`sticky top-0 z-50 w-full bg-gradient-to-r from-[#FAF7EE] via-[#FDFBF4] to-[#F2F6E9] border-b border-[#E0D8BE] transition-all duration-300 ${
         scrolled
           ? "shadow-[0_4px_24px_rgba(6,78,50,0.08)] backdrop-blur-md"
-          : "shadow-[0_2px_16px_rgba(6,78,50,0.04)]"
+          : "shadow-[0_2px_14px_rgba(6,78,50,0.04)]"
       }`}
     >
       {/* ========================================================= */}
@@ -87,24 +87,9 @@ export default function Navbar() {
       </div>
 
       {/* ========================================================= */}
-      {/* FULL-WIDTH BOTTOM ORGANIC SHAPE (CONTINUOUS 100% WIDTH)   */}
-      {/* ========================================================= */}
-      <div
-        className="absolute bottom-0 left-0 right-0 w-full h-[14px] sm:h-[18px] lg:h-[22px] pointer-events-none select-none z-0 overflow-hidden leading-none"
-        aria-hidden="true"
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/navbar/navbar-bottom-full-wave.svg"
-          alt=""
-          className="w-full h-full object-fill pointer-events-none block"
-        />
-      </div>
-
-      {/* ========================================================= */}
       {/* MAIN NAVBAR CONTAINER (BALANCED DESKTOP & MOBILE HEIGHTS)  */}
       {/* ========================================================= */}
-      <div className="relative z-10 w-full max-w-[1780px] mx-auto px-3.5 sm:px-6 lg:px-8 xl:px-10 h-[62px] sm:h-[72px] lg:h-[88px] xl:h-[92px] flex items-center justify-between">
+      <div className="relative z-10 w-full max-w-[1780px] mx-auto px-3.5 sm:px-6 lg:px-8 xl:px-10 h-[64px] sm:h-[72px] lg:h-[86px] xl:h-[90px] flex items-center justify-between">
         
         {/* LEFT — LOGO AREA (Proportional, clean, uncluttered background) */}
         <div className="flex items-center shrink-0">
@@ -119,7 +104,7 @@ export default function Navbar() {
               width={168}
               height={94}
               priority
-              className="h-[36px] xs:h-[40px] sm:h-[48px] lg:h-[58px] xl:h-[62px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+              className="h-[38px] xs:h-[42px] sm:h-[48px] lg:h-[58px] xl:h-[62px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </Link>
 
@@ -167,7 +152,7 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* RIGHT — CTA BUTTON & MOBILE HAMBURGER (PERFECTLY BALANCED ON MOBILE & DESKTOP) */}
+        {/* RIGHT — CTA BUTTON & MOBILE HAMBURGER */}
         <div className="flex items-center shrink-0 space-x-2 sm:space-x-3.5">
           {/* Subtle Vertical Gold Separator before CTA */}
           <div
