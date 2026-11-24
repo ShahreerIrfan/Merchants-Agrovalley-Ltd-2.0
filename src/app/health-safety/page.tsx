@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import HealthSafetyWellbeingSection from "@/components/health-safety/HealthSafetyWellbeingSection";
 import WorkplaceSafetySection from "@/components/health-safety/WorkplaceSafetySection";
+import OccupationalHealthWellbeingSection from "@/components/health-safety/OccupationalHealthWellbeingSection";
 
 export const metadata: Metadata = {
   title: "Health, Safety & Wellbeing | Merchants Agro Valley",
@@ -21,6 +22,9 @@ export default function HealthSafetyPage() {
 
       {/* Section 02: Workplace Safety & Risk Prevention */}
       <WorkplaceSafetySection />
+
+      {/* Section 03: Occupational Health & Employee Wellbeing */}
+      <OccupationalHealthWellbeingSection />
     </main>
   );
 }
