@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 190" fill="none">
+  <defs>
+    <linearGradient id="greenWave" x1="0" y1="90" x2="1600" y2="130" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8CC63E"/>
+      <stop offset="0.52" stop-color="#4F9D16"/>
+      <stop offset="1" stop-color="#006B35"/>
+    </linearGradient>
+    <linearGradient id="goldWave" x1="500" y1="140" x2="1600" y2="70" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E7B52A"/>
+      <stop offset="0.55" stop-color="#F4C53D"/>
+      <stop offset="1" stop-color="#D99A00"/>
+    </linearGradient>
+  </defs>
+  <path d="M0 116 C250 156 420 145 650 90 C900 30 1110 40 1300 78 C1435 105 1525 92 1600 24 L1600 190 L0 190 Z" fill="url(#greenWave)"/>
+  <path d="M0 145 C260 178 470 159 690 111 C930 58 1110 68 1300 103 C1440 129 1530 112 1600 55 L1600 95 C1510 151 1410 164 1285 139 C1090 101 930 94 710 143 C470 197 250 198 0 178 Z" fill="#006B35"/>
+  <path d="M560 190 C780 112 965 84 1160 99 C1325 111 1450 139 1600 67 L1600 105 C1450 177 1325 145 1155 127 C965 111 790 146 650 190 Z" fill="url(#goldWave)"/>
+</svg>

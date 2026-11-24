@@ -72,23 +72,24 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         aria-hidden="true"
       />
 
-      {/* Slide-out Drawer */}
-      <div className="relative ml-auto w-full max-w-sm bg-white h-full shadow-2xl flex flex-col z-10 animate-in slide-in-from-right duration-300">
+      {/* Slide-out Drawer with Warm Cream & Mint Gradient */}
+      <div className="relative ml-auto w-full max-w-sm bg-gradient-to-b from-[#FAF6E8] via-[#FDF9EE] to-[#EEF5E2] border-l border-[#DFD6BD] h-full shadow-2xl flex flex-col z-10 animate-in slide-in-from-right duration-300">
+        
         {/* Drawer Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[#DFD6BD]/60 bg-[#FAF6E8]/70">
           <Link href="/" onClick={onClose} className="block">
             <Image
               src="/logo/merchants-agro-valley-emblem.png"
               alt="Merchants Agro Valley Emblem Logo"
               width={144}
               height={80}
-              className="h-[54px] w-auto object-contain"
+              className="h-[50px] w-auto object-contain"
               priority
             />
           </Link>
           <button
             onClick={onClose}
-            className="p-2 -mr-2 text-gray-500 hover:text-[#063F2B] hover:bg-gray-100 rounded-full transition-colors focus:outline-hidden focus:ring-2 focus:ring-[#08713D]"
+            className="p-2 -mr-2 text-[#00452C] hover:bg-[#00452C]/10 rounded-full transition-colors focus:outline-hidden focus:ring-2 focus:ring-[#00452C]"
             aria-label="Close menu"
           >
             <X className="w-6 h-6" />
@@ -113,24 +114,24 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 key={item.name}
                 href={item.href}
                 onClick={onClose}
-                className={`flex items-center gap-3 py-3 px-3.5 rounded-xl text-[15px] font-medium transition-all ${
+                className={`flex items-center gap-3 py-3 px-3.5 rounded-xl text-[14.5px] font-semibold transition-all ${
                   isActive
-                    ? "text-[#063F2B] font-semibold bg-emerald-50/80"
-                    : "text-[#142C23] hover:text-[#08713D] hover:bg-gray-50"
+                    ? "bg-[#00452C] text-white shadow-md"
+                    : "text-[#00452C] hover:bg-[#00452C]/8"
                 }`}
               >
                 <div
                   className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
                     isActive
-                      ? "bg-[#08713D] text-white"
-                      : "bg-gray-100 text-gray-600 group-hover:bg-emerald-100"
+                      ? "bg-white/20 text-white"
+                      : "bg-[#00452C]/8 text-[#00452C]"
                   }`}
                 >
                   <IconComponent className="w-4 h-4" />
                 </div>
                 <span className="flex-1">{item.name}</span>
                 {isActive && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#08713D]" />
+                  <span className="w-2 h-2 rounded-full bg-[#E59300]" />
                 )}
               </Link>
             );
@@ -138,17 +139,17 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </div>
 
         {/* Drawer Footer CTA */}
-        <div className="p-6 border-t border-gray-100 bg-gray-50">
+        <div className="p-6 border-t border-[#DFD6BD]/60 bg-[#FAF6E8]/70">
           <Link
             href="#contact"
             onClick={onClose}
-            className="w-full flex items-center justify-center gap-2.5 py-3 px-6 rounded-full bg-[#063F2B] hover:bg-[#08713D] text-white font-medium text-[14.5px] transition-all duration-200 shadow-md"
+            className="w-full flex items-center justify-center gap-2.5 py-3 px-6 rounded-full bg-gradient-to-r from-[#E59300] via-[#EFA318] to-[#F3B329] hover:from-[#D98700] hover:to-[#EAA418] text-white font-semibold text-[14.5px] shadow-[0_4px_16px_rgba(229,147,0,0.3)] transition-all duration-200"
           >
             <Mail className="w-4 h-4" />
             <span>Get in Touch</span>
           </Link>
-          <p className="text-center text-xs text-gray-400 mt-2.5">
-            Integrated Agro-Industrial Enterprise
+          <p className="text-center text-xs text-[#00452C]/60 mt-3 font-medium">
+            Merchants Agro Valley Ltd
           </p>
         </div>
       </div>
