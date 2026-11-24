@@ -38,7 +38,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 15);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -46,68 +46,70 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full bg-gradient-to-r from-[#FFFDF4] via-[#F9FCF2] to-[#F0F7E9] border-b border-[#D9A526]/30 transition-all duration-300 ${
+      className={`sticky top-0 z-50 w-full bg-gradient-to-r from-[#FFFDF2] via-[#F8FCF0] to-[#EEF7E6] border-b border-[#D9A526]/30 transition-all duration-300 ${
         scrolled
           ? "shadow-[0_4px_24px_rgba(6,78,50,0.08)] backdrop-blur-md"
           : "shadow-[0_2px_16px_rgba(6,78,50,0.04)]"
       }`}
     >
       {/* ========================================================= */}
-      {/* SUBTLE ORGANIC DECORATIVE ACCENTS (STRICT: ZERO CLUTTER)  */}
+      {/* SUBTLE ORGANIC FOLIAGE (DESKTOP ONLY — ZERO OVERLAP)      */}
       {/* ========================================================= */}
 
-      {/* 1. Subtle Left Foliage — Far extreme edge, strictly outside logo zone */}
+      {/* 1. Subtle Left Leaves — Far outer edge only, strictly outside logo zone */}
       <div
-        className="absolute left-0 top-0 bottom-0 w-[60px] sm:w-[75px] lg:w-[90px] pointer-events-none select-none z-0 overflow-hidden opacity-60"
+        className="hidden md:block absolute left-0 top-0 bottom-0 w-[55px] lg:w-[75px] xl:w-[85px] pointer-events-none select-none z-0 overflow-hidden opacity-50"
         aria-hidden="true"
       >
         <Image
           src="/assets/navbar/navbar-left-leaves.png"
           alt=""
           fill
-          sizes="90px"
+          sizes="(max-width: 1200px) 75px, 85px"
           className="object-contain object-left pointer-events-none"
           priority
         />
       </div>
 
-      {/* 2. Subtle Right Foliage — Far extreme corner, strictly outside CTA button */}
+      {/* 2. Subtle Right Leaves — Far corner only, strictly outside CTA button */}
       <div
-        className="absolute right-0 top-0 w-[50px] sm:w-[65px] lg:w-[80px] h-full pointer-events-none select-none z-0 overflow-hidden opacity-60"
+        className="hidden md:block absolute right-0 top-0 w-[45px] lg:w-[65px] xl:w-[75px] h-full pointer-events-none select-none z-0 overflow-hidden opacity-50"
         aria-hidden="true"
       >
         <Image
           src="/assets/navbar/navbar-right-leaves.png"
           alt=""
           fill
-          sizes="80px"
+          sizes="(max-width: 1200px) 65px, 75px"
           className="object-contain object-right-top pointer-events-none"
           priority
         />
       </div>
 
-      {/* 3. Thin Organic Wave — Subtle green-and-gold bottom hairline accent */}
+      {/* ========================================================= */}
+      {/* FULL-WIDTH BOTTOM ORGANIC SHAPE (GENERATED WITH NANO BANANA) */}
+      {/* ========================================================= */}
       <div
-        className="absolute bottom-0 right-0 w-[35%] sm:w-[28%] lg:w-[22%] max-w-[380px] h-[12px] lg:h-[15px] pointer-events-none select-none z-0 overflow-hidden opacity-50"
+        className="absolute bottom-0 left-0 right-0 w-full h-[16px] sm:h-[20px] lg:h-[24px] pointer-events-none select-none z-0 overflow-hidden"
         aria-hidden="true"
       >
         <Image
-          src="/assets/navbar/navbar-bottom-right-wave.svg"
+          src="/assets/navbar/navbar-bottom-full-wave.png"
           alt=""
           fill
-          sizes="380px"
-          className="object-contain object-right-bottom pointer-events-none"
+          sizes="100vw"
+          className="object-cover object-bottom pointer-events-none opacity-85"
           priority
         />
       </div>
 
       {/* ========================================================= */}
-      {/* MAIN NAVBAR CONTAINER (85–95px Desktop Height)            */}
+      {/* MAIN NAVBAR CONTAINER (BALANCED DESKTOP & MOBILE HEIGHTS)  */}
       {/* ========================================================= */}
-      <div className="relative z-10 w-full max-w-[1780px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 h-[85px] sm:h-[88px] lg:h-[92px] flex items-center justify-between">
+      <div className="relative z-10 w-full max-w-[1780px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 h-[66px] sm:h-[74px] lg:h-[88px] xl:h-[92px] flex items-center justify-between">
         
-        {/* LEFT — LOGO AREA (Clean, uncluttered background) */}
-        <div className="flex items-center shrink-0 pl-1 sm:pl-2">
+        {/* LEFT — LOGO AREA (Proportional, perfectly uncluttered background) */}
+        <div className="flex items-center shrink-0">
           <Link
             href="/"
             className="relative block group focus:outline-hidden focus:ring-2 focus:ring-[#064E32] rounded-lg"
@@ -119,7 +121,7 @@ export default function Navbar() {
               width={168}
               height={94}
               priority
-              className="h-[52px] sm:h-[58px] lg:h-[62px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+              className="h-[38px] xs:h-[42px] sm:h-[50px] lg:h-[58px] xl:h-[62px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </Link>
 
@@ -168,7 +170,7 @@ export default function Navbar() {
         </nav>
 
         {/* RIGHT — CTA BUTTON & MOBILE HAMBURGER */}
-        <div className="flex items-center shrink-0 space-x-3 sm:space-x-4">
+        <div className="flex items-center shrink-0 space-x-2 sm:space-x-3.5">
           {/* Subtle Vertical Gold Separator before CTA */}
           <div
             className="hidden xl:block h-7 w-[1.5px] bg-[#D9A526]/40 mr-1 shrink-0"
@@ -179,17 +181,17 @@ export default function Navbar() {
           <MagneticButton>
             <Link
               href="#contact"
-              className="hidden sm:inline-flex items-center gap-2 bg-[#064E32] hover:bg-[#003F29] text-white font-semibold text-[14px] px-5 py-2.5 rounded-full border border-transparent hover:border-[#D9A526] shadow-[0_2px_8px_rgba(6,78,50,0.18)] hover:shadow-[0_4px_16px_rgba(217,165,38,0.3)] transition-all duration-300 group focus:outline-hidden focus:ring-2 focus:ring-[#D9A526]"
+              className="hidden md:inline-flex items-center gap-2 bg-[#064E32] hover:bg-[#003F29] text-white font-semibold text-[13.5px] xl:text-[14px] px-4.5 xl:px-5 py-2 sm:py-2.5 rounded-full border border-transparent hover:border-[#D9A526] shadow-[0_2px_8px_rgba(6,78,50,0.18)] hover:shadow-[0_4px_16px_rgba(217,165,38,0.3)] transition-all duration-300 group focus:outline-hidden focus:ring-2 focus:ring-[#D9A526]"
             >
               <Mail className="w-4 h-4 text-white transition-transform duration-300 group-hover:scale-110" />
               <span>Get in Touch</span>
             </Link>
           </MagneticButton>
 
-          {/* Mobile / Tablet Hamburger Toggle */}
+          {/* Mobile / Tablet Hamburger Toggle (Clean, aligned on right) */}
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="lg:hidden p-2 text-[#064E32] hover:bg-[#064E32]/10 rounded-full transition-colors focus:outline-hidden focus:ring-2 focus:ring-[#064E32] min-w-[42px] min-h-[42px] flex items-center justify-center cursor-pointer"
+            className="lg:hidden p-2 text-[#064E32] hover:bg-[#064E32]/10 rounded-full transition-colors focus:outline-hidden focus:ring-2 focus:ring-[#064E32] min-w-[40px] min-h-[40px] flex items-center justify-center cursor-pointer"
             aria-label="Open mobile navigation menu"
             aria-expanded={mobileMenuOpen}
           >
