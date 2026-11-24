@@ -2,10 +2,27 @@ import { hash, verify } from "@node-rs/argon2";
 
 /**
  * Hash a plaintext password using Argon2id with OWASP recommended parameters.
- * Default in @node-rs/argon2: Argon2id, m=19456 KiB, t=2 iterations, p=1 parallelism.
  */
 export async function hashPassword(password: string): Promise<string> {
   return await hash(password);
+}
+
+/**
+ * Clean surrounding quotes, whitespace, or carriage returns.
+ * Essential for Docker/Dokploy environment variables that might contain quotes.
+ */
+function sanitizeHash(raw: string): string {
+  if (!raw) return "";
+  let clean = raw.trim();
+  // Strip double quotes if wrapped
+  if (clean.startsWith('"') && clean.endsWith('"')) {
+    clean = clean.slice(1, -1).trim();
+  }
+  // Strip single quotes if wrapped
+  if (clean.startsWith("'") && clean.endsWith("'")) {
+    clean = clean.slice(1, -1).trim();
+  }
+  return clean;
 }
 
 /**
@@ -17,9 +34,10 @@ export async function verifyPassword(password: string, hashStr: string): Promise
     return false;
   }
   try {
-    return await verify(hashStr, password);
-  } catch {
-    // Fail closed on format error or corruption
+    const clean = sanitizeHash(hashStr);
+    return await verify(clean, password);
+  } catch (err) {
+    console.error("Argon2 verification failed:", err);
     return false;
   }
 }
