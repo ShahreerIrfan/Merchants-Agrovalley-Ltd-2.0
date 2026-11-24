@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   MapPin,
   Phone,
@@ -157,6 +158,12 @@ function SproutIcon({ className }: { className?: string }) {
 }
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  // Hide public website footer on all admin console pages
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
   const quickLinks = [
     { label: "Home", href: "/" },
     { label: "Who We Are", href: "/who-we-are" },
