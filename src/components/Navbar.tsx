@@ -87,28 +87,26 @@ export default function Navbar() {
       </div>
 
       {/* ========================================================= */}
-      {/* FULL-WIDTH BOTTOM ORGANIC SHAPE (GENERATED WITH NANO BANANA) */}
+      {/* FULL-WIDTH BOTTOM ORGANIC SHAPE (CONTINUOUS 100% WIDTH)   */}
       {/* ========================================================= */}
       <div
-        className="absolute bottom-0 left-0 right-0 w-full h-[16px] sm:h-[20px] lg:h-[24px] pointer-events-none select-none z-0 overflow-hidden"
+        className="absolute bottom-0 left-0 right-0 w-full h-[14px] sm:h-[18px] lg:h-[22px] pointer-events-none select-none z-0 overflow-hidden leading-none"
         aria-hidden="true"
       >
-        <Image
-          src="/assets/navbar/navbar-bottom-full-wave.png"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/navbar/navbar-bottom-full-wave.svg"
           alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-bottom pointer-events-none opacity-85"
-          priority
+          className="w-full h-full object-fill pointer-events-none block"
         />
       </div>
 
       {/* ========================================================= */}
       {/* MAIN NAVBAR CONTAINER (BALANCED DESKTOP & MOBILE HEIGHTS)  */}
       {/* ========================================================= */}
-      <div className="relative z-10 w-full max-w-[1780px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 h-[66px] sm:h-[74px] lg:h-[88px] xl:h-[92px] flex items-center justify-between">
+      <div className="relative z-10 w-full max-w-[1780px] mx-auto px-3.5 sm:px-6 lg:px-8 xl:px-10 h-[62px] sm:h-[72px] lg:h-[88px] xl:h-[92px] flex items-center justify-between">
         
-        {/* LEFT — LOGO AREA (Proportional, perfectly uncluttered background) */}
+        {/* LEFT — LOGO AREA (Proportional, clean, uncluttered background) */}
         <div className="flex items-center shrink-0">
           <Link
             href="/"
@@ -121,7 +119,7 @@ export default function Navbar() {
               width={168}
               height={94}
               priority
-              className="h-[38px] xs:h-[42px] sm:h-[50px] lg:h-[58px] xl:h-[62px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+              className="h-[36px] xs:h-[40px] sm:h-[48px] lg:h-[58px] xl:h-[62px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </Link>
 
@@ -169,7 +167,7 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* RIGHT — CTA BUTTON & MOBILE HAMBURGER */}
+        {/* RIGHT — CTA BUTTON & MOBILE HAMBURGER (PERFECTLY BALANCED ON MOBILE & DESKTOP) */}
         <div className="flex items-center shrink-0 space-x-2 sm:space-x-3.5">
           {/* Subtle Vertical Gold Separator before CTA */}
           <div
@@ -177,25 +175,26 @@ export default function Navbar() {
             aria-hidden="true"
           />
 
-          {/* Premium Forest-Green CTA Button with Subtle Gold Hover Accent */}
+          {/* Premium Forest-Green CTA Button (Visible on Mobile & Desktop) */}
           <MagneticButton>
             <Link
               href="#contact"
-              className="hidden md:inline-flex items-center gap-2 bg-[#064E32] hover:bg-[#003F29] text-white font-semibold text-[13.5px] xl:text-[14px] px-4.5 xl:px-5 py-2 sm:py-2.5 rounded-full border border-transparent hover:border-[#D9A526] shadow-[0_2px_8px_rgba(6,78,50,0.18)] hover:shadow-[0_4px_16px_rgba(217,165,38,0.3)] transition-all duration-300 group focus:outline-hidden focus:ring-2 focus:ring-[#D9A526]"
+              className="inline-flex items-center gap-1.5 sm:gap-2 bg-[#064E32] hover:bg-[#003F29] text-white font-semibold text-[12px] xs:text-[12.5px] sm:text-[13.5px] xl:text-[14px] px-3 sm:px-4.5 xl:px-5 py-1.5 sm:py-2.5 rounded-full border border-[#D9A526]/40 hover:border-[#D9A526] shadow-[0_2px_8px_rgba(6,78,50,0.18)] hover:shadow-[0_4px_16px_rgba(217,165,38,0.3)] transition-all duration-300 group focus:outline-hidden focus:ring-2 focus:ring-[#D9A526]"
             >
-              <Mail className="w-4 h-4 text-white transition-transform duration-300 group-hover:scale-110" />
-              <span>Get in Touch</span>
+              <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white transition-transform duration-300 group-hover:scale-110 shrink-0" />
+              <span className="hidden xs:inline">Get in Touch</span>
+              <span className="xs:hidden">Contact</span>
             </Link>
           </MagneticButton>
 
-          {/* Mobile / Tablet Hamburger Toggle (Clean, aligned on right) */}
+          {/* Mobile / Tablet Hamburger Button with Refined Rounded Container */}
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="lg:hidden p-2 text-[#064E32] hover:bg-[#064E32]/10 rounded-full transition-colors focus:outline-hidden focus:ring-2 focus:ring-[#064E32] min-w-[40px] min-h-[40px] flex items-center justify-center cursor-pointer"
+            className="lg:hidden p-2 text-[#064E32] bg-[#064E32]/6 hover:bg-[#064E32]/12 border border-[#064E32]/15 rounded-lg transition-colors focus:outline-hidden focus:ring-2 focus:ring-[#064E32] min-w-[38px] min-h-[38px] sm:min-w-[42px] sm:min-h-[42px] flex items-center justify-center cursor-pointer shadow-2xs"
             aria-label="Open mobile navigation menu"
             aria-expanded={mobileMenuOpen}
           >
-            <Menu className="w-6 h-6" />
+            <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </div>
       </div>

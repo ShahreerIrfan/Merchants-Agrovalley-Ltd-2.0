@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 60" fill="none" preserveAspectRatio="none">
+  <defs>
+    <!-- Deep Forest Green to Medium Green Gradient -->
+    <linearGradient id="fullGreenWave" x1="0" y1="20" x2="1600" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#003F29"/>
+      <stop offset="30%" stop-color="#064E32"/>
+      <stop offset="65%" stop-color="#0A5C3C"/>
+      <stop offset="100%" stop-color="#003F29"/>
+    </linearGradient>
+
+    <!-- Vibrant Fresh Lime Accent Gradient -->
+    <linearGradient id="fullLimeWave" x1="0" y1="30" x2="1600" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8CCF24"/>
+      <stop offset="25%" stop-color="#6EBA1B"/>
+      <stop offset="60%" stop-color="#A2E038"/>
+      <stop offset="100%" stop-color="#76C41D"/>
+    </linearGradient>
+
+    <!-- Shimmering Warm Gold Accent Gradient -->
+    <linearGradient id="fullGoldWave" x1="200" y1="45" x2="1500" y2="15" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D9A526"/>
+      <stop offset="35%" stop-color="#F3C34D"/>
+      <stop offset="70%" stop-color="#D9A526"/>
+      <stop offset="100%" stop-color="#EBB93E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Layer 1: Base Forest Green Wave (Continuous across 100% width) -->
+  <path d="M0 32 C180 44 360 48 540 36 C720 24 900 38 1080 44 C1260 50 1440 38 1600 28 L1600 60 L0 60 Z" fill="url(#fullGreenWave)" opacity="0.95"/>
+
+  <!-- Layer 2: Fresh Lime Ribbon along the top crest -->
+  <path d="M0 38 C200 48 400 44 600 32 C800 20 1000 34 1200 42 C1380 48 1500 40 1600 33 L1600 44 C1480 50 1350 56 1200 50 C980 42 780 28 580 40 C380 52 180 54 0 46 Z" fill="url(#fullLimeWave)" opacity="0.9"/>
+
+  <!-- Layer 3: Warm Gold Accent Flowing Ribbon -->
+  <path d="M150 48 C350 58 550 50 750 36 C950 24 1150 38 1350 48 C1450 52 1530 48 1600 42 L1600 48 C1520 54 1440 57 1340 53 C1140 44 940 30 740 42 C540 56 340 62 150 54 Z" fill="url(#fullGoldWave)" opacity="0.85"/>
+</svg>
