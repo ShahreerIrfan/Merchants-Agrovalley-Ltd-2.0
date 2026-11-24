@@ -96,8 +96,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </button>
         </div>
 
-        {/* Navigation Items with Outline Icons */}
-        <div className="flex-1 overflow-y-auto px-4 sm:px-5 py-5 space-y-1.5">
+        {/* Navigation Items with Glass Pill styling on all items */}
+        <div className="flex-1 overflow-y-auto px-4 sm:px-5 py-5 space-y-2">
           {NAV_ITEMS.map((item) => {
             const IconComponent = NAV_ICONS[item.iconName] || Home;
             const isActive =
@@ -114,10 +114,10 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 key={item.name}
                 href={item.href}
                 onClick={onClose}
-                className={`flex items-center gap-3 py-2.5 sm:py-3 px-3 sm:px-3.5 rounded-xl text-[14px] sm:text-[14.5px] transition-all ${
+                className={`flex items-center gap-3 py-2.5 sm:py-3 px-3.5 sm:px-4 rounded-xl text-[14px] sm:text-[14.5px] transition-all ${
                   isActive
-                    ? "bg-[#003F29] text-white font-semibold shadow-sm"
-                    : "text-[#064E32] hover:bg-[#064E32]/12 font-semibold"
+                    ? "bg-[#003F29] text-white font-semibold shadow-sm border border-[#003F29]"
+                    : "bg-white/45 backdrop-blur-xs border border-[#064E32]/18 text-[#064E32] hover:bg-white/75 font-semibold shadow-2xs"
                 }`}
               >
                 <div

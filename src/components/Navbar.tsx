@@ -89,7 +89,7 @@ export default function Navbar() {
       {/* ========================================================= */}
       {/* MAIN NAVBAR CONTAINER (BALANCED DESKTOP & MOBILE HEIGHTS)  */}
       {/* ========================================================= */}
-      <div className="relative z-10 w-full max-w-[1780px] mx-auto px-3.5 sm:px-6 lg:px-8 xl:px-10 h-[64px] sm:h-[72px] lg:h-[86px] xl:h-[90px] flex items-center justify-between">
+      <div className="relative z-10 w-full max-w-[1780px] mx-auto px-3.5 sm:px-6 lg:px-6 xl:px-10 h-[64px] sm:h-[72px] lg:h-[86px] xl:h-[90px] flex items-center justify-between">
         
         {/* LEFT — LOGO AREA (Proportional, clean, uncluttered background) */}
         <div className="flex items-center shrink-0">
@@ -110,12 +110,12 @@ export default function Navbar() {
 
           {/* Subtle Vertical Gold Separator */}
           <div
-            className="hidden xl:block h-7 w-[1.5px] bg-[#BFA032] ml-5 mr-3 shrink-0"
+            className="hidden xl:block h-7 w-[1.5px] bg-[#BFA032] ml-4 xl:ml-5 mr-2 xl:mr-3 shrink-0"
             aria-hidden="true"
           />
         </div>
 
-        {/* CENTER — NAVIGATION LINKS (Desktop: 14–15px, Forest Green / Deep Green Active Pill) */}
+        {/* CENTER — NAVIGATION LINKS WITH GLASS PILL EFFECT FOR ALL ITEMS */}
         <nav
           className="hidden lg:flex items-center justify-center space-x-1 xl:space-x-1.5 2xl:space-x-2"
           aria-label="Main Navigation"
@@ -135,15 +135,15 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`relative flex items-center gap-1.5 py-2 px-2.5 xl:px-3 2xl:px-3.5 rounded-full text-[13.5px] xl:text-[14px] 2xl:text-[14.5px] whitespace-nowrap transition-all duration-200 focus:outline-hidden focus:ring-2 focus:ring-[#064E32] ${
+                className={`relative flex items-center gap-1.5 py-1.5 xl:py-2 px-2.5 xl:px-3 2xl:px-3.5 rounded-full text-[12.5px] xl:text-[13px] 2xl:text-[14px] whitespace-nowrap transition-all duration-200 focus:outline-hidden focus:ring-2 focus:ring-[#064E32] ${
                   isActive
-                    ? "bg-[#003F29] text-white font-semibold shadow-[0_3px_10px_rgba(0,63,41,0.35)]"
-                    : "text-[#064E32] hover:text-[#003F29] hover:bg-[#064E32]/10 font-semibold"
+                    ? "bg-[#003F29] text-white font-semibold shadow-[0_3px_10px_rgba(0,63,41,0.35)] border border-[#003F29]"
+                    : "bg-white/40 backdrop-blur-xs border border-[#064E32]/18 text-[#064E32] hover:bg-white/75 hover:border-[#064E32]/35 hover:shadow-xs font-semibold shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
                 }`}
               >
                 <IconComponent
-                  className={`w-4 h-4 shrink-0 transition-colors duration-200 ${
-                    isActive ? "text-white" : "text-[#064E32] group-hover:text-[#003F29]"
+                  className={`w-3.5 h-3.5 xl:w-4 xl:h-4 shrink-0 transition-colors duration-200 ${
+                    isActive ? "text-white" : "text-[#064E32]"
                   }`}
                 />
                 <span>{item.name}</span>
