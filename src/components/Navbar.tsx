@@ -16,6 +16,7 @@ import {
   Mail,
   Menu,
 } from "lucide-react";
+import { motion, LayoutGroup } from "framer-motion";
 import { NAV_ITEMS } from "@/data/navigation";
 import MobileMenu from "./MobileMenu";
 import MagneticButton from "./animations/MagneticButton";
@@ -31,6 +32,9 @@ const NAV_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   Heart: Heart,
 };
 
+// Module-level tracker to persist last navigation index across client transitions
+let previousNavIndex = -1;
+
 export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
@@ -43,6 +47,30 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Determine active item index
+  const currentIndex = NAV_ITEMS.findIndex((item) =>
+    item.href === "/"
+      ? pathname === "/"
+      : item.href.startsWith("/#")
+      ? false
+      : item.href.startsWith("/")
+      ? pathname === item.href || pathname.startsWith(item.href + "/")
+      : false
+  );
+
+  // Calculate sliding direction & turning tilt (left vs right)
+  const hasMoved = previousNavIndex !== -1 && previousNavIndex !== currentIndex && currentIndex !== -1;
+  const delta = hasMoved ? previousNavIndex - currentIndex : 0;
+  // Negative delta = came from the left; Positive delta = came from the right
+  const slideX = delta < 0 ? Math.max(-160, delta * 70) : Math.min(160, delta * 70);
+  const slideRotate = delta < 0 ? -2.5 : delta > 0 ? 2.5 : 0;
+
+  useEffect(() => {
+    if (currentIndex !== -1) {
+      previousNavIndex = currentIndex;
+    }
+  }, [currentIndex]);
 
   return (
     <header
@@ -95,6 +123,9 @@ export default function Navbar() {
         <div className="flex items-center shrink-0">
           <Link
             href="/"
+            onClick={() => {
+              previousNavIndex = currentIndex;
+            }}
             className="relative block group focus:outline-hidden focus:ring-2 focus:ring-[#064E32] rounded-lg"
             aria-label="Merchants Agro Valley Home"
           >
@@ -115,42 +146,79 @@ export default function Navbar() {
           />
         </div>
 
-        {/* CENTER — NAVIGATION LINKS WITH GLASS PILL EFFECT FOR ALL ITEMS */}
-        <nav
-          className="hidden lg:flex items-center justify-center space-x-1 xl:space-x-1.5 2xl:space-x-2"
-          aria-label="Main Navigation"
-        >
-          {NAV_ITEMS.map((item) => {
-            const IconComponent = NAV_ICONS[item.iconName] || Home;
-            const isActive =
-              item.href === "/"
-                ? pathname === "/"
-                : item.href.startsWith("/#")
-                ? false
-                : item.href.startsWith("/")
-                ? pathname === item.href || pathname.startsWith(item.href + "/")
-                : false;
+        {/* CENTER — NAVIGATION LINKS WITH SMOOTH SLIDING ACTIVE PILL ANIMATION */}
+        <LayoutGroup id="navbar-pill-group">
+          <nav
+            className="hidden lg:flex items-center justify-center space-x-1 xl:space-x-1.5 2xl:space-x-2"
+            aria-label="Main Navigation"
+          >
+            {NAV_ITEMS.map((item, index) => {
+              const IconComponent = NAV_ICONS[item.iconName] || Home;
+              const isActive =
+                item.href === "/"
+                  ? pathname === "/"
+                  : item.href.startsWith("/#")
+                  ? false
+                  : item.href.startsWith("/")
+                  ? pathname === item.href || pathname.startsWith(item.href + "/")
+                  : false;
 
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`relative flex items-center gap-1.5 py-1.5 xl:py-2 px-2.5 xl:px-3 2xl:px-3.5 rounded-full text-[12.5px] xl:text-[13px] 2xl:text-[14px] whitespace-nowrap transition-all duration-200 focus:outline-hidden focus:ring-2 focus:ring-[#064E32] ${
-                  isActive
-                    ? "bg-[#003F29] text-white font-semibold shadow-[0_3px_10px_rgba(0,63,41,0.35)] border border-[#003F29]"
-                    : "bg-white/40 backdrop-blur-xs border border-[#064E32]/18 text-[#064E32] hover:bg-white/75 hover:border-[#064E32]/35 hover:shadow-xs font-semibold shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
-                }`}
-              >
-                <IconComponent
-                  className={`w-3.5 h-3.5 xl:w-4 xl:h-4 shrink-0 transition-colors duration-200 ${
-                    isActive ? "text-white" : "text-[#064E32]"
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => {
+                    if (currentIndex !== -1) {
+                      previousNavIndex = currentIndex;
+                    }
+                  }}
+                  className={`relative flex items-center gap-1.5 py-1.5 xl:py-2 px-2.5 xl:px-3 2xl:px-3.5 rounded-full text-[12.5px] xl:text-[13px] 2xl:text-[14px] whitespace-nowrap transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-[#064E32] select-none ${
+                    isActive
+                      ? "text-white font-semibold"
+                      : "bg-white/40 backdrop-blur-xs border border-[#064E32]/18 text-[#064E32] hover:bg-white/75 hover:border-[#064E32]/35 hover:shadow-xs font-semibold shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
                   }`}
-                />
-                <span>{item.name}</span>
-              </Link>
-            );
-          })}
-        </nav>
+                >
+                  {/* Sliding Active Pill Background with Directional Tilt */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeNavPillBackground"
+                      initial={
+                        hasMoved
+                          ? {
+                              x: slideX,
+                              rotate: slideRotate,
+                              opacity: 0.85,
+                            }
+                          : false
+                      }
+                      animate={{
+                        x: 0,
+                        rotate: 0,
+                        opacity: 1,
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 28,
+                        mass: 0.8,
+                      }}
+                      className="absolute inset-0 bg-[#003F29] rounded-full border border-[#003F29] shadow-[0_3px_10px_rgba(0,63,41,0.35)] -z-0 pointer-events-none"
+                    />
+                  )}
+
+                  <span className="relative z-10 flex items-center gap-1.5">
+                    <IconComponent
+                      className={`w-3.5 h-3.5 xl:w-4 xl:h-4 shrink-0 transition-colors duration-200 ${
+                        isActive ? "text-white" : "text-[#064E32]"
+                      }`}
+                    />
+                    <span>{item.name}</span>
+                  </span>
+                </Link>
+              );
+            })}
+          </nav>
+        </LayoutGroup>
 
         {/* RIGHT — CTA BUTTON & MOBILE HAMBURGER */}
         <div className="flex items-center shrink-0 space-x-2 sm:space-x-3.5">
