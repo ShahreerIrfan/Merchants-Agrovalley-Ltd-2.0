@@ -49,7 +49,7 @@ export default function AdminHeader({ onToggleSidebar, adminEmail }: AdminHeader
           <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
         <h1 className="text-[18px] sm:text-[20px] font-bold text-[#013D26] tracking-tight">
-          Admin Dashboard
+          Merchants AgroValley Admin
         </h1>
       </div>
 

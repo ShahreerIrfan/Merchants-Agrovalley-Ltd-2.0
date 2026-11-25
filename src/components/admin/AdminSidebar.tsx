@@ -95,7 +95,8 @@ export default function AdminSidebar({
           {/* Navigation Links */}
           <nav className="space-y-1.5 text-[14px] font-medium">
             {/* Dashboard Item */}
-            <button
+            <Link
+              href="/admin/dashboard"
               onClick={() => handleNavClick("dashboard")}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all cursor-pointer ${
                 activeTab === "dashboard"
@@ -105,14 +106,16 @@ export default function AdminSidebar({
             >
               <LayoutDashboard className="w-5 h-5 shrink-0" />
               <span>Dashboard</span>
-            </button>
+            </Link>
 
             {/* Products & Services (Accordion) */}
             <div className="pt-1">
               <button
                 onClick={() => setProductsOpen(!productsOpen)}
                 className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl transition-all cursor-pointer ${
-                  productsOpen ? "bg-white/5 text-white" : "text-white/85 hover:bg-white/5"
+                  productsOpen || activeTab.startsWith("products")
+                    ? "bg-white/5 text-white"
+                    : "text-white/85 hover:bg-white/5"
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -127,26 +130,54 @@ export default function AdminSidebar({
               </button>
 
               {productsOpen && (
-                <div className="pl-9 pr-2 py-1 space-y-1">
-                  <button
-                    onClick={() => handleNavClick("products-all", "All Products & Services")}
-                    className="w-full text-left py-1.5 px-3 rounded-lg text-[13px] text-white/75 hover:text-white hover:bg-white/10 flex items-center gap-2 cursor-pointer"
+                <div className="pl-7 pr-2 py-1.5 space-y-1">
+                  <Link
+                    href="/admin/products"
+                    onClick={() => handleNavClick("products-all")}
+                    className={`w-full text-left py-2 px-3 rounded-xl text-[13px] transition-all flex items-center gap-2.5 cursor-pointer ${
+                      activeTab === "products-all"
+                        ? "bg-white/10 text-white font-semibold shadow-inner"
+                        : "text-white/75 hover:text-white hover:bg-white/5"
+                    }`}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8CCF24]" />
+                    <span
+                      className={`w-2 h-2 rounded-full transition-all shrink-0 ${
+                        activeTab === "products-all"
+                          ? "bg-[#8CCF24] shadow-[0_0_8px_#8CCF24]"
+                          : "bg-white/40"
+                      }`}
+                    />
                     <span>All Products & Services</span>
-                  </button>
-                  <button
-                    onClick={() => handleNavClick("products-add", "Add New Product / Service")}
-                    className="w-full text-left py-1.5 px-3 rounded-lg text-[13px] text-white/75 hover:text-white hover:bg-white/10 flex items-center gap-2 cursor-pointer"
+                  </Link>
+
+                  <Link
+                    href="/admin/products/new"
+                    onClick={() => handleNavClick("products-add")}
+                    className={`w-full text-left py-2 px-3 rounded-xl text-[13px] transition-all flex items-center gap-2.5 cursor-pointer ${
+                      activeTab === "products-add"
+                        ? "bg-white/10 text-white font-semibold shadow-inner"
+                        : "text-white/75 hover:text-white hover:bg-white/5"
+                    }`}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                    <span
+                      className={`w-2 h-2 rounded-full transition-all shrink-0 ${
+                        activeTab === "products-add"
+                          ? "bg-[#8CCF24] shadow-[0_0_8px_#8CCF24]"
+                          : "bg-white/40"
+                      }`}
+                    />
                     <span>Add New Product/Service</span>
-                  </button>
+                  </Link>
+
                   <button
                     onClick={() => handleNavClick("categories", "Categories Management")}
-                    className="w-full text-left py-1.5 px-3 rounded-lg text-[13px] text-white/75 hover:text-white hover:bg-white/10 flex items-center gap-2 cursor-pointer"
+                    className={`w-full text-left py-2 px-3 rounded-xl text-[13px] transition-all flex items-center gap-2.5 cursor-pointer ${
+                      activeTab === "categories"
+                        ? "bg-white/10 text-white font-semibold"
+                        : "text-white/75 hover:text-white hover:bg-white/5"
+                    }`}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                    <span className="w-2 h-2 rounded-full bg-white/40 shrink-0" />
                     <span>Categories</span>
                   </button>
                 </div>
