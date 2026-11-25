@@ -16,6 +16,7 @@ import ManagementMemberFormView from "./ManagementMemberFormView";
 import StaticActionNoticeModal from "./StaticActionNoticeModal";
 import { CategoryItem } from "@/app/admin/categories/actions";
 import { ManagementMemberItem } from "@/app/admin/management/actions";
+import { ProductItem } from "@/app/admin/products/actions";
 
 interface AdminDashboardViewProps {
   adminEmail: string;
@@ -24,6 +25,8 @@ interface AdminDashboardViewProps {
   editCategoryData?: CategoryItem;
   initialManagementMembers?: ManagementMemberItem[];
   editManagementData?: ManagementMemberItem;
+  initialProducts?: ProductItem[];
+  editProductData?: ProductItem;
 }
 
 export default function AdminDashboardView({
@@ -33,6 +36,8 @@ export default function AdminDashboardView({
   editCategoryData,
   initialManagementMembers = [],
   editManagementData,
+  initialProducts = [],
+  editProductData,
 }: AdminDashboardViewProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(initialTab);
@@ -66,9 +71,20 @@ export default function AdminDashboardView({
         {/* Dashboard Body - Full Page Layout (no max-w constraints) */}
         <main className="flex-1 p-4 sm:p-6 lg:p-6 xl:p-8 w-full max-w-none">
           {activeTab === "products-all" ? (
-            <AllProductsView onOpenActionNotice={openActionPreview} />
+            <AllProductsView
+              initialProducts={initialProducts}
+              onOpenActionNotice={openActionPreview}
+            />
           ) : activeTab === "products-add" ? (
             <AddProductFormView
+              mode="create"
+              onBack={() => setActiveTab("products-all")}
+              onOpenNotice={openActionPreview}
+            />
+          ) : activeTab === "products-edit" ? (
+            <AddProductFormView
+              mode="edit"
+              initialData={editProductData}
               onBack={() => setActiveTab("products-all")}
               onOpenNotice={openActionPreview}
             />
@@ -135,6 +151,7 @@ export default function AdminDashboardView({
               {/* 4 Summary Metric Cards */}
               <MetricsGrid
                 onCardClick={openActionPreview}
+                productsCount={initialProducts.length}
                 managementCount={initialManagementMembers.length}
                 categoryCount={initialCategories.length}
               />

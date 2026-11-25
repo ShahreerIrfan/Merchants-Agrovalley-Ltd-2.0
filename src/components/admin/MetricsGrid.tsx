@@ -6,12 +6,14 @@ import { Package, Layers, Users, Mail } from "lucide-react";
 
 interface MetricsGridProps {
   onCardClick: (title: string) => void;
+  productsCount?: number;
   managementCount?: number;
   categoryCount?: number;
 }
 
 export default function MetricsGrid({
   onCardClick,
+  productsCount,
   managementCount,
   categoryCount,
 }: MetricsGridProps) {
@@ -19,7 +21,7 @@ export default function MetricsGrid({
     {
       id: "products",
       title: "Products & Services",
-      count: "9",
+      count: productsCount !== undefined ? String(productsCount) : "9",
       icon: Package,
       badge: null,
       href: "/admin/products",

@@ -18,20 +18,25 @@ import {
   FolderTree,
 } from "lucide-react";
 import {
-  ADMIN_PRODUCTS_DATA,
   DIVISIONS_LIST,
   CATEGORIES_LIST,
   AdminProductRecord,
 } from "@/data/adminProducts";
+import { ProductItem, deleteProductAction } from "@/app/admin/products/actions";
 import StaticActionNoticeModal from "./StaticActionNoticeModal";
 
 interface AllProductsViewProps {
   onOpenActionNotice?: (actionTitle: string) => void;
+  initialProducts?: ProductItem[];
 }
 
 export default function AllProductsView({
   onOpenActionNotice,
+  initialProducts = [],
 }: AllProductsViewProps) {
+  // Live state from PostgreSQL database
+  const [productsList, setProductsList] = useState<ProductItem[]>(initialProducts);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
   // Filters & Search
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDivision, setSelectedDivision] = useState("All Divisions");
@@ -57,29 +62,42 @@ export default function AllProductsView({
     }
   };
 
+  const handleDelete = async (id: string, name: string) => {
+    if (!confirm(`Are you sure you want to delete "${name}" from database?`)) return;
+    setDeletingId(id);
+    try {
+      const res = await deleteProductAction(id);
+      if (res.success) {
+        setProductsList((prev) => prev.filter((p) => p.id !== id));
+        setSelectedIds((prev) => prev.filter((item) => item !== id));
+      } else {
+        alert(res.error || "Failed to delete product.");
+      }
+    } catch {
+      alert("Network error deleting product.");
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
   // Filtered & Sorted Records
   const filteredProducts = useMemo(() => {
-    return ADMIN_PRODUCTS_DATA.filter((product) => {
+    return productsList.filter((product) => {
       // Search Query
       const query = searchQuery.toLowerCase().trim();
       const matchesSearch =
         !query ||
         product.commodityName.toLowerCase().includes(query) ||
         product.slug.toLowerCase().includes(query) ||
-        product.division.toLowerCase().includes(query) ||
+        (product.division && product.division.toLowerCase().includes(query)) ||
         product.description.toLowerCase().includes(query);
 
       // Division Filter
       const matchesDivision =
         selectedDivision === "All Divisions" ||
-        product.division.toLowerCase() === selectedDivision.toLowerCase();
+        (product.division && product.division.toLowerCase() === selectedDivision.toLowerCase());
 
-      // Category Filter
-      const matchesCategory =
-        selectedCategory === "All Categories" ||
-        product.category.toLowerCase() === selectedCategory.toLowerCase();
-
-      return matchesSearch && matchesDivision && matchesCategory;
+      return matchesSearch && matchesDivision;
     }).sort((a, b) => {
       if (sortByColumn === "displayOrder") {
         return displayOrderSort === "asc"
@@ -87,8 +105,8 @@ export default function AllProductsView({
           : b.displayOrder - a.displayOrder;
       }
 
-      const valA = a[sortByColumn];
-      const valB = b[sortByColumn];
+      const valA = (a as unknown as Record<string, unknown>)[sortByColumn];
+      const valB = (b as unknown as Record<string, unknown>)[sortByColumn];
 
       if (typeof valA === "string" && typeof valB === "string") {
         return sortDirection === "asc"
@@ -98,9 +116,9 @@ export default function AllProductsView({
       return 0;
     });
   }, [
+    productsList,
     searchQuery,
     selectedDivision,
-    selectedCategory,
     displayOrderSort,
     sortByColumn,
     sortDirection,
@@ -318,7 +336,7 @@ export default function AllProductsView({
             </span>{" "}
             of{" "}
             <span className="font-bold text-gray-800">
-              {ADMIN_PRODUCTS_DATA.length}
+              {productsList.length}
             </span>{" "}
             entries
           </div>
@@ -413,7 +431,7 @@ export default function AllProductsView({
                       <td className="py-4 px-3">
                         <div className="w-[58px] h-[58px] rounded-xl overflow-hidden border border-gray-200 relative shrink-0 shadow-2xs bg-gray-100">
                           <Image
-                            src={product.image}
+                            src={product.image || "/assets/admin/products/fresh-grocery.jpg"}
                             alt={product.commodityName}
                             fill
                             className="object-cover object-center"
@@ -467,21 +485,22 @@ export default function AllProductsView({
                       {/* 8. Actions (Edit / Delete) */}
                       <td className="py-4 px-4 text-center whitespace-nowrap">
                         <div className="flex items-center justify-center gap-2">
-                          <button
-                            onClick={() => triggerModal(`Edit "${product.commodityName}"`)}
+                          <Link
+                            href={`/admin/products/${product.id}/edit`}
                             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12.5px] font-medium border border-gray-300 text-gray-700 hover:text-[#013D26] hover:border-[#013D26] hover:bg-gray-50 transition-all cursor-pointer"
                             title="Edit Commodity"
                           >
                             <Edit2 className="w-3.5 h-3.5 text-gray-500" />
                             <span>Edit</span>
-                          </button>
+                          </Link>
                           <button
-                            onClick={() => triggerModal(`Delete "${product.commodityName}"`)}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12.5px] font-medium border border-red-200 text-red-600 hover:bg-red-50 hover:border-red-400 transition-all cursor-pointer"
+                            onClick={() => handleDelete(product.id, product.commodityName)}
+                            disabled={deletingId === product.id}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12.5px] font-medium border border-red-200 text-red-600 hover:bg-red-50 hover:border-red-400 transition-all cursor-pointer disabled:opacity-50"
                             title="Delete Commodity"
                           >
                             <Trash2 className="w-3.5 h-3.5 text-red-500" />
-                            <span>Delete</span>
+                            <span>{deletingId === product.id ? "Deleting..." : "Delete"}</span>
                           </button>
                         </div>
                       </td>

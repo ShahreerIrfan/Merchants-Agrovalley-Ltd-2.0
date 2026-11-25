@@ -37,17 +37,26 @@ model Category {
 }
 
 model Product {
-  id          String    @id @default(cuid())
-  title       String
-  slug        String    @unique
-  category    Category  @relation(fields: [categoryId], references: [id])
-  categoryId  String
-  summary     String
-  description String
-  image       String?
-  status      String    @default("DRAFT") // DRAFT, PUBLISHED, ARCHIVED
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id                      String    @id @default(cuid())
+  commodityName           String
+  slug                    String    @unique
+  division                String?
+  cardBadgeText           String?
+  category                Category? @relation(fields: [categoryId], references: [id])
+  categoryId              String?
+  description             String
+  image                   String?
+  displayOrder            Int       @default(0)
+  status                  String    @default("ACTIVE") // ACTIVE, DRAFT, INACTIVE
+  breedSpeciesVariety     String?
+  farmingHusbandryMethod  String?
+  processingColdChainTech String?
+  cutsPackagingFormats    String?
+  certificationsStandards String?
+  exportLogisticsShipping String?
+  lifecycleImages         Json?
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
 }
 
 model ManagementMember {

@@ -17,11 +17,15 @@ import {
   HelpCircle,
   Sparkles,
 } from "lucide-react";
-import { DIVISIONS_LIST, ProductServicePayload } from "@/data/adminProducts";
+import { DIVISIONS_LIST } from "@/data/adminProducts";
+import { ProductItem, createProductAction, updateProductAction } from "@/app/admin/products/actions";
+import { useRouter } from "next/navigation";
 
 interface AddProductFormViewProps {
-  onBack: () => void;
-  onOpenNotice: (title: string) => void;
+  onBack?: () => void;
+  onOpenNotice?: (title: string) => void;
+  initialData?: ProductItem;
+  mode?: "create" | "edit";
 }
 
 interface LifecycleStepState {
@@ -33,14 +37,18 @@ interface LifecycleStepState {
 export default function AddProductFormView({
   onBack,
   onOpenNotice,
+  initialData,
+  mode = "create",
 }: AddProductFormViewProps) {
+  const router = useRouter();
+
   // 1. Basic Information State
-  const [commodityName, setCommodityName] = useState("");
+  const [commodityName, setCommodityName] = useState(initialData?.commodityName || "");
   const [targetDivision, setTargetDivision] = useState(
-    DIVISIONS_LIST.find((d) => d === "Bulk Commodities") || DIVISIONS_LIST[1]
+    initialData?.division || DIVISIONS_LIST.find((d) => d === "Bulk Commodities") || DIVISIONS_LIST[1]
   );
-  const [cardBadgeText, setCardBadgeText] = useState("Bulk Commodities");
-  const [description, setDescription] = useState("");
+  const [cardBadgeText, setCardBadgeText] = useState(initialData?.cardBadgeText || "Bulk Commodities");
+  const [description, setDescription] = useState(initialData?.description || "");
 
   // Auto-generate URL slug
   const generatedSlug = commodityName
@@ -54,34 +62,47 @@ export default function AddProductFormView({
   // 2. Visual / Media State
   const [mainImageFile, setMainImageFile] = useState<File | null>(null);
   const [mainImagePreview, setMainImagePreview] = useState<string>(
-    "/assets/admin/products/fresh-grocery.jpg"
+    initialData?.image || "/assets/admin/products/fresh-grocery.jpg"
   );
   const [isDragOver, setIsDragOver] = useState(false);
   const [uploadError, setUploadError] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // 3. Service Specifications & Export Details State (6 Fields)
-  const [breedSpeciesVariety, setBreedSpeciesVariety] = useState("");
-  const [farmingHusbandryMethod, setFarmingHusbandryMethod] = useState("");
-  const [processingColdChainTech, setProcessingColdChainTech] = useState("");
-  const [cutsPackagingFormats, setCutsPackagingFormats] = useState("");
-  const [certificationsStandards, setCertificationsStandards] = useState("");
-  const [exportLogisticsShipping, setExportLogisticsShipping] = useState("");
+  const [breedSpeciesVariety, setBreedSpeciesVariety] = useState(initialData?.breedSpeciesVariety || "");
+  const [farmingHusbandryMethod, setFarmingHusbandryMethod] = useState(initialData?.farmingHusbandryMethod || "");
+  const [processingColdChainTech, setProcessingColdChainTech] = useState(initialData?.processingColdChainTech || "");
+  const [cutsPackagingFormats, setCutsPackagingFormats] = useState(initialData?.cutsPackagingFormats || "");
+  const [certificationsStandards, setCertificationsStandards] = useState(initialData?.certificationsStandards || "");
+  const [exportLogisticsShipping, setExportLogisticsShipping] = useState(initialData?.exportLogisticsShipping || "");
 
   // 4. 5-Step Commercial Lifecycle Images State
-  const [lifecycleSteps, setLifecycleSteps] = useState<LifecycleStepState[]>([
-    { url: "", file: null, previewUrl: "" },
-    { url: "", file: null, previewUrl: "" },
-    { url: "", file: null, previewUrl: "" },
-    { url: "", file: null, previewUrl: "" },
-    { url: "", file: null, previewUrl: "" },
-  ]);
+  const [lifecycleSteps, setLifecycleSteps] = useState<LifecycleStepState[]>(() => {
+    if (initialData?.lifecycleImages && initialData.lifecycleImages.length === 5) {
+      return initialData.lifecycleImages.map((s) => ({
+        url: s.imageUrl || "",
+        file: null,
+        previewUrl: s.imageUrl || "",
+      }));
+    }
+    return [
+      { url: "", file: null, previewUrl: "" },
+      { url: "", file: null, previewUrl: "" },
+      { url: "", file: null, previewUrl: "" },
+      { url: "", file: null, previewUrl: "" },
+      { url: "", file: null, previewUrl: "" },
+    ];
+  });
 
   // 5. Publishing & Ordering State
-  const [displayOrder, setDisplayOrder] = useState<number>(0);
-  const [isPublished, setIsPublished] = useState<boolean>(false);
+  const [displayOrder, setDisplayOrder] = useState<number>(initialData?.displayOrder ?? 0);
+  const [isPublished, setIsPublished] = useState<boolean>(
+    initialData ? initialData.status === "ACTIVE" : true
+  );
 
-  // Validation Error state
+  // Form State
+  const [submitting, setSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
   const [formErrors, setFormErrors] = useState<string[]>([]);
 
   // Allowed MIME types (Max 15MB)
@@ -181,7 +202,7 @@ export default function AddProductFormView({
   };
 
   // Form Submit Handler
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errors: string[] = [];
 
@@ -212,38 +233,67 @@ export default function AddProductFormView({
     }
 
     setFormErrors([]);
+    setSubmitting(true);
 
-    // Structure complete data payload matching Phase 2 database specifications
-    const payload: ProductServicePayload = {
-      name: commodityName.trim(),
-      divisionCategoryId: targetDivision,
-      cardBadgeText: cardBadgeText.trim() || targetDivision,
-      homepageDescription: description.trim(),
-      mainImageStorageKey: mainImageFile ? mainImageFile.name : "default-fresh-grocery.jpg",
-      mainImageUrl: mainImagePreview,
-      breedSpeciesVariety: breedSpeciesVariety.trim() || undefined,
-      farmingHusbandryMethod: farmingHusbandryMethod.trim() || undefined,
-      processingColdChainTech: processingColdChainTech.trim() || undefined,
-      cutsPackagingFormats: cutsPackagingFormats.trim() || undefined,
-      certificationsStandards: certificationsStandards.trim() || undefined,
-      exportLogisticsShipping: exportLogisticsShipping.trim() || undefined,
-      displayOrder: Number(displayOrder) || 0,
-      isPublished,
-      lifecycleImages: lifecycleSteps.map((step, idx) => ({
-        stepNumber: idx + 1,
-        title: [
-          "Farming / Production",
-          "Processing / Abattoir",
-          "Packaging / Export Pack",
-          "Maritime Export & Shipping",
-          "Culinary Application",
-        ][idx],
-        imageUrl: step.url.trim() || step.previewUrl || undefined,
-        imageStorageKey: step.file ? step.file.name : undefined,
-      })),
-    };
+    try {
+      if (mode === "edit" && initialData?.id) {
+        const res = await updateProductAction(initialData.id, {
+          commodityName: commodityName.trim(),
+          division: targetDivision,
+          cardBadgeText: cardBadgeText.trim() || targetDivision,
+          description: description.trim(),
+          image: mainImagePreview,
+          breedSpeciesVariety: breedSpeciesVariety.trim() || undefined,
+          farmingHusbandryMethod: farmingHusbandryMethod.trim() || undefined,
+          processingColdChainTech: processingColdChainTech.trim() || undefined,
+          cutsPackagingFormats: cutsPackagingFormats.trim() || undefined,
+          certificationsStandards: certificationsStandards.trim() || undefined,
+          exportLogisticsShipping: exportLogisticsShipping.trim() || undefined,
+          displayOrder: Number(displayOrder) || 0,
+          status: isPublished ? "ACTIVE" : "INACTIVE",
+        });
 
-    onOpenNotice(`Create Commodity: "${payload.name}" (${payload.isPublished ? "Published" : "Draft"})`);
+        if (res.success) {
+          setSuccessMessage("Commodity updated in database successfully!");
+          setTimeout(() => {
+            if (onBack) onBack();
+            else router.push("/admin/products");
+          }, 800);
+        } else {
+          setFormErrors([res.error || "Failed to update commodity."]);
+        }
+      } else {
+        const res = await createProductAction({
+          commodityName: commodityName.trim(),
+          division: targetDivision,
+          cardBadgeText: cardBadgeText.trim() || targetDivision,
+          description: description.trim(),
+          image: mainImagePreview,
+          breedSpeciesVariety: breedSpeciesVariety.trim() || undefined,
+          farmingHusbandryMethod: farmingHusbandryMethod.trim() || undefined,
+          processingColdChainTech: processingColdChainTech.trim() || undefined,
+          cutsPackagingFormats: cutsPackagingFormats.trim() || undefined,
+          certificationsStandards: certificationsStandards.trim() || undefined,
+          exportLogisticsShipping: exportLogisticsShipping.trim() || undefined,
+          displayOrder: Number(displayOrder) || 0,
+          status: isPublished ? "ACTIVE" : "INACTIVE",
+        });
+
+        if (res.success) {
+          setSuccessMessage("Commodity created and saved to PostgreSQL successfully!");
+          setTimeout(() => {
+            if (onBack) onBack();
+            else router.push("/admin/products");
+          }, 800);
+        } else {
+          setFormErrors([res.error || "Failed to create commodity."]);
+        }
+      }
+    } catch {
+      setFormErrors(["Network error submitting commodity."]);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const lifecycleStepTitles = [
@@ -263,10 +313,12 @@ export default function AddProductFormView({
             SERVICES & PRODUCTS
           </span>
           <h1 className="font-serif text-[#013D26] text-[28px] sm:text-[34px] font-bold tracking-tight leading-tight mt-0.5">
-            Add New Commodity / Service
+            {mode === "edit" ? "Edit Commodity / Service" : "Add New Commodity / Service"}
           </h1>
           <p className="text-gray-600 text-[13.5px] sm:text-[14.5px] mt-1">
-            Configure commodity title, category, description, publishing options, and preview image.
+            {mode === "edit"
+              ? "Update commodity specifications, division, lifecycle and publishing."
+              : "Configure commodity title, category, description, publishing options, and preview image."}
           </p>
         </div>
 
@@ -275,8 +327,10 @@ export default function AddProductFormView({
           <Link
             href="/admin/products"
             onClick={(e) => {
-              e.preventDefault();
-              onBack();
+              if (onBack) {
+                e.preventDefault();
+                onBack();
+              }
             }}
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-300/90 bg-white hover:bg-[#F4F9F2] text-[#013D26] text-[13.5px] font-semibold shadow-2xs hover:shadow-xs transition-all cursor-pointer"
           >
@@ -285,6 +339,14 @@ export default function AddProductFormView({
           </Link>
         </div>
       </div>
+
+      {/* Success Banner */}
+      {successMessage && (
+        <div className="mb-6 p-4 rounded-2xl bg-[#E8F5E9] border border-[#A5D6A7] text-[#1E7E34] text-[13.5px] flex items-center gap-2.5">
+          <CheckCircle className="w-4 h-4 text-[#2E7D32] shrink-0" />
+          <span>{successMessage}</span>
+        </div>
+      )}
 
       {/* Validation Error Banner */}
       {formErrors.length > 0 && (
@@ -839,8 +901,10 @@ export default function AddProductFormView({
           <Link
             href="/admin/products"
             onClick={(e) => {
-              e.preventDefault();
-              onBack();
+              if (onBack) {
+                e.preventDefault();
+                onBack();
+              }
             }}
             className="px-6 py-2.5 rounded-xl border border-gray-300 bg-white text-gray-700 text-[13.5px] font-semibold hover:bg-gray-100 transition-all cursor-pointer shadow-2xs"
           >
@@ -848,10 +912,11 @@ export default function AddProductFormView({
           </Link>
           <button
             type="submit"
-            className="px-7 py-2.5 rounded-xl bg-[#013D26] hover:bg-[#025234] text-white text-[13.5px] font-semibold shadow-xs hover:shadow transition-all cursor-pointer flex items-center gap-2"
+            disabled={submitting}
+            className="px-7 py-2.5 rounded-xl bg-[#013D26] hover:bg-[#025234] text-white text-[13.5px] font-semibold shadow-xs hover:shadow transition-all cursor-pointer flex items-center gap-2 disabled:opacity-70"
           >
             <Sparkles className="w-4 h-4 text-[#8CCF24]" />
-            <span>Create Commodity</span>
+            <span>{submitting ? "Saving..." : mode === "edit" ? "Update Commodity" : "Create Commodity"}</span>
           </button>
         </div>
       </form>

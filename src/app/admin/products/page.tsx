@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { requireAdmin } from "@/lib/auth/session";
 import AdminDashboardView from "@/components/admin/AdminDashboardView";
+import { getProductsAction } from "./actions";
 
 export const metadata = {
   title: "All Products & Services | Merchants AgroValley Admin",
@@ -10,10 +11,13 @@ export const metadata = {
 
 async function ProductsContent() {
   const session = await requireAdmin();
+  const res = await getProductsAction();
+
   return (
     <AdminDashboardView
       adminEmail={session.email}
       initialTab="products-all"
+      initialProducts={res.products || []}
     />
   );
 }
