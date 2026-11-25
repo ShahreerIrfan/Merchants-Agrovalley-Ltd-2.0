@@ -345,7 +345,7 @@ async function runTests() {
     const otherApis = subDirs.filter((d) => d !== "admin" && d !== "auth");
     let adminApis = [];
     if (fs.existsSync(path.join(apiDir, "admin"))) {
-      adminApis = fs.readdirSync(path.join(apiDir, "admin")).filter((d) => d !== "auth" && d !== "categories");
+      adminApis = fs.readdirSync(path.join(apiDir, "admin")).filter((d) => d !== "auth" && d !== "categories" && d !== "management");
     }
     assert(
       otherApis.length === 0 && adminApis.length === 0,

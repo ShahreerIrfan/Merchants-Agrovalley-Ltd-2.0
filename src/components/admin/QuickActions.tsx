@@ -29,6 +29,7 @@ export default function QuickActions({ onActionClick }: QuickActionsProps) {
       label: "Add Management Member",
       icon: UserPlus,
       isPrimary: false,
+      href: "/admin/management/new",
     },
     {
       id: "upload-media",

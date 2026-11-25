@@ -11,14 +11,19 @@ import AllProductsView from "./AllProductsView";
 import AddProductFormView from "./AddProductFormView";
 import CategoriesListView from "./CategoriesListView";
 import CategoryFormView from "./CategoryFormView";
+import ManagementListView from "./ManagementListView";
+import ManagementMemberFormView from "./ManagementMemberFormView";
 import StaticActionNoticeModal from "./StaticActionNoticeModal";
 import { CategoryItem } from "@/app/admin/categories/actions";
+import { ManagementMemberItem } from "@/app/admin/management/actions";
 
 interface AdminDashboardViewProps {
   adminEmail: string;
   initialTab?: string;
   initialCategories?: CategoryItem[];
   editCategoryData?: CategoryItem;
+  initialManagementMembers?: ManagementMemberItem[];
+  editManagementData?: ManagementMemberItem;
 }
 
 export default function AdminDashboardView({
@@ -26,6 +31,8 @@ export default function AdminDashboardView({
   initialTab = "dashboard",
   initialCategories = [],
   editCategoryData,
+  initialManagementMembers = [],
+  editManagementData,
 }: AdminDashboardViewProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(initialTab);
@@ -77,6 +84,19 @@ export default function AdminDashboardView({
               mode="edit"
               initialData={editCategoryData}
               onBack={() => setActiveTab("categories")}
+            />
+          ) : activeTab === "management" ? (
+            <ManagementListView initialMembers={initialManagementMembers} />
+          ) : activeTab === "management-new" ? (
+            <ManagementMemberFormView
+              mode="create"
+              onBack={() => setActiveTab("management")}
+            />
+          ) : activeTab === "management-edit" ? (
+            <ManagementMemberFormView
+              mode="edit"
+              initialData={editManagementData}
+              onBack={() => setActiveTab("management")}
             />
           ) : (
             <>

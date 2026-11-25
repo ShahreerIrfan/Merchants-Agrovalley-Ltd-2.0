@@ -54,10 +54,13 @@ model ManagementMember {
   id          String   @id @default(cuid())
   name        String
   designation String
-  bio         String?
+  boardBadge  String?  // e.g. "Executive Board", "Advisory Board", "UK & Europe"
+  bio         String?  // Short Bio (shown on card)
+  fullBio     String?  // Full Biography (shown on "See More" detail)
   image       String?
-  order       Int      @default(0)
-  status      String   @default("ACTIVE")
+  order       Int      @default(0) // Hierarchy display order (1, 2, 3...)
+  isKeyLeader Boolean  @default(false)
+  status      String   @default("ACTIVE") // ACTIVE, INACTIVE
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

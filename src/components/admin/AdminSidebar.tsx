@@ -32,8 +32,12 @@ export default function AdminSidebar({
   setActiveTab,
   onOpenPreview,
 }: AdminSidebarProps) {
-  const [productsOpen, setProductsOpen] = useState(true);
-  const [managementOpen, setManagementOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(
+    activeTab.startsWith("products-") || activeTab === "products-all"
+  );
+  const [managementOpen, setManagementOpen] = useState(
+    activeTab.startsWith("management") || activeTab.startsWith("mgmt-")
+  );
 
   const handleNavClick = (tab: string, previewName?: string) => {
     setActiveTab(tab);
@@ -211,21 +215,44 @@ export default function AdminSidebar({
               </button>
 
               {managementOpen && (
-                <div className="pl-9 pr-2 py-1 space-y-1">
-                  <button
-                    onClick={() => handleNavClick("mgmt-all", "All Management Profiles")}
-                    className="w-full text-left py-1.5 px-3 rounded-lg text-[13px] text-white/75 hover:text-white hover:bg-white/10 flex items-center gap-2 cursor-pointer"
+                <div className="pl-7 pr-2 py-1.5 space-y-1">
+                  <Link
+                    href="/admin/management"
+                    onClick={() => handleNavClick("management")}
+                    className={`w-full text-left py-2 px-3 rounded-xl text-[13px] transition-all flex items-center gap-2.5 cursor-pointer ${
+                      activeTab === "management" || activeTab === "mgmt-all"
+                        ? "bg-white/10 text-white font-semibold shadow-inner"
+                        : "text-white/75 hover:text-white hover:bg-white/5"
+                    }`}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#8CCF24]" />
+                    <span
+                      className={`w-2 h-2 rounded-full transition-all shrink-0 ${
+                        activeTab === "management" || activeTab === "mgmt-all"
+                          ? "bg-[#8CCF24] shadow-[0_0_8px_#8CCF24]"
+                          : "bg-white/40"
+                      }`}
+                    />
                     <span>All Management</span>
-                  </button>
-                  <button
-                    onClick={() => handleNavClick("mgmt-add", "Add New Management Member")}
-                    className="w-full text-left py-1.5 px-3 rounded-lg text-[13px] text-white/75 hover:text-white hover:bg-white/10 flex items-center gap-2 cursor-pointer"
+                  </Link>
+
+                  <Link
+                    href="/admin/management/new"
+                    onClick={() => handleNavClick("management-new")}
+                    className={`w-full text-left py-2 px-3 rounded-xl text-[13px] transition-all flex items-center gap-2.5 cursor-pointer ${
+                      activeTab === "management-new" || activeTab === "mgmt-add"
+                        ? "bg-white/10 text-white font-semibold shadow-inner"
+                        : "text-white/75 hover:text-white hover:bg-white/5"
+                    }`}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                    <span
+                      className={`w-2 h-2 rounded-full transition-all shrink-0 ${
+                        activeTab === "management-new" || activeTab === "mgmt-add"
+                          ? "bg-[#8CCF24] shadow-[0_0_8px_#8CCF24]"
+                          : "bg-white/40"
+                      }`}
+                    />
                     <span>Add New Member</span>
-                  </button>
+                  </Link>
                 </div>
               )}
             </div>

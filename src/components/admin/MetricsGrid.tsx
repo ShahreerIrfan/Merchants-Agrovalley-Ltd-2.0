@@ -32,6 +32,7 @@ export default function MetricsGrid({ onCardClick }: MetricsGridProps) {
       count: "8",
       icon: Users,
       badge: null,
+      href: "/admin/management",
     },
     {
       id: "inquiries",
