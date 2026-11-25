@@ -790,7 +790,9 @@ export default function AddProductFormView({
                 <label className="text-[13px] font-bold text-gray-700">
                   Display Order (Sorting)
                 </label>
-                <HelpCircle className="w-3.5 h-3.5 text-gray-400" title="Integer value to prioritize ordering on public cards" />
+                <span title="Integer value to prioritize ordering on public cards" className="cursor-help inline-flex items-center">
+                  <HelpCircle className="w-3.5 h-3.5 text-gray-400" />
+                </span>
               </div>
               <input
                 type="number"
