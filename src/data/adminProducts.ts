@@ -140,3 +140,37 @@ export const CATEGORIES_LIST = [
   "Fisheries",
   "Food Commodities",
 ];
+
+// Phase 2 Database Structure Specifications
+export interface ProductServicePayload {
+  id?: string;
+  name: string;
+  divisionCategoryId: string;
+  cardBadgeText: string;
+  homepageDescription: string;
+  mainImageStorageKey?: string;
+  mainImageUrl?: string;
+  breedSpeciesVariety?: string;
+  farmingHusbandryMethod?: string;
+  processingColdChainTech?: string;
+  cutsPackagingFormats?: string;
+  certificationsStandards?: string;
+  exportLogisticsShipping?: string;
+  displayOrder: number;
+  isPublished: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+  lifecycleImages?: ProductLifecycleImagePayload[];
+}
+
+export interface ProductLifecycleImagePayload {
+  id?: string;
+  productServiceId?: string;
+  stepNumber: number;
+  title: string;
+  imageStorageKey?: string;
+  imageUrl?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
