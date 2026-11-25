@@ -103,7 +103,12 @@ async function handleUpdate(req: Request, { params }: RouteParams) {
     return NextResponse.json({ error: `Validation error: ${errorMsg}` }, { status: 400 });
   }
 
-  const { name, slug, description } = parseResult.data;
+  const { name, description } = parseResult.data;
+  let slug = parseResult.data.slug?.trim();
+
+  if (name && !slug) {
+    slug = `/${name.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}`;
+  }
 
   try {
     const existing = await prisma.category.findUnique({ where: { id } });

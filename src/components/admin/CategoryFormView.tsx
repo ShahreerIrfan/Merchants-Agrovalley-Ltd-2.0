@@ -33,30 +33,11 @@ export default function CategoryFormView({
   const router = useRouter();
 
   const [name, setName] = useState(initialData?.name || "");
-  const [slug, setSlug] = useState(initialData?.slug || "");
-  const [isSlugCustomized, setIsSlugCustomized] = useState(Boolean(initialData?.slug));
   const [description, setDescription] = useState(initialData?.description || "");
 
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-
-  // Auto-generate URL slug when name changes (unless user manually customized slug)
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value;
-    setName(val);
-    if (!isSlugCustomized || !slug) {
-      const generated = val
-        ? `/${val.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}`
-        : "";
-      setSlug(generated);
-    }
-  };
-
-  const handleSlugChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsSlugCustomized(true);
-    setSlug(e.target.value);
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,7 +55,6 @@ export default function CategoryFormView({
       if (mode === "edit" && initialData?.id) {
         const res = await updateCategoryAction(initialData.id, {
           name: name.trim(),
-          slug: slug.trim() || undefined,
           description: description.trim() || undefined,
         });
 
@@ -90,7 +70,6 @@ export default function CategoryFormView({
       } else {
         const res = await createCategoryAction({
           name: name.trim(),
-          slug: slug.trim() || undefined,
           description: description.trim() || undefined,
         });
 
@@ -188,37 +167,10 @@ export default function CategoryFormView({
               type="text"
               required
               value={name}
-              onChange={handleNameChange}
+              onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Livestock & Meat"
               className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-[14px] text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#013D26]/20 focus:border-[#013D26] transition-all"
             />
-          </div>
-
-          {/* URL Slug (Auto-generated with live override) */}
-          <div>
-            <div className="flex items-center justify-between mb-1.5">
-              <label className="text-[13px] font-bold text-gray-700">
-                URL Slug
-              </label>
-              <span className="text-[11.5px] text-gray-400 font-mono">
-                Auto-generates from name
-              </span>
-            </div>
-            <input
-              type="text"
-              value={slug}
-              onChange={handleSlugChange}
-              placeholder="/livestock-and-meat"
-              className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-[14px] font-mono text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#013D26]/20 focus:border-[#013D26] transition-all"
-            />
-            {slug && (
-              <p className="mt-1.5 text-[11.5px] text-gray-500 flex items-center gap-1.5 font-mono">
-                <span className="text-gray-400">Canonical Path:</span>
-                <span className="text-[#013D26] font-semibold bg-[#EAF5DC] px-2 py-0.5 rounded-md border border-[#8CCF24]/30">
-                  {slug}
-                </span>
-              </p>
-            )}
           </div>
 
           {/* Description */}

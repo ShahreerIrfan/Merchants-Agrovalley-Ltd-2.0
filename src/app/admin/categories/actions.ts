@@ -187,6 +187,10 @@ export async function updateCategoryAction(
     const name = data.name?.trim();
     let slug = data.slug?.trim();
 
+    if (name && !slug) {
+      slug = `/${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}`;
+    }
+
     if (name && name !== existing.name) {
       const dup = await prisma.category.findUnique({ where: { name } });
       if (dup && dup.id !== id) {
