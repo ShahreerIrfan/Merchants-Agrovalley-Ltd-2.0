@@ -49,8 +49,8 @@ export default function AdminDashboardView({
           adminEmail={adminEmail}
         />
 
-        {/* Dashboard Body */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-[1440px] w-full mx-auto">
+        {/* Dashboard Body - Full Page Layout (no max-w constraints) */}
+        <main className="flex-1 p-4 sm:p-6 lg:p-6 xl:p-8 w-full max-w-none">
           {activeTab === "products-all" ? (
             <AllProductsView onOpenActionNotice={openActionPreview} />
           ) : activeTab === "products-add" ? (

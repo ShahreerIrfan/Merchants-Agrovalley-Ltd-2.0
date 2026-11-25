@@ -157,9 +157,9 @@ export default function AllProductsView({
   return (
     <div className="w-full pb-10">
       {/* 1. PAGE HEADER WITH MODERN AGRO-INDUSTRIAL FACILITY BANNER */}
-      <div className="bg-gradient-to-r from-[#F0F7EB] via-white to-[#F0F7EB] rounded-[24px] border border-[#8CCF24]/30 shadow-[0_4px_24px_rgba(1,61,38,0.04)] p-6 sm:p-7 mb-6 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="bg-gradient-to-r from-[#F0F7EB] via-white to-[#F0F7EB] rounded-[24px] border border-[#8CCF24]/30 shadow-[0_4px_24px_rgba(1,61,38,0.04)] p-6 sm:p-7 mb-6 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 w-full">
         {/* Left Heading & Details */}
-        <div className="flex items-start gap-4 z-10 max-w-[620px]">
+        <div className="flex items-start gap-4 z-10 flex-1">
           <div className="w-12 h-12 rounded-2xl bg-[#EAF5DC] border border-[#8CCF24]/40 flex items-center justify-center shrink-0 shadow-xs">
             <Package className="w-6 h-6 text-[#013D26]" />
           </div>
@@ -174,7 +174,7 @@ export default function AllProductsView({
         </div>
 
         {/* Right Subtle Agricultural-Industrial Facility Banner */}
-        <div className="w-full md:w-[46%] h-[120px] sm:h-[145px] relative rounded-2xl overflow-hidden shrink-0 border border-white/70 shadow-xs">
+        <div className="w-full md:w-[420px] lg:w-[480px] h-[120px] sm:h-[145px] relative rounded-2xl overflow-hidden shrink-0 border border-white/70 shadow-xs">
           <Image
             src="/assets/admin/products-header-banner.jpg"
             alt="Merchants AgroValley Industrial Grain Silos & Processing Facility"
@@ -352,7 +352,7 @@ export default function AllProductsView({
                     <ArrowUpDown className="w-3.5 h-3.5 text-gray-400" />
                   </div>
                 </th>
-                <th className="py-3.5 px-4 max-w-[380px]">DESCRIPTION</th>
+                <th className="py-3.5 px-4 min-w-[280px]">DESCRIPTION</th>
                 <th
                   className="py-3.5 px-4 text-center cursor-pointer hover:bg-[#EAF5DC]/70 transition-colors w-[140px]"
                   onClick={() => handleColumnSort("displayOrder")}
@@ -444,7 +444,7 @@ export default function AllProductsView({
 
                       {/* 5. Description */}
                       <td className="py-4 px-4">
-                        <p className="text-[13px] text-gray-600 leading-relaxed line-clamp-3 max-w-[420px]">
+                        <p className="text-[13px] text-gray-600 leading-relaxed line-clamp-3">
                           {product.description}
                         </p>
                       </td>
