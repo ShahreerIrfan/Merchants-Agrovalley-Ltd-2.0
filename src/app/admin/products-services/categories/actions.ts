@@ -14,7 +14,7 @@ export interface CategoryItem {
   productsCount: number;
 }
 
-// 1. READ: Fetch all categories (auto-seeds if 0)
+// 1. READ: Fetch all categories
 export async function getCategoriesAction(): Promise<{
   success: boolean;
   categories: CategoryItem[];
@@ -60,20 +60,20 @@ export async function createCategoryAction(data: {
     await requireAdmin();
 
     const name = data.name.trim();
-    if (!name || name.length < 2) {
+    if (name.length < 2) {
       return { success: false, error: "Category name must be at least 2 characters." };
     }
 
-    let slug = data.slug?.trim();
-    if (!slug) {
-      slug = `/${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}`;
-    } else if (!slug.startsWith("/")) {
-      slug = `/${slug}`;
-    }
+    const slug =
+      data.slug?.trim() ||
+      `/${name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "")}`;
 
     const existing = await prisma.category.findFirst({
       where: {
-        OR: [{ name: { equals: name, mode: "insensitive" } }, { slug }],
+        OR: [{ name }, { slug }],
       },
     });
 
@@ -90,7 +90,6 @@ export async function createCategoryAction(data: {
     });
 
     revalidatePath("/admin/products-services/categories");
-    revalidatePath("/admin/categories");
     return {
       success: true,
       category: {
@@ -104,11 +103,11 @@ export async function createCategoryAction(data: {
       },
     };
   } catch {
-    return { success: false, error: "Database error creating category." };
+    return { success: false, error: "Failed to create category in database." };
   }
 }
 
-// 3. UPDATE: Edit existing category
+// 3. UPDATE: Modify existing category
 export async function updateCategoryAction(
   id: string,
   data: {
@@ -126,26 +125,22 @@ export async function updateCategoryAction(
     }
 
     const name = data.name?.trim();
-    let slug = data.slug?.trim();
-
-    if (name && !slug) {
-      slug = `/${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}`;
+    if (name && name.length < 2) {
+      return { success: false, error: "Category name must be at least 2 characters." };
     }
 
     if (name && name !== existing.name) {
       const dup = await prisma.category.findUnique({ where: { name } });
-      if (dup && dup.id !== id) {
-        return { success: false, error: "Another category already exists with this name." };
+      if (dup) {
+        return { success: false, error: "A category with this name already exists." };
       }
     }
 
-    if (slug) {
-      if (!slug.startsWith("/")) slug = `/${slug}`;
-      if (slug !== existing.slug) {
-        const dup = await prisma.category.findUnique({ where: { slug } });
-        if (dup && dup.id !== id) {
-          return { success: false, error: "Another category already exists with this slug." };
-        }
+    const slug = data.slug?.trim();
+    if (slug && slug !== existing.slug) {
+      const dup = await prisma.category.findUnique({ where: { slug } });
+      if (dup) {
+        return { success: false, error: "A category with this slug already exists." };
       }
     }
 
@@ -154,7 +149,7 @@ export async function updateCategoryAction(
       data: {
         ...(name ? { name } : {}),
         ...(slug ? { slug } : {}),
-        ...(data.description !== undefined ? { description: data.description?.trim() || null } : {}),
+        ...(data.description !== undefined ? { description: data.description.trim() || null } : {}),
       },
       include: {
         _count: { select: { products: true } },
@@ -162,7 +157,6 @@ export async function updateCategoryAction(
     });
 
     revalidatePath("/admin/products-services/categories");
-    revalidatePath("/admin/categories");
     return {
       success: true,
       category: {
@@ -176,7 +170,7 @@ export async function updateCategoryAction(
       },
     };
   } catch {
-    return { success: false, error: "Database error updating category." };
+    return { success: false, error: "Failed to update category in database." };
   }
 }
 
@@ -196,18 +190,17 @@ export async function deleteCategoryAction(
       return { success: false, error: "Category not found." };
     }
 
-    if (existing._count.products > 0) {
-      return {
-        success: false,
-        error: `Cannot delete: category has ${existing._count.products} associated product(s).`,
-      };
-    }
+    // Unlink any products first
+    await prisma.product.updateMany({
+      where: { categoryId: id },
+      data: { categoryId: null },
+    });
 
     await prisma.category.delete({ where: { id } });
+
     revalidatePath("/admin/products-services/categories");
-    revalidatePath("/admin/categories");
     return { success: true };
   } catch {
-    return { success: false, error: "Database error deleting category." };
+    return { success: false, error: "Failed to delete category from database." };
   }
 }

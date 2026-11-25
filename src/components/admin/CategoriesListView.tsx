@@ -19,7 +19,7 @@ import {
   CategoryItem,
   getCategoriesAction,
   deleteCategoryAction,
-} from "@/app/admin/categories/actions";
+} from "@/app/admin/products-services/categories/actions";
 
 interface CategoriesListViewProps {
   initialCategories?: CategoryItem[];

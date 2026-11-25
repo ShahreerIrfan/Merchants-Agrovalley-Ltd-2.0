@@ -17,7 +17,7 @@ import {
   createCategoryAction,
   updateCategoryAction,
   CategoryItem,
-} from "@/app/admin/categories/actions";
+} from "@/app/admin/products-services/categories/actions";
 
 interface CategoryFormViewProps {
   initialData?: CategoryItem;

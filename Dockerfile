@@ -18,6 +18,8 @@ COPY . .
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 ENV NEXT_TELEMETRY_DISABLED=1
+ARG DATABASE_URL="postgresql://postgres:qZWkj5Rf36cWF0Cnk7Gl@189.72.158.183:5432/postgres"
+ENV DATABASE_URL=${DATABASE_URL}
 
 RUN npx prisma generate
 RUN npm run build

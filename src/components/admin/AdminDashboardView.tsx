@@ -14,7 +14,7 @@ import CategoryFormView from "./CategoryFormView";
 import ManagementListView from "./ManagementListView";
 import ManagementMemberFormView from "./ManagementMemberFormView";
 import StaticActionNoticeModal from "./StaticActionNoticeModal";
-import { CategoryItem } from "@/app/admin/categories/actions";
+import { CategoryItem } from "@/app/admin/products-services/categories/actions";
 import { ManagementMemberItem } from "@/app/admin/management/actions";
 import { ProductItem } from "@/app/admin/products/actions";
 

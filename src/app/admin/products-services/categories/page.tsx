@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { requireAdmin } from "@/lib/auth/session";
 import AdminDashboardView from "@/components/admin/AdminDashboardView";
-import { getCategoriesAction } from "../../categories/actions";
+import { getCategoriesAction } from "./actions";
 
 export const metadata = {
   title: "Categories & Divisions | Merchants AgroValley Admin",
