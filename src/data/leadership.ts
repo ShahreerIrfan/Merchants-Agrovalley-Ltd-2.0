@@ -40,7 +40,7 @@ export const LEADERSHIP_TEAM: Leader[] = [
     badgeType: "secondary",
     image: "/assets/management-leaders/03_Mr_Michael_Sander_Business_Advisor_UK_Europe.webp",
     shortBio:
-      "Mr. Sander serves as a Business Advisor to British Merchants Limited, focusing on strengthening the company's international business presence and establishing strategic commercial connections across the United Kingdom and European markets. He supports cross-border opportunities, strategic partnerships, and long-term business growth.",
+      "Lee Sanders as a Business Advisor to British Merchants Limited, focusing on strengthening the company's international business presence and establishing strategic commercial connections across the United Kingdom and European markets. He supports cross-border opportunities, strategic partnerships, and long-term business growth.",
     fullBio:
       "With deep expertise in European regulatory frameworks, ESG compliance, and bilateral trade mechanisms, he drives Merchants Agro Valley's international expansion into Western retail and institutional distribution channels.",
   },
