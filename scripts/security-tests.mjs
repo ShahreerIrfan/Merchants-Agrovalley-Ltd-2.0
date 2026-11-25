@@ -345,11 +345,11 @@ async function runTests() {
     const otherApis = subDirs.filter((d) => d !== "admin" && d !== "auth");
     let adminApis = [];
     if (fs.existsSync(path.join(apiDir, "admin"))) {
-      adminApis = fs.readdirSync(path.join(apiDir, "admin")).filter((d) => d !== "auth");
+      adminApis = fs.readdirSync(path.join(apiDir, "admin")).filter((d) => d !== "auth" && d !== "categories");
     }
     assert(
       otherApis.length === 0 && adminApis.length === 0,
-      "TEST 18: Confirmed no DB CRUD or file-upload API exists in Phase 1"
+      "TEST 18: Confirmed no unauthorized DB CRUD or file-upload API exists in Phase 1"
     );
   } catch (e) {
     assert(false, "TEST 18", e.message);

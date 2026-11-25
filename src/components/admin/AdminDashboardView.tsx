@@ -9,16 +9,23 @@ import QuickActions from "./QuickActions";
 import RecentProductsTable from "./RecentProductsTable";
 import AllProductsView from "./AllProductsView";
 import AddProductFormView from "./AddProductFormView";
+import CategoriesListView from "./CategoriesListView";
+import CategoryFormView from "./CategoryFormView";
 import StaticActionNoticeModal from "./StaticActionNoticeModal";
+import { CategoryItem } from "@/app/admin/categories/actions";
 
 interface AdminDashboardViewProps {
   adminEmail: string;
   initialTab?: string;
+  initialCategories?: CategoryItem[];
+  editCategoryData?: CategoryItem;
 }
 
 export default function AdminDashboardView({
   adminEmail,
   initialTab = "dashboard",
+  initialCategories = [],
+  editCategoryData,
 }: AdminDashboardViewProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(initialTab);
@@ -57,6 +64,19 @@ export default function AdminDashboardView({
             <AddProductFormView
               onBack={() => setActiveTab("products-all")}
               onOpenNotice={openActionPreview}
+            />
+          ) : activeTab === "categories" ? (
+            <CategoriesListView initialCategories={initialCategories} />
+          ) : activeTab === "categories-new" ? (
+            <CategoryFormView
+              mode="create"
+              onBack={() => setActiveTab("categories")}
+            />
+          ) : activeTab === "categories-edit" ? (
+            <CategoryFormView
+              mode="edit"
+              initialData={editCategoryData}
+              onBack={() => setActiveTab("categories")}
             />
           ) : (
             <>

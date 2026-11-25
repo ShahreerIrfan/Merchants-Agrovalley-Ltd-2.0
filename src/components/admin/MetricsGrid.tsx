@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Package, Layers, Users, Mail } from "lucide-react";
 
 interface MetricsGridProps {
@@ -15,6 +16,7 @@ export default function MetricsGrid({ onCardClick }: MetricsGridProps) {
       count: "12",
       icon: Package,
       badge: null,
+      href: "/admin/products",
     },
     {
       id: "categories",
@@ -22,6 +24,7 @@ export default function MetricsGrid({ onCardClick }: MetricsGridProps) {
       count: "6",
       icon: Layers,
       badge: null,
+      href: "/admin/categories",
     },
     {
       id: "members",
@@ -43,12 +46,8 @@ export default function MetricsGrid({ onCardClick }: MetricsGridProps) {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
       {metrics.map((item) => {
         const Icon = item.icon;
-        return (
-          <div
-            key={item.id}
-            onClick={() => onCardClick(item.title)}
-            className="bg-white rounded-2xl p-5 border border-gray-200/70 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_24px_rgba(1,61,38,0.08)] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer flex items-center gap-4 relative overflow-hidden group"
-          >
+        const cardContent = (
+          <>
             {/* Red Notification Pill (for New Inquiries) */}
             {item.badge && (
               <span className="absolute top-3 right-3 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">
@@ -70,6 +69,27 @@ export default function MetricsGrid({ onCardClick }: MetricsGridProps) {
                 {item.title}
               </p>
             </div>
+          </>
+        );
+
+        const cardClass =
+          "bg-white rounded-2xl p-5 border border-gray-200/70 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_24px_rgba(1,61,38,0.08)] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer flex items-center gap-4 relative overflow-hidden group";
+
+        if (item.href) {
+          return (
+            <Link key={item.id} href={item.href} className={cardClass}>
+              {cardContent}
+            </Link>
+          );
+        }
+
+        return (
+          <div
+            key={item.id}
+            onClick={() => onCardClick(item.title)}
+            className={cardClass}
+          >
+            {cardContent}
           </div>
         );
       })}

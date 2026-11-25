@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Package, Layers, UserPlus, Upload, ArrowRight } from "lucide-react";
 
 interface QuickActionsProps {
@@ -14,12 +15,14 @@ export default function QuickActions({ onActionClick }: QuickActionsProps) {
       label: "Add Product / Service",
       icon: Package,
       isPrimary: true,
+      href: "/admin/products/new",
     },
     {
       id: "add-category",
       label: "Add Category",
       icon: Layers,
       isPrimary: false,
+      href: "/admin/categories/new",
     },
     {
       id: "add-member",
@@ -49,16 +52,8 @@ export default function QuickActions({ onActionClick }: QuickActionsProps) {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
         {actions.map((act) => {
           const Icon = act.icon;
-          return (
-            <button
-              key={act.id}
-              onClick={() => onActionClick(act.label)}
-              className={`flex items-center justify-between p-4 rounded-xl font-semibold text-[14px] transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 ${
-                act.isPrimary
-                  ? "bg-[#013D26] hover:bg-[#024F32] text-white shadow-[0_6px_20px_rgba(1,61,38,0.2)]"
-                  : "bg-white hover:bg-[#F2F9EA] text-gray-800 border border-gray-200/90 hover:border-[#8CCF24]"
-              }`}
-            >
+          const content = (
+            <>
               <div className="flex items-center gap-3">
                 <Icon
                   className={`w-5 h-5 ${
@@ -72,6 +67,30 @@ export default function QuickActions({ onActionClick }: QuickActionsProps) {
                   act.isPrimary ? "text-white/80" : "text-gray-400"
                 }`}
               />
+            </>
+          );
+
+          const className = `flex items-center justify-between p-4 rounded-xl font-semibold text-[14px] transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 ${
+            act.isPrimary
+              ? "bg-[#013D26] hover:bg-[#024F32] text-white shadow-[0_6px_20px_rgba(1,61,38,0.2)]"
+              : "bg-white hover:bg-[#F2F9EA] text-gray-800 border border-gray-200/90 hover:border-[#8CCF24]"
+          }`;
+
+          if (act.href) {
+            return (
+              <Link key={act.id} href={act.href} className={className}>
+                {content}
+              </Link>
+            );
+          }
+
+          return (
+            <button
+              key={act.id}
+              onClick={() => onActionClick(act.label)}
+              className={className}
+            >
+              {content}
             </button>
           );
         })}

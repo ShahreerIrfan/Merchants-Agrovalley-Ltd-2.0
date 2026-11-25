@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import MotionProvider from "@/components/animations/MotionProvider";
@@ -42,7 +43,9 @@ export default function RootLayout({
       <body className="font-sans antialiased text-[#142C23] bg-white selection:bg-[#A6E51B] selection:text-[#063F2B] overflow-x-clip">
         <MotionProvider>
           {children}
-          <Footer />
+          <Suspense fallback={null}>
+            <Footer />
+          </Suspense>
         </MotionProvider>
       </body>
     </html>

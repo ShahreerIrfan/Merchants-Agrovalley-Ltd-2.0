@@ -113,7 +113,7 @@ export default function AdminSidebar({
               <button
                 onClick={() => setProductsOpen(!productsOpen)}
                 className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl transition-all cursor-pointer ${
-                  productsOpen || activeTab.startsWith("products")
+                  productsOpen || activeTab.startsWith("products") || activeTab.startsWith("categories")
                     ? "bg-white/5 text-white"
                     : "text-white/85 hover:bg-white/5"
                 }`}
@@ -169,17 +169,24 @@ export default function AdminSidebar({
                     <span>Add New Product/Service</span>
                   </Link>
 
-                  <button
-                    onClick={() => handleNavClick("categories", "Categories Management")}
+                  <Link
+                    href="/admin/categories"
+                    onClick={() => handleNavClick("categories")}
                     className={`w-full text-left py-2 px-3 rounded-xl text-[13px] transition-all flex items-center gap-2.5 cursor-pointer ${
-                      activeTab === "categories"
-                        ? "bg-white/10 text-white font-semibold"
+                      activeTab === "categories" || activeTab.startsWith("categories-")
+                        ? "bg-white/10 text-white font-semibold shadow-inner"
                         : "text-white/75 hover:text-white hover:bg-white/5"
                     }`}
                   >
-                    <span className="w-2 h-2 rounded-full bg-white/40 shrink-0" />
+                    <span
+                      className={`w-2 h-2 rounded-full transition-all shrink-0 ${
+                        activeTab === "categories" || activeTab.startsWith("categories-")
+                          ? "bg-[#8CCF24] shadow-[0_0_8px_#8CCF24]"
+                          : "bg-white/40"
+                      }`}
+                    />
                     <span>Categories</span>
-                  </button>
+                  </Link>
                 </div>
               )}
             </div>
