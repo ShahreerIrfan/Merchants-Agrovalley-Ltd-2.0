@@ -19,55 +19,7 @@ export interface ManagementMemberItem {
   updatedAt: string;
 }
 
-// Default initial seeds matching company leadership
-const DEFAULT_MANAGEMENT_SEEDS = [
-  {
-    name: "Mohammed H. Rahman",
-    designation: "CHAIRMAN",
-    boardBadge: "Executive Board",
-    bio: "Mr. Rahman is a highly energetic management and accounting graduate with extensive knowledge in trade and corporate finance, commodities, steel and metals, land development, and precious metals mining. He is a financial analyst specializing in accounting and new business development, with more than 20 years of experience in the financial services and commodities sectors.",
-    fullBio: "Throughout his career, he has successfully led major international investment initiatives, cross-border commercial partnerships, and large-scale agro-industrial infrastructure projects across Asia and Europe. Under his strategic vision, Merchants Agro Valley is establishing a vertically integrated agro-industrial network that sets new benchmarks for quality, corporate governance, and sustainable community prosperity.",
-    image: "/assets/management-leaders/01_Mohammed_H_Rahman_Chairman.webp",
-    order: 1,
-    isKeyLeader: true,
-    status: "ACTIVE",
-  },
-  {
-    name: "Rahat F. Chowdhury",
-    designation: "MANAGING DIRECTOR",
-    boardBadge: "Executive Board",
-    bio: "Mr. Chowdhury brings over 20 years of extensive professional experience in property management, the hospitality sector, and corporate security services. Throughout his career, he has developed a strong and versatile business portfolio, including active involvement in import and export operations across various industries.",
-    fullBio: "His leadership has been instrumental in optimizing supply chain infrastructure, establishing rigorous operational standards, and fostering public-private agricultural partnerships to accelerate sustainable agro-industrial development.",
-    image: "/assets/management-leaders/02_Rahat_F_Chowdhury_Managing_Director.webp",
-    order: 2,
-    isKeyLeader: false,
-    status: "ACTIVE",
-  },
-  {
-    name: "Lee Sanders",
-    designation: "BUSINESS ADVISOR | UK & EUROPE",
-    boardBadge: "Advisory Board",
-    bio: "Lee Sanders as a Business Advisor to British Merchants Limited, focusing on strengthening the company's international business presence and establishing strategic commercial connections across the United Kingdom and European markets. He supports cross-border opportunities, strategic partnerships, and long-term business growth.",
-    fullBio: "With deep expertise in European regulatory frameworks, ESG compliance, and bilateral trade mechanisms, he drives Merchants Agro Valley's international expansion into Western retail and institutional distribution channels.",
-    image: "/assets/management-leaders/03_Mr_Michael_Sander_Business_Advisor_UK_Europe.webp",
-    order: 3,
-    isKeyLeader: false,
-    status: "ACTIVE",
-  },
-  {
-    name: "Kaikobad MM Meah",
-    designation: "DIRECTOR",
-    boardBadge: "Directorate",
-    bio: "Mr. Meah serves as the International Development Manager and plays a central role in expanding local and international business operations, sales performance, and service capabilities. He contributes to strengthening the company's global market presence and promoting consistently high service standards.",
-    fullBio: "He brings comprehensive acumen in cold-chain logistics, bilateral distributor relations, and international quality certification protocols across key export corridors.",
-    image: "/assets/management-leaders/04_Kaikobad_MM_Meah_Director.webp",
-    order: 4,
-    isKeyLeader: false,
-    status: "ACTIVE",
-  },
-];
-
-// 1. READ: Fetch all management members (ordered by hierarchy sequence, auto-seeds if 0)
+// 1. READ: Fetch all management members (ordered by hierarchy sequence)
 export async function getManagementMembersAction(): Promise<{
   success: boolean;
   members: ManagementMemberItem[];
@@ -76,19 +28,9 @@ export async function getManagementMembersAction(): Promise<{
   try {
     await requireAdmin();
 
-    let records = await prisma.managementMember.findMany({
+    const records = await prisma.managementMember.findMany({
       orderBy: [{ order: "asc" }, { createdAt: "asc" }],
     });
-
-    if (records.length === 0) {
-      await prisma.managementMember.createMany({
-        data: DEFAULT_MANAGEMENT_SEEDS,
-      });
-
-      records = await prisma.managementMember.findMany({
-        orderBy: [{ order: "asc" }, { createdAt: "asc" }],
-      });
-    }
 
     const members: ManagementMemberItem[] = records.map((m) => ({
       id: m.id,

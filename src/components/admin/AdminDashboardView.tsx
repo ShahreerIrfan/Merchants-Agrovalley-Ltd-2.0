@@ -133,7 +133,11 @@ export default function AdminDashboardView({
               </div>
 
               {/* 4 Summary Metric Cards */}
-              <MetricsGrid onCardClick={openActionPreview} />
+              <MetricsGrid
+                onCardClick={openActionPreview}
+                managementCount={initialManagementMembers.length}
+                categoryCount={initialCategories.length}
+              />
 
               {/* Quick Actions Bar */}
               <QuickActions onActionClick={openActionPreview} />
