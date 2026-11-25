@@ -32,7 +32,7 @@ export default function MetricsGrid({
       count: categoryCount !== undefined ? String(categoryCount) : "0",
       icon: Layers,
       badge: null,
-      href: "/admin/categories",
+      href: "/admin/products-services/categories",
     },
     {
       id: "members",

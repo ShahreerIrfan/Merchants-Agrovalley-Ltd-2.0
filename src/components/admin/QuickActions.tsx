@@ -22,7 +22,7 @@ export default function QuickActions({ onActionClick }: QuickActionsProps) {
       label: "Add Category",
       icon: Layers,
       isPrimary: false,
-      href: "/admin/categories/new",
+      href: "/admin/products-services/categories/new",
     },
     {
       id: "add-member",

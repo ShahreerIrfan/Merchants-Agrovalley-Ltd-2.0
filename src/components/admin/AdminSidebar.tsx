@@ -174,7 +174,7 @@ export default function AdminSidebar({
                   </Link>
 
                   <Link
-                    href="/admin/categories"
+                    href="/admin/products-services/categories"
                     onClick={() => handleNavClick("categories")}
                     className={`w-full text-left py-2 px-3 rounded-xl text-[13px] transition-all flex items-center gap-2.5 cursor-pointer ${
                       activeTab === "categories" || activeTab.startsWith("categories-")

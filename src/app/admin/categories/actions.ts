@@ -89,6 +89,7 @@ export async function createCategoryAction(data: {
       },
     });
 
+    revalidatePath("/admin/products-services/categories");
     revalidatePath("/admin/categories");
     return {
       success: true,
@@ -160,6 +161,7 @@ export async function updateCategoryAction(
       },
     });
 
+    revalidatePath("/admin/products-services/categories");
     revalidatePath("/admin/categories");
     return {
       success: true,
@@ -202,6 +204,7 @@ export async function deleteCategoryAction(
     }
 
     await prisma.category.delete({ where: { id } });
+    revalidatePath("/admin/products-services/categories");
     revalidatePath("/admin/categories");
     return { success: true };
   } catch {

@@ -150,7 +150,7 @@ export default function CategoriesListView({
           </button>
 
           <Link
-            href="/admin/categories/new"
+            href="/admin/products-services/categories/new"
             className="bg-[#013D26] hover:bg-[#025234] text-white px-5 py-2.5 rounded-xl text-[13.5px] font-semibold flex items-center justify-center gap-2 shadow-xs transition-all hover:shadow cursor-pointer"
           >
             <Plus className="w-4 h-4 stroke-[2.5]" />
@@ -258,7 +258,7 @@ export default function CategoriesListView({
                       <AlertCircle className="w-8 h-8 text-gray-400" />
                       <p className="font-semibold text-gray-700">No categories found</p>
                       <Link
-                        href="/admin/categories/new"
+                        href="/admin/products-services/categories/new"
                         className="text-[13px] text-[#013D26] font-semibold underline hover:text-[#025234]"
                       >
                         Create your first category
@@ -326,7 +326,7 @@ export default function CategoriesListView({
                       <td className="py-4 px-4 text-center whitespace-nowrap">
                         <div className="flex items-center justify-center gap-2">
                           <Link
-                            href={`/admin/categories/${category.id}/edit`}
+                            href={`/admin/products-services/categories/${category.id}/edit`}
                             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12.5px] font-medium border border-gray-300 text-gray-700 hover:text-[#013D26] hover:border-[#013D26] hover:bg-gray-50 transition-all cursor-pointer"
                             title="Edit Category"
                           >

@@ -62,7 +62,7 @@ export default function CategoryFormView({
           setSuccessMessage("Category updated successfully!");
           setTimeout(() => {
             if (onBack) onBack();
-            else router.push("/admin/categories");
+            else router.push("/admin/products-services/categories");
           }, 800);
         } else {
           setErrorMessage(res.error || "Failed to update category.");
@@ -77,7 +77,7 @@ export default function CategoryFormView({
           setSuccessMessage("Category created and saved to database successfully!");
           setTimeout(() => {
             if (onBack) onBack();
-            else router.push("/admin/categories");
+            else router.push("/admin/products-services/categories");
           }, 800);
         } else {
           setErrorMessage(res.error || "Failed to create category.");
@@ -111,7 +111,7 @@ export default function CategoryFormView({
         {/* Back Link */}
         <div className="shrink-0">
           <Link
-            href="/admin/categories"
+            href="/admin/products-services/categories"
             onClick={(e) => {
               if (onBack) {
                 e.preventDefault();
@@ -198,7 +198,7 @@ export default function CategoryFormView({
           {/* Form Action Buttons */}
           <div className="flex items-center justify-end gap-3 pt-3 border-t border-gray-100">
             <Link
-              href="/admin/categories"
+              href="/admin/products-services/categories"
               onClick={(e) => {
                 if (onBack) {
                   e.preventDefault();
