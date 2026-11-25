@@ -29,7 +29,7 @@ export default function CategoriesListView({
   initialCategories = [],
 }: CategoriesListViewProps) {
   const [categories, setCategories] = useState<CategoryItem[]>(initialCategories);
-  const [loading, setLoading] = useState(initialCategories.length === 0);
+  const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<"name" | "date" | "products">("name");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
@@ -38,7 +38,7 @@ export default function CategoriesListView({
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [notification, setNotification] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
-  // Load categories on mount if not provided
+  // Load categories on explicit refresh
   const loadCategories = async () => {
     setLoading(true);
     const res = await getCategoriesAction();
@@ -51,10 +51,8 @@ export default function CategoriesListView({
   };
 
   useEffect(() => {
-    if (initialCategories.length === 0) {
-      loadCategories();
-    }
-  }, []);
+    setCategories(initialCategories);
+  }, [initialCategories]);
 
   // Filtered and Sorted
   const filteredCategories = useMemo(() => {

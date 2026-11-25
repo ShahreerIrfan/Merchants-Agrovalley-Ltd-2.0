@@ -13,51 +13,7 @@ const CreateCategorySchema = z
   })
   .strict();
 
-// Default seed categories if database is initially empty
-const DEFAULT_SEED_CATEGORIES = [
-  {
-    name: "Bulk Commodities",
-    slug: "/bulk-commodities",
-    description: "High-grade bulk rice, pulses, wheat, sugar, and essential food staples.",
-  },
-  {
-    name: "Agro Livestock",
-    slug: "/agro-livestock",
-    description: "Commercial cattle feedlot fattening, Halal abattoir dressing, and beef export.",
-  },
-  {
-    name: "Dairy & Milk",
-    slug: "/dairy-milk",
-    description: "Selective dairy herd breeding, continuous rotary milking, and aseptic dairy distribution.",
-  },
-  {
-    name: "Small Ruminants",
-    slug: "/small-ruminants",
-    description: "Purebred Black Bengal goat breeding on elevated slatted housing and Halal mutton export.",
-  },
-  {
-    name: "Poultry & Avian",
-    slug: "/poultry-avian",
-    description: "Climate-controlled tunnel housing, zero-antibiotic diet, and cryogenic IQF blast freezing.",
-  },
-  {
-    name: "Fisheries & Marine",
-    slug: "/fisheries-marine",
-    description: "Scientific aerated freshwater earthen ponds, probiotic management, and filleting.",
-  },
-  {
-    name: "Waterfowl Division",
-    slug: "/waterfowl-division",
-    description: "Free-range foraging in natural Haor wetland pastures and export-grade duck processing.",
-  },
-  {
-    name: "Natural Spices",
-    slug: "/natural-spices",
-    description: "Aromatic turmeric, chili, coriander, ginger, and cumin rich in natural essential oils.",
-  },
-];
-
-// GET: List all categories (with auto-seed if database is empty)
+// GET: List all categories
 export async function GET(req: Request) {
   // BFLA: Server-side admin verification
   const session = await getAdminSession(req);
@@ -69,7 +25,7 @@ export async function GET(req: Request) {
   }
 
   try {
-    let categories = await prisma.category.findMany({
+    const categories = await prisma.category.findMany({
       orderBy: { createdAt: "desc" },
       include: {
         _count: {
@@ -77,25 +33,6 @@ export async function GET(req: Request) {
         },
       },
     });
-
-    // Auto-seed if database is empty
-    if (categories.length === 0) {
-      for (const item of DEFAULT_SEED_CATEGORIES) {
-        await prisma.category.upsert({
-          where: { name: item.name },
-          update: {},
-          create: item,
-        });
-      }
-      categories = await prisma.category.findMany({
-        orderBy: { createdAt: "desc" },
-        include: {
-          _count: {
-            select: { products: true },
-          },
-        },
-      });
-    }
 
     return NextResponse.json(
       { success: true, categories },

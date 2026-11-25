@@ -1,6 +1,9 @@
 import { Suspense } from "react";
 import { requireAdmin } from "@/lib/auth/session";
 import AdminDashboardView from "@/components/admin/AdminDashboardView";
+import { getCategoriesAction } from "../categories/actions";
+import { getProductsAction } from "../products/actions";
+import { getManagementMembersAction } from "../management/actions";
 
 export const metadata = {
   title: "Admin Dashboard | Merchants AgroValley",
@@ -10,7 +13,20 @@ export const metadata = {
 async function DashboardContent() {
   // Strictly verified on the server side: redirects to /admin/login if missing or invalid token
   const session = await requireAdmin();
-  return <AdminDashboardView adminEmail={session.email} />;
+  const [categoriesRes, productsRes, managementRes] = await Promise.all([
+    getCategoriesAction(),
+    getProductsAction(),
+    getManagementMembersAction(),
+  ]);
+
+  return (
+    <AdminDashboardView
+      adminEmail={session.email}
+      initialCategories={categoriesRes.categories || []}
+      initialProducts={productsRes.products || []}
+      initialManagementMembers={managementRes.members || []}
+    />
+  );
 }
 
 export default function AdminDashboardPage() {

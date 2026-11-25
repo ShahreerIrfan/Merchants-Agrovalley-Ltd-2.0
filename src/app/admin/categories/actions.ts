@@ -23,72 +23,12 @@ export async function getCategoriesAction(): Promise<{
   try {
     await requireAdmin();
 
-    let records = await prisma.category.findMany({
+    const records = await prisma.category.findMany({
       orderBy: { createdAt: "desc" },
       include: {
         _count: { select: { products: true } },
       },
     });
-
-    if (records.length === 0) {
-      const defaultSeeds = [
-        {
-          name: "Bulk Commodities",
-          slug: "/bulk-commodities",
-          description: "High-grade bulk rice, pulses, wheat, sugar, and essential food staples.",
-        },
-        {
-          name: "Agro Livestock",
-          slug: "/agro-livestock",
-          description: "Commercial cattle feedlot fattening, Halal abattoir dressing, and beef export.",
-        },
-        {
-          name: "Dairy & Milk",
-          slug: "/dairy-milk",
-          description: "Selective dairy herd breeding, continuous rotary milking, and aseptic dairy distribution.",
-        },
-        {
-          name: "Small Ruminants",
-          slug: "/small-ruminants",
-          description: "Purebred Black Bengal goat breeding on elevated slatted housing and Halal mutton export.",
-        },
-        {
-          name: "Poultry & Avian",
-          slug: "/poultry-avian",
-          description: "Climate-controlled tunnel housing, zero-antibiotic diet, and cryogenic IQF blast freezing.",
-        },
-        {
-          name: "Fisheries & Marine",
-          slug: "/fisheries-marine",
-          description: "Scientific aerated freshwater earthen ponds, probiotic management, and filleting.",
-        },
-        {
-          name: "Waterfowl Division",
-          slug: "/waterfowl-division",
-          description: "Free-range foraging in natural Haor wetland pastures and export-grade duck processing.",
-        },
-        {
-          name: "Natural Spices",
-          slug: "/natural-spices",
-          description: "Aromatic turmeric, chili, coriander, ginger, and cumin rich in natural essential oils.",
-        },
-      ];
-
-      for (const item of defaultSeeds) {
-        await prisma.category.upsert({
-          where: { name: item.name },
-          update: {},
-          create: item,
-        });
-      }
-
-      records = await prisma.category.findMany({
-        orderBy: { createdAt: "desc" },
-        include: {
-          _count: { select: { products: true } },
-        },
-      });
-    }
 
     const categories: CategoryItem[] = records.map((c) => ({
       id: c.id,
