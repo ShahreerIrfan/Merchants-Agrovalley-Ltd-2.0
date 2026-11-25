@@ -25,24 +25,24 @@ export default function AddProductFormView({
   onOpenNotice,
 }: AddProductFormViewProps) {
   const [commodityName, setCommodityName] = useState("");
-  const [slug, setSlug] = useState("");
   const [division, setDivision] = useState(DIVISIONS_LIST[1]);
   const [category, setCategory] = useState(CATEGORIES_LIST[1]);
   const [description, setDescription] = useState("");
   const [displayOrder, setDisplayOrder] = useState("10");
   const [status, setStatus] = useState("Active on Site");
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value;
-    setCommodityName(val);
-    if (!slug || slug === `/${val.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`) {
-      setSlug(`/${val.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}`);
-    }
-  };
+  // Automatically generate URL slug from commodity name
+  const generatedSlug = commodityName
+    ? `/${commodityName
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")}`
+    : "";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onOpenNotice(`Create Commodity "${commodityName || "New Product"}"`);
+    onOpenNotice(`Create Commodity "${commodityName || "New Product"}" (Auto-slug: ${generatedSlug})`);
   };
 
   return (
@@ -83,35 +83,27 @@ export default function AddProductFormView({
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Commodity Name & Slug */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div>
-              <label className="block text-[13px] font-bold text-gray-700 mb-1.5">
-                Commodity / Division Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                required
-                value={commodityName}
-                onChange={handleNameChange}
-                placeholder="e.g. Organic Black Tiger Shrimp Hatchery"
-                className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-[14px] text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#013D26]/20 focus:border-[#013D26] transition-all"
-              />
-            </div>
-
-            <div>
-              <label className="block text-[13px] font-bold text-gray-700 mb-1.5">
-                URL Slug <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                required
-                value={slug}
-                onChange={(e) => setSlug(e.target.value)}
-                placeholder="/shrimp-hatchery"
-                className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-[14px] font-mono text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#013D26]/20 focus:border-[#013D26] transition-all"
-              />
-            </div>
+          {/* Commodity Name (Auto-generates Slug) */}
+          <div>
+            <label className="block text-[13px] font-bold text-gray-700 mb-1.5">
+              Commodity / Division Name <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              required
+              value={commodityName}
+              onChange={(e) => setCommodityName(e.target.value)}
+              placeholder="e.g. Organic Black Tiger Shrimp Hatchery"
+              className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-[14px] text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#013D26]/20 focus:border-[#013D26] transition-all"
+            />
+            {generatedSlug && (
+              <p className="mt-2 text-[12px] text-gray-500 flex items-center gap-1.5 font-mono">
+                <span className="text-gray-400">Auto-generated URL:</span>
+                <span className="text-[#013D26] font-semibold bg-[#EAF5DC] px-2 py-0.5 rounded-md border border-[#8CCF24]/30">
+                  {generatedSlug}
+                </span>
+              </p>
+            )}
           </div>
 
           {/* Division & Category */}
