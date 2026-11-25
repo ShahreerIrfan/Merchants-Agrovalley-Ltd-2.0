@@ -34,7 +34,7 @@ export interface ProductItem {
   updatedAt: string;
 }
 
-// 1. READ: Fetch all products from database (seeds initial 9 if empty)
+// 1. READ: Fetch all products from database
 export async function getProductsAction(): Promise<{
   success: boolean;
   products: ProductItem[];
@@ -43,31 +43,9 @@ export async function getProductsAction(): Promise<{
   try {
     await requireAdmin();
 
-    let records = await prisma.product.findMany({
+    const records = await prisma.product.findMany({
       orderBy: [{ displayOrder: "asc" }, { createdAt: "asc" }],
     });
-
-    // Auto-seed the 9 default records into PostgreSQL on initial run
-    if (records.length === 0) {
-      for (const item of ADMIN_PRODUCTS_DATA) {
-        await prisma.product.create({
-          data: {
-            commodityName: item.commodityName,
-            slug: item.slug,
-            division: item.division,
-            cardBadgeText: item.division,
-            description: item.description,
-            image: item.image,
-            displayOrder: item.displayOrder,
-            status: item.status === "Active on Site" ? "ACTIVE" : "INACTIVE",
-          },
-        });
-      }
-
-      records = await prisma.product.findMany({
-        orderBy: [{ displayOrder: "asc" }, { createdAt: "asc" }],
-      });
-    }
 
     const products: ProductItem[] = records.map((p) => ({
       id: p.id,
