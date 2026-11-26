@@ -112,12 +112,6 @@ export default function CategoryFormView({
         <div className="shrink-0">
           <Link
             href="/admin/products-services/categories"
-            onClick={(e) => {
-              if (onBack) {
-                e.preventDefault();
-                onBack();
-              }
-            }}
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-300/90 bg-white hover:bg-[#F4F9F2] text-[#013D26] text-[13.5px] font-semibold shadow-2xs hover:shadow-xs transition-all cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -199,12 +193,6 @@ export default function CategoryFormView({
           <div className="flex items-center justify-end gap-3 pt-3 border-t border-gray-100">
             <Link
               href="/admin/products-services/categories"
-              onClick={(e) => {
-                if (onBack) {
-                  e.preventDefault();
-                  onBack();
-                }
-              }}
               className="px-6 py-2.5 rounded-xl border border-gray-300 bg-white text-gray-700 text-[13.5px] font-semibold hover:bg-gray-100 transition-all cursor-pointer shadow-2xs"
             >
               Cancel

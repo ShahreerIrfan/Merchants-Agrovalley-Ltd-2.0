@@ -51,7 +51,11 @@ export default function CategoriesListView({
   };
 
   useEffect(() => {
-    setCategories(initialCategories);
+    if (initialCategories && initialCategories.length > 0) {
+      setCategories(initialCategories);
+    } else {
+      loadCategories();
+    }
   }, [initialCategories]);
 
   // Filtered and Sorted

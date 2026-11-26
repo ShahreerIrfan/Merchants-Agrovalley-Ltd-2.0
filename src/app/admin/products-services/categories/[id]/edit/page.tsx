@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import prisma from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth/session";
 import AdminDashboardView from "@/components/admin/AdminDashboardView";
+import { getCategoriesAction } from "../../actions";
 
 interface EditCategoryPageProps {
   params: Promise<{ id: string }>;
@@ -17,10 +18,13 @@ async function EditCategoryContent({ params }: EditCategoryPageProps) {
   const { id } = await params;
   const session = await requireAdmin();
 
-  const category = await prisma.category.findUnique({
-    where: { id },
-    include: { _count: { select: { products: true } } },
-  });
+  const [category, categoriesRes] = await Promise.all([
+    prisma.category.findUnique({
+      where: { id },
+      include: { _count: { select: { products: true } } },
+    }),
+    getCategoriesAction(),
+  ]);
 
   if (!category) {
     notFound();
@@ -40,6 +44,7 @@ async function EditCategoryContent({ params }: EditCategoryPageProps) {
     <AdminDashboardView
       adminEmail={session.email}
       initialTab="categories-edit"
+      initialCategories={categoriesRes.categories || []}
       editCategoryData={categoryData}
     />
   );

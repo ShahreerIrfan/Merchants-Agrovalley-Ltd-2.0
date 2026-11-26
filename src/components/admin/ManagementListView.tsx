@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import {
   deleteManagementMemberAction,
+  getManagementMembersAction,
   ManagementMemberItem,
 } from "@/app/admin/management/actions";
 
@@ -36,6 +37,18 @@ export default function ManagementListView({
     type: "success" | "error";
     text: string;
   } | null>(null);
+
+  useEffect(() => {
+    if (initialMembers && initialMembers.length > 0) {
+      setMembers(initialMembers);
+    } else {
+      getManagementMembersAction().then((res) => {
+        if (res.success && res.members) {
+          setMembers(res.members);
+        }
+      });
+    }
+  }, [initialMembers]);
 
   // Filter & Sort
   const filtered = members

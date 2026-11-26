@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import AdminSidebar from "./AdminSidebar";
 import AdminHeader from "./AdminHeader";
 import MetricsGrid from "./MetricsGrid";
@@ -39,6 +40,7 @@ export default function AdminDashboardView({
   initialProducts = [],
   editProductData,
 }: AdminDashboardViewProps) {
+  const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(initialTab);
   const [modalTitle, setModalTitle] = useState("");
@@ -80,7 +82,10 @@ export default function AdminDashboardView({
             <AddProductFormView
               mode="create"
               categories={initialCategories}
-              onBack={() => setActiveTab("products-all")}
+              onBack={() => {
+                setActiveTab("products-all");
+                router.push("/admin/products");
+              }}
               onOpenNotice={openActionPreview}
             />
           ) : activeTab === "products-edit" ? (
@@ -88,7 +93,10 @@ export default function AdminDashboardView({
               mode="edit"
               initialData={editProductData}
               categories={initialCategories}
-              onBack={() => setActiveTab("products-all")}
+              onBack={() => {
+                setActiveTab("products-all");
+                router.push("/admin/products");
+              }}
               onOpenNotice={openActionPreview}
             />
           ) : activeTab === "categories" ? (
@@ -96,26 +104,38 @@ export default function AdminDashboardView({
           ) : activeTab === "categories-new" ? (
             <CategoryFormView
               mode="create"
-              onBack={() => setActiveTab("categories")}
+              onBack={() => {
+                setActiveTab("categories");
+                router.push("/admin/products-services/categories");
+              }}
             />
           ) : activeTab === "categories-edit" ? (
             <CategoryFormView
               mode="edit"
               initialData={editCategoryData}
-              onBack={() => setActiveTab("categories")}
+              onBack={() => {
+                setActiveTab("categories");
+                router.push("/admin/products-services/categories");
+              }}
             />
           ) : activeTab === "management" ? (
             <ManagementListView initialMembers={initialManagementMembers} />
           ) : activeTab === "management-new" ? (
             <ManagementMemberFormView
               mode="create"
-              onBack={() => setActiveTab("management")}
+              onBack={() => {
+                setActiveTab("management");
+                router.push("/admin/management");
+              }}
             />
           ) : activeTab === "management-edit" ? (
             <ManagementMemberFormView
               mode="edit"
               initialData={editManagementData}
-              onBack={() => setActiveTab("management")}
+              onBack={() => {
+                setActiveTab("management");
+                router.push("/admin/management");
+              }}
             />
           ) : (
             <>

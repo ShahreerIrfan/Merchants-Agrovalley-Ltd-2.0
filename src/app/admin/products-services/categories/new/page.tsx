@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { requireAdmin } from "@/lib/auth/session";
 import AdminDashboardView from "@/components/admin/AdminDashboardView";
+import { getCategoriesAction } from "../actions";
 
 export const metadata = {
   title: "Add New Category | Merchants AgroValley Admin",
@@ -9,11 +10,13 @@ export const metadata = {
 
 async function NewCategoryContent() {
   const session = await requireAdmin();
+  const categoriesRes = await getCategoriesAction();
 
   return (
     <AdminDashboardView
       adminEmail={session.email}
       initialTab="categories-new"
+      initialCategories={categoriesRes.categories || []}
     />
   );
 }
