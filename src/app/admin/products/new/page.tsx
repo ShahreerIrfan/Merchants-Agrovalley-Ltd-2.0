@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { requireAdmin } from "@/lib/auth/session";
 import AdminDashboardView from "@/components/admin/AdminDashboardView";
+import { getCategoriesAction } from "@/app/admin/products-services/categories/actions";
 import Link from "next/link";
 import { ArrowLeft, Plus, Image as ImageIcon, CheckCircle, Info } from "lucide-react";
 
@@ -11,11 +12,14 @@ export const metadata = {
 
 async function AddProductContent() {
   const session = await requireAdmin();
+  const categoriesRes = await getCategoriesAction();
+
   return (
     <div className="min-h-screen bg-[#F4F7F4]">
       <AdminDashboardView
         adminEmail={session.email}
         initialTab="products-add"
+        initialCategories={categoriesRes.categories || []}
       />
     </div>
   );

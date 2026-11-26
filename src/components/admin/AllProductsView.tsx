@@ -23,27 +23,37 @@ import {
   AdminProductRecord,
 } from "@/data/adminProducts";
 import { ProductItem, deleteProductAction } from "@/app/admin/products/actions";
+import { CategoryItem } from "@/app/admin/products-services/categories/actions";
 import StaticActionNoticeModal from "./StaticActionNoticeModal";
 
 interface AllProductsViewProps {
   onOpenActionNotice?: (actionTitle: string) => void;
   initialProducts?: ProductItem[];
+  initialCategories?: CategoryItem[];
 }
 
 export default function AllProductsView({
   onOpenActionNotice,
   initialProducts = [],
+  initialCategories = [],
 }: AllProductsViewProps) {
   // Live state from PostgreSQL database
   const [productsList, setProductsList] = useState<ProductItem[]>(initialProducts);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   // Filters & Search
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedDivision, setSelectedDivision] = useState("All Divisions");
+  const [selectedDivision, setSelectedDivision] = useState("All Categories");
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [displayOrderSort, setDisplayOrderSort] = useState<"asc" | "desc">("asc");
   const [sortByColumn, setSortByColumn] = useState<keyof AdminProductRecord>("displayOrder");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
+
+  const divisionOptions = useMemo(() => {
+    if (initialCategories && initialCategories.length > 0) {
+      return ["All Categories", ...initialCategories.map((c) => c.name)];
+    }
+    return ["All Categories", ...DIVISIONS_LIST.filter(d => d !== "All Divisions")];
+  }, [initialCategories]);
 
   // Selection
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
@@ -92,10 +102,12 @@ export default function AllProductsView({
         (product.division && product.division.toLowerCase().includes(query)) ||
         product.description.toLowerCase().includes(query);
 
-      // Division Filter
+      // Category / Division Filter
       const matchesDivision =
         selectedDivision === "All Divisions" ||
-        (product.division && product.division.toLowerCase() === selectedDivision.toLowerCase());
+        selectedDivision === "All Categories" ||
+        (product.division && product.division.toLowerCase() === selectedDivision.toLowerCase()) ||
+        (product.categoryId && initialCategories.some((c) => c.id === product.categoryId && c.name.toLowerCase() === selectedDivision.toLowerCase()));
 
       return matchesSearch && matchesDivision;
     }).sort((a, b) => {
@@ -225,7 +237,7 @@ export default function AllProductsView({
             />
           </div>
 
-          {/* 2. All Divisions Dropdown */}
+          {/* 2. All Categories / Divisions Dropdown */}
           <div className="relative min-w-[170px]">
             <Layers className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <select
@@ -233,7 +245,7 @@ export default function AllProductsView({
               onChange={(e) => setSelectedDivision(e.target.value)}
               className="w-full pl-9 pr-8 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-[13.5px] text-gray-700 font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-[#013D26]/20 focus:border-[#013D26] transition-all cursor-pointer"
             >
-              {DIVISIONS_LIST.map((div) => (
+              {divisionOptions.map((div) => (
                 <option key={div} value={div}>
                   {div}
                 </option>

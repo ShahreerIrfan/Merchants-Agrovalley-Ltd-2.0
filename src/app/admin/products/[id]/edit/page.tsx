@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import prisma from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth/session";
 import AdminDashboardView from "@/components/admin/AdminDashboardView";
+import { getCategoriesAction } from "@/app/admin/products-services/categories/actions";
 import { LifecycleImagePayload } from "../../actions";
 
 interface EditProductPageProps {
@@ -48,10 +49,13 @@ async function EditProductContent({ params }: EditProductPageProps) {
     updatedAt: product.updatedAt.toISOString(),
   };
 
+  const categoriesRes = await getCategoriesAction();
+
   return (
     <AdminDashboardView
       adminEmail={session.email}
       initialTab="products-edit"
+      initialCategories={categoriesRes.categories || []}
       editProductData={productData}
     />
   );

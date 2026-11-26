@@ -19,12 +19,14 @@ import {
 } from "lucide-react";
 import { DIVISIONS_LIST } from "@/data/adminProducts";
 import { ProductItem, createProductAction, updateProductAction } from "@/app/admin/products/actions";
+import { CategoryItem, getCategoriesAction } from "@/app/admin/products-services/categories/actions";
 import { useRouter } from "next/navigation";
 
 interface AddProductFormViewProps {
   onBack?: () => void;
   onOpenNotice?: (title: string) => void;
   initialData?: ProductItem;
+  categories?: CategoryItem[];
   mode?: "create" | "edit";
 }
 
@@ -38,17 +40,45 @@ export default function AddProductFormView({
   onBack,
   onOpenNotice,
   initialData,
+  categories,
   mode = "create",
 }: AddProductFormViewProps) {
   const router = useRouter();
 
+  // Dynamic Categories State
+  const [availableCategories, setAvailableCategories] = useState<CategoryItem[]>(categories || []);
+  const [categoryId, setCategoryId] = useState<string>(initialData?.categoryId || "");
+
   // 1. Basic Information State
   const [commodityName, setCommodityName] = useState(initialData?.commodityName || "");
   const [targetDivision, setTargetDivision] = useState(
-    initialData?.division || DIVISIONS_LIST.find((d) => d === "Bulk Commodities") || DIVISIONS_LIST[1]
+    initialData?.division || ""
   );
-  const [cardBadgeText, setCardBadgeText] = useState(initialData?.cardBadgeText || "Bulk Commodities");
+  const [cardBadgeText, setCardBadgeText] = useState(initialData?.cardBadgeText || initialData?.division || "");
   const [description, setDescription] = useState(initialData?.description || "");
+
+  // Sync / fetch dynamic categories
+  React.useEffect(() => {
+    if (categories && categories.length > 0) {
+      setAvailableCategories(categories);
+      if (!categoryId && !initialData?.categoryId) {
+        setCategoryId(categories[0].id);
+        if (!targetDivision) setTargetDivision(categories[0].name);
+        if (!cardBadgeText) setCardBadgeText(categories[0].name);
+      }
+    } else {
+      getCategoriesAction().then((res) => {
+        if (res.success && res.categories && res.categories.length > 0) {
+          setAvailableCategories(res.categories);
+          if (!categoryId && !initialData?.categoryId) {
+            setCategoryId(res.categories[0].id);
+            if (!targetDivision) setTargetDivision(res.categories[0].name);
+            if (!cardBadgeText) setCardBadgeText(res.categories[0].name);
+          }
+        }
+      });
+    }
+  }, [categories]);
 
   // Auto-generate URL slug
   const generatedSlug = commodityName
@@ -236,11 +266,16 @@ export default function AddProductFormView({
     setSubmitting(true);
 
     try {
+      const selectedCategoryObj = availableCategories.find((c) => c.id === categoryId);
+      const effectiveDivision = targetDivision || selectedCategoryObj?.name || "";
+      const effectiveBadge = cardBadgeText.trim() || effectiveDivision;
+
       if (mode === "edit" && initialData?.id) {
         const res = await updateProductAction(initialData.id, {
           commodityName: commodityName.trim(),
-          division: targetDivision,
-          cardBadgeText: cardBadgeText.trim() || targetDivision,
+          categoryId: categoryId || undefined,
+          division: effectiveDivision,
+          cardBadgeText: effectiveBadge,
           description: description.trim(),
           image: mainImagePreview,
           breedSpeciesVariety: breedSpeciesVariety.trim() || undefined,
@@ -265,8 +300,9 @@ export default function AddProductFormView({
       } else {
         const res = await createProductAction({
           commodityName: commodityName.trim(),
-          division: targetDivision,
-          cardBadgeText: cardBadgeText.trim() || targetDivision,
+          categoryId: categoryId || undefined,
+          division: effectiveDivision,
+          cardBadgeText: effectiveBadge,
           description: description.trim(),
           image: mainImagePreview,
           breedSpeciesVariety: breedSpeciesVariety.trim() || undefined,
@@ -409,27 +445,36 @@ export default function AddProductFormView({
                   )}
                 </div>
 
-                {/* 2. Target Division / Category * */}
+                {/* 2. Target Division / Category (Dynamic Foreign Key) * */}
                 <div>
                   <label className="block text-[13px] font-bold text-gray-700 mb-1.5">
                     Target Division / Category <span className="text-red-500">*</span>
                   </label>
                   <select
-                    value={targetDivision}
+                    value={categoryId}
                     onChange={(e) => {
-                      setTargetDivision(e.target.value);
-                      if (!cardBadgeText || cardBadgeText === targetDivision) {
-                        setCardBadgeText(e.target.value);
+                      const selectedId = e.target.value;
+                      setCategoryId(selectedId);
+                      const selectedCat = availableCategories.find((c) => c.id === selectedId);
+                      if (selectedCat) {
+                        setTargetDivision(selectedCat.name);
+                        if (!cardBadgeText || cardBadgeText === targetDivision) {
+                          setCardBadgeText(selectedCat.name);
+                        }
                       }
                     }}
-                    className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-[13.5px] text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#013D26]/20 focus:border-[#013D26] transition-all cursor-pointer"
+                    className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-[13.5px] text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#013D26]/20 focus:border-[#013D26] transition-all cursor-pointer font-medium"
                   >
-                    {DIVISIONS_LIST.filter((d) => d !== "All Divisions").map((div) => (
-                      <option key={div} value={div}>
-                        {div}
+                    <option value="">-- Select Dynamic Category / Phase --</option>
+                    {availableCategories.map((cat) => (
+                      <option key={cat.id} value={cat.id}>
+                        {cat.name}
                       </option>
                     ))}
                   </select>
+                  {availableCategories.length === 0 && (
+                    <p className="mt-1 text-[11.5px] text-gray-400">Loading categories...</p>
+                  )}
                 </div>
 
                 {/* 3. Card Badge Text */}

@@ -73,11 +73,13 @@ export default function AdminDashboardView({
           {activeTab === "products-all" ? (
             <AllProductsView
               initialProducts={initialProducts}
+              initialCategories={initialCategories}
               onOpenActionNotice={openActionPreview}
             />
           ) : activeTab === "products-add" ? (
             <AddProductFormView
               mode="create"
+              categories={initialCategories}
               onBack={() => setActiveTab("products-all")}
               onOpenNotice={openActionPreview}
             />
@@ -85,6 +87,7 @@ export default function AdminDashboardView({
             <AddProductFormView
               mode="edit"
               initialData={editProductData}
+              categories={initialCategories}
               onBack={() => setActiveTab("products-all")}
               onOpenNotice={openActionPreview}
             />
