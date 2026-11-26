@@ -2,8 +2,8 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import prisma from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth/session";
-import AdminDashboardView from "@/components/admin/AdminDashboardView";
-import { getCategoriesAction } from "../../actions";
+import CategoryFormView from "@/components/admin/CategoryFormView";
+import AdminContentSkeleton from "@/components/admin/AdminContentSkeleton";
 
 interface EditCategoryPageProps {
   params: Promise<{ id: string }>;
@@ -16,15 +16,12 @@ export const metadata = {
 
 async function EditCategoryContent({ params }: EditCategoryPageProps) {
   const { id } = await params;
-  const session = await requireAdmin();
+  await requireAdmin();
 
-  const [category, categoriesRes] = await Promise.all([
-    prisma.category.findUnique({
-      where: { id },
-      include: { _count: { select: { products: true } } },
-    }),
-    getCategoriesAction(),
-  ]);
+  const category = await prisma.category.findUnique({
+    where: { id },
+    include: { _count: { select: { products: true } } },
+  });
 
   if (!category) {
     notFound();
@@ -41,27 +38,16 @@ async function EditCategoryContent({ params }: EditCategoryPageProps) {
   };
 
   return (
-    <AdminDashboardView
-      adminEmail={session.email}
-      initialTab="categories-edit"
-      initialCategories={categoriesRes.categories || []}
-      editCategoryData={categoryData}
+    <CategoryFormView
+      mode="edit"
+      initialData={categoryData}
     />
   );
 }
 
 export default function EditCategoryPage({ params }: EditCategoryPageProps) {
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen bg-[#002D1B] flex items-center justify-center text-white">
-          <div className="flex flex-col items-center gap-3">
-            <div className="w-8 h-8 border-3 border-[#8CCF24] border-t-transparent rounded-full animate-spin" />
-            <p className="text-[14px] text-white/70">Loading Category Details...</p>
-          </div>
-        </div>
-      }
-    >
+    <Suspense fallback={<AdminContentSkeleton />}>
       <EditCategoryContent params={params} />
     </Suspense>
   );

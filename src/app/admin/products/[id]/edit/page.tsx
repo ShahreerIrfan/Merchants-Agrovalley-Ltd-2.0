@@ -2,7 +2,8 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import prisma from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth/session";
-import AdminDashboardView from "@/components/admin/AdminDashboardView";
+import AddProductFormView from "@/components/admin/AddProductFormView";
+import AdminContentSkeleton from "@/components/admin/AdminContentSkeleton";
 import { getCategoriesAction } from "@/app/admin/products-services/categories/actions";
 import { LifecycleImagePayload } from "../../actions";
 
@@ -17,11 +18,14 @@ export const metadata = {
 
 async function EditProductContent({ params }: EditProductPageProps) {
   const { id } = await params;
-  const session = await requireAdmin();
+  await requireAdmin();
 
-  const product = await prisma.product.findUnique({
-    where: { id },
-  });
+  const [product, categoriesRes] = await Promise.all([
+    prisma.product.findUnique({
+      where: { id },
+    }),
+    getCategoriesAction(),
+  ]);
 
   if (!product) {
     notFound();
@@ -49,30 +53,18 @@ async function EditProductContent({ params }: EditProductPageProps) {
     updatedAt: product.updatedAt.toISOString(),
   };
 
-  const categoriesRes = await getCategoriesAction();
-
   return (
-    <AdminDashboardView
-      adminEmail={session.email}
-      initialTab="products-edit"
-      initialCategories={categoriesRes.categories || []}
-      editProductData={productData}
+    <AddProductFormView
+      mode="edit"
+      initialData={productData}
+      categories={categoriesRes.categories || []}
     />
   );
 }
 
 export default function EditProductPage({ params }: EditProductPageProps) {
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen bg-[#002D1B] flex items-center justify-center text-white">
-          <div className="flex flex-col items-center gap-3">
-            <div className="w-8 h-8 border-3 border-[#8CCF24] border-t-transparent rounded-full animate-spin" />
-            <p className="text-[14px] text-white/70">Loading Commodity Details...</p>
-          </div>
-        </div>
-      }
-    >
+    <Suspense fallback={<AdminContentSkeleton />}>
       <EditProductContent params={params} />
     </Suspense>
   );

@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   Package,
@@ -20,32 +21,61 @@ import {
 interface AdminSidebarProps {
   isOpen: boolean;
   onClose: () => void;
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
-  onOpenPreview: (feature: string) => void;
+  activeTab?: string;
+  setActiveTab?: (tab: string) => void;
+  onOpenPreview?: (feature: string) => void;
 }
 
-export default function AdminSidebar({
+function AdminSidebarInner({
   isOpen,
   onClose,
   activeTab,
   setActiveTab,
   onOpenPreview,
 }: AdminSidebarProps) {
+  const pathname = usePathname() || "";
+
+  // Compute active tab dynamically from URL pathname
+  const currentTab = React.useMemo(() => {
+    if (pathname === "/admin/dashboard" || pathname === "/admin") return "dashboard";
+    if (pathname === "/admin/products/new") return "products-add";
+    if (pathname.startsWith("/admin/products/") && pathname.endsWith("/edit")) return "products-edit";
+    if (pathname.startsWith("/admin/products-services/categories/new")) return "categories-new";
+    if (pathname.startsWith("/admin/products-services/categories/") && pathname.endsWith("/edit")) return "categories-edit";
+    if (pathname.startsWith("/admin/products-services/categories")) return "categories";
+    if (pathname.startsWith("/admin/products")) return "products-all";
+    if (pathname === "/admin/management/new") return "management-new";
+    if (pathname.startsWith("/admin/management/") && pathname.endsWith("/edit")) return "management-edit";
+    if (pathname.startsWith("/admin/management")) return "management";
+    return activeTab || "dashboard";
+  }, [pathname, activeTab]);
+
   const [productsOpen, setProductsOpen] = useState(
-    activeTab.startsWith("products-") || activeTab === "products-all"
+    currentTab.startsWith("products") || currentTab.startsWith("categories")
   );
   const [managementOpen, setManagementOpen] = useState(
-    activeTab.startsWith("management") || activeTab.startsWith("mgmt-")
+    currentTab.startsWith("management")
   );
 
+  // Auto-expand accordions when navigating to child sections
+  useEffect(() => {
+    if (currentTab.startsWith("products") || currentTab.startsWith("categories")) {
+      setProductsOpen(true);
+    }
+    if (currentTab.startsWith("management")) {
+      setManagementOpen(true);
+    }
+  }, [currentTab]);
+
   const handleNavClick = (tab: string, previewName?: string) => {
-    setActiveTab(tab);
-    if (previewName) {
+    if (setActiveTab) {
+      setActiveTab(tab);
+    }
+    if (previewName && onOpenPreview) {
       onOpenPreview(previewName);
     }
     // Close on mobile
-    if (window.innerWidth < 1024) {
+    if (typeof window !== "undefined" && window.innerWidth < 1024) {
       onClose();
     }
   };
@@ -103,7 +133,7 @@ export default function AdminSidebar({
               href="/admin/dashboard"
               onClick={() => handleNavClick("dashboard")}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all cursor-pointer ${
-                activeTab === "dashboard"
+                currentTab === "dashboard"
                   ? "bg-[#8CCF24] text-[#013D26] font-bold shadow-[0_4px_16px_rgba(140,207,36,0.3)]"
                   : "text-white/85 hover:text-white hover:bg-white/10"
               }`}
@@ -117,7 +147,7 @@ export default function AdminSidebar({
               <button
                 onClick={() => setProductsOpen(!productsOpen)}
                 className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl transition-all cursor-pointer ${
-                  productsOpen || activeTab.startsWith("products") || activeTab.startsWith("categories")
+                  productsOpen || currentTab.startsWith("products") || currentTab.startsWith("categories")
                     ? "bg-white/5 text-white"
                     : "text-white/85 hover:bg-white/5"
                 }`}
@@ -139,14 +169,14 @@ export default function AdminSidebar({
                     href="/admin/products"
                     onClick={() => handleNavClick("products-all")}
                     className={`w-full text-left py-2 px-3 rounded-xl text-[13px] transition-all flex items-center gap-2.5 cursor-pointer ${
-                      activeTab === "products-all"
+                      currentTab === "products-all"
                         ? "bg-white/10 text-white font-semibold shadow-inner"
                         : "text-white/75 hover:text-white hover:bg-white/5"
                     }`}
                   >
                     <span
                       className={`w-2 h-2 rounded-full transition-all shrink-0 ${
-                        activeTab === "products-all"
+                        currentTab === "products-all"
                           ? "bg-[#8CCF24] shadow-[0_0_8px_#8CCF24]"
                           : "bg-white/40"
                       }`}
@@ -158,14 +188,14 @@ export default function AdminSidebar({
                     href="/admin/products/new"
                     onClick={() => handleNavClick("products-add")}
                     className={`w-full text-left py-2 px-3 rounded-xl text-[13px] transition-all flex items-center gap-2.5 cursor-pointer ${
-                      activeTab === "products-add"
+                      currentTab === "products-add"
                         ? "bg-white/10 text-white font-semibold shadow-inner"
                         : "text-white/75 hover:text-white hover:bg-white/5"
                     }`}
                   >
                     <span
                       className={`w-2 h-2 rounded-full transition-all shrink-0 ${
-                        activeTab === "products-add"
+                        currentTab === "products-add"
                           ? "bg-[#8CCF24] shadow-[0_0_8px_#8CCF24]"
                           : "bg-white/40"
                       }`}
@@ -177,14 +207,14 @@ export default function AdminSidebar({
                     href="/admin/products-services/categories"
                     onClick={() => handleNavClick("categories")}
                     className={`w-full text-left py-2 px-3 rounded-xl text-[13px] transition-all flex items-center gap-2.5 cursor-pointer ${
-                      activeTab === "categories" || activeTab.startsWith("categories-")
+                      currentTab === "categories" || currentTab.startsWith("categories-")
                         ? "bg-white/10 text-white font-semibold shadow-inner"
                         : "text-white/75 hover:text-white hover:bg-white/5"
                     }`}
                   >
                     <span
                       className={`w-2 h-2 rounded-full transition-all shrink-0 ${
-                        activeTab === "categories" || activeTab.startsWith("categories-")
+                        currentTab === "categories" || currentTab.startsWith("categories-")
                           ? "bg-[#8CCF24] shadow-[0_0_8px_#8CCF24]"
                           : "bg-white/40"
                       }`}
@@ -220,14 +250,14 @@ export default function AdminSidebar({
                     href="/admin/management"
                     onClick={() => handleNavClick("management")}
                     className={`w-full text-left py-2 px-3 rounded-xl text-[13px] transition-all flex items-center gap-2.5 cursor-pointer ${
-                      activeTab === "management" || activeTab === "mgmt-all"
+                      currentTab === "management" || currentTab === "mgmt-all"
                         ? "bg-white/10 text-white font-semibold shadow-inner"
                         : "text-white/75 hover:text-white hover:bg-white/5"
                     }`}
                   >
                     <span
                       className={`w-2 h-2 rounded-full transition-all shrink-0 ${
-                        activeTab === "management" || activeTab === "mgmt-all"
+                        currentTab === "management" || currentTab === "mgmt-all"
                           ? "bg-[#8CCF24] shadow-[0_0_8px_#8CCF24]"
                           : "bg-white/40"
                       }`}
@@ -239,14 +269,14 @@ export default function AdminSidebar({
                     href="/admin/management/new"
                     onClick={() => handleNavClick("management-new")}
                     className={`w-full text-left py-2 px-3 rounded-xl text-[13px] transition-all flex items-center gap-2.5 cursor-pointer ${
-                      activeTab === "management-new" || activeTab === "mgmt-add"
+                      currentTab === "management-new" || currentTab === "mgmt-add"
                         ? "bg-white/10 text-white font-semibold shadow-inner"
                         : "text-white/75 hover:text-white hover:bg-white/5"
                     }`}
                   >
                     <span
                       className={`w-2 h-2 rounded-full transition-all shrink-0 ${
-                        activeTab === "management-new" || activeTab === "mgmt-add"
+                        currentTab === "management-new" || currentTab === "mgmt-add"
                           ? "bg-[#8CCF24] shadow-[0_0_8px_#8CCF24]"
                           : "bg-white/40"
                       }`}
@@ -330,5 +360,30 @@ export default function AdminSidebar({
         </div>
       </aside>
     </>
+  );
+}
+
+export default function AdminSidebar(props: AdminSidebarProps) {
+  return (
+    <React.Suspense
+      fallback={
+        <aside
+          className={`fixed top-0 bottom-0 left-0 z-50 w-[270px] bg-[#002D1B] text-white flex flex-col justify-between border-r border-white/10 lg:translate-x-0 ${
+            props.isOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
+          <div className="p-5">
+            <div className="w-[170px] h-[40px] bg-white/10 rounded-lg mb-6" />
+            <div className="space-y-3">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <div key={i} className="h-10 w-full bg-white/5 rounded-xl" />
+              ))}
+            </div>
+          </div>
+        </aside>
+      }
+    >
+      <AdminSidebarInner {...props} />
+    </React.Suspense>
   );
 }

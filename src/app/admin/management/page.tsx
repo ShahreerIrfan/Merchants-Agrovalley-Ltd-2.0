@@ -1,38 +1,26 @@
 import { Suspense } from "react";
 import { requireAdmin } from "@/lib/auth/session";
-import AdminDashboardView from "@/components/admin/AdminDashboardView";
+import ManagementListView from "@/components/admin/ManagementListView";
+import AdminContentSkeleton from "@/components/admin/AdminContentSkeleton";
 import { getManagementMembersAction } from "./actions";
 
 export const metadata = {
-  title: "Company Management People | Merchants AgroValley Admin",
-  description: "Manage executive board, directors, and corporate governance hierarchy.",
+  title: "Management Team | Merchants AgroValley Admin",
+  description: "Configure executive management, board members, and corporate leadership.",
 };
 
 async function ManagementContent() {
-  const session = await requireAdmin();
+  await requireAdmin();
   const res = await getManagementMembersAction();
 
   return (
-    <AdminDashboardView
-      adminEmail={session.email}
-      initialTab="management"
-      initialManagementMembers={res.members || []}
-    />
+    <ManagementListView initialMembers={res.members || []} />
   );
 }
 
-export default function ManagementPage() {
+export default function AdminManagementPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen bg-[#002D1B] flex items-center justify-center text-white">
-          <div className="flex flex-col items-center gap-3">
-            <div className="w-8 h-8 border-3 border-[#8CCF24] border-t-transparent rounded-full animate-spin" />
-            <p className="text-[14px] text-white/70">Loading Company Management People...</p>
-          </div>
-        </div>
-      }
-    >
+    <Suspense fallback={<AdminContentSkeleton />}>
       <ManagementContent />
     </Suspense>
   );

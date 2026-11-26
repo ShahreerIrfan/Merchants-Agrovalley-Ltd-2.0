@@ -1,9 +1,8 @@
 import { Suspense } from "react";
 import { requireAdmin } from "@/lib/auth/session";
-import AdminDashboardView from "@/components/admin/AdminDashboardView";
+import AddProductFormView from "@/components/admin/AddProductFormView";
+import AdminContentSkeleton from "@/components/admin/AdminContentSkeleton";
 import { getCategoriesAction } from "@/app/admin/products-services/categories/actions";
-import Link from "next/link";
-import { ArrowLeft, Plus, Image as ImageIcon, CheckCircle, Info } from "lucide-react";
 
 export const metadata = {
   title: "Add New Product/Service | Merchants AgroValley Admin",
@@ -11,32 +10,20 @@ export const metadata = {
 };
 
 async function AddProductContent() {
-  const session = await requireAdmin();
+  await requireAdmin();
   const categoriesRes = await getCategoriesAction();
 
   return (
-    <div className="min-h-screen bg-[#F4F7F4]">
-      <AdminDashboardView
-        adminEmail={session.email}
-        initialTab="products-add"
-        initialCategories={categoriesRes.categories || []}
-      />
-    </div>
+    <AddProductFormView
+      mode="create"
+      categories={categoriesRes.categories || []}
+    />
   );
 }
 
 export default function AddProductPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen bg-[#002D1B] flex items-center justify-center text-white">
-          <div className="flex flex-col items-center gap-3">
-            <div className="w-8 h-8 border-3 border-[#8CCF24] border-t-transparent rounded-full animate-spin" />
-            <p className="text-[14px] text-white/70">Loading Add Product Form...</p>
-          </div>
-        </div>
-      }
-    >
+    <Suspense fallback={<AdminContentSkeleton />}>
       <AddProductContent />
     </Suspense>
   );
